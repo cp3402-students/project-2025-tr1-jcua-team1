@@ -1,0 +1,67 @@
+.env
+.DS_Store
+# Ignore WordPress core files
+wp-admin/
+wp-includes/
+*.log
+*.sql
+*.sqlite
+*.bak
+
+# Ignore configuration files (if not using environment-based setup)
+wp-config.php
+wp-config-*.php
+
+# Ignore uploaded media files (optional, unless you want to track uploads)
+wp-content/uploads/
+
+# Ignore themes except for custom ones
+wp-content/themes/*
+!wp-content/themes/your-custom-theme/
+
+# Ignore plugins except for custom ones
+wp-content/plugins/*
+!wp-content/plugins/your-custom-plugin/
+
+# Ignore WordPress cache and temporary files
+wp-content/cache/
+wp-content/upgrade/
+
+# Ignore Composer dependencies (if using Bedrock)
+vendor/
+composer.lock
+
+# Ignore Node.js dependencies (if using a theme with npm)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignore SASS, Gulp, and Webpack-generated files (if applicable)
+*.css.map
+*.scssc
+gulpfile.js
+gruntfile.js
+package-lock.json
+yarn.lock
+dist/
+build/
+
+# Ignore IDE and system files
+*.DS_Store
+*.vscode/
+*.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore environment files
+.env
+.env.local
+.env.production
+.env.development
+
+# Ignore Docker-related files
+docker-compose.override.yml
+
+# Ignore logs
+debug.log
+error_log
