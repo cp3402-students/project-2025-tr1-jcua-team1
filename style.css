@@ -47,6 +47,8 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 # Utilities
 	- Accessibility
 	- Alignments
+# Custom Team1Theme
+	- Custom Header
 
 --------------------------------------------------------------*/
 
@@ -967,3 +969,43 @@ textarea {
 	margin-right: auto;
 	margin-bottom: 1.5em;
 }
+
+/*--------------------------------------------------------------
+# Custom Team1Theme
+--------------------------------------------------------------*/
+
+/* Variables */
+:root {
+	--color-primary: #4169e1; /* Royal Blue */
+	--color-secondary: #800080; /* Purple */
+	--color-accent: #191970; /* Midnight Blue */
+	--color-background: #fff; /* White */
+	--color-text: #404040; /* Dark Gray */
+	--color-border: #ccc; /* Light Gray */
+	--color-highlight: #fff9c0; /* Light Yellow */
+	--color-header: green; /* Green */
+	--font-size-header: 1.8rem;
+}
+
+/* Custom Header
+--------------------------------------------- */
+.site-header {
+	background-color: var(--color-header);
+	border-bottom: 1px solid #eaeaea;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.main-navigation {
+	width: auto;
+}
+
+.navbar-nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	gap: 1rem;
+	font-size: var(--font-size-header);
+}
+
