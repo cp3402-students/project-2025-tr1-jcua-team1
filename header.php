@@ -68,9 +68,8 @@
 				array(
 					'theme_location' => 'menu-1',
 					'menu_id'        => 'primary-menu',
-					
-					// This allows us to add custom class to the menu ul. 
-					'items_wrap'     => '<ul id="%1$s" class="navbar-nav">%3$s</ul>',
+					'menu_class'     => 'navbar-nav',
+					'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
 				)
 			);
 			?>
