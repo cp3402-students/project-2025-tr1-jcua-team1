@@ -65,6 +65,12 @@
     ```
 
 2. Ensure that a '.env' file is defined in the root directory.
+    ```
+    MYSQL_DATABASE = ninjawarriors
+    MYSQL_USER = ninjawarrior
+    MYSQL_PASSWORD = ninjawarrior_password
+    MYSQL_ROOT_PASSWORD = ninjawarrior_root_password
+    ```
 
 3. Clone the repo (or a specific branch) in directory:
     ```
