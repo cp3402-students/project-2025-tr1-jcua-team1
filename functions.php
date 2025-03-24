@@ -93,10 +93,10 @@ function team1theme_setup() {
 	add_theme_support(
 		'custom-logo',
 		array(
-			'height'      => 250,
+			'height'      => 100,
 			'width'       => 250,
 			'flex-width'  => true,
-			'flex-height' => true,
+			'flex-height' => false,
 		)
 	);
 }
@@ -148,6 +148,35 @@ function team1theme_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'team1theme_scripts' );
+
+/**
+ * Filter the custom logo to ensure consistent sizing
+ */
+function team1theme_custom_logo_setup($html) {
+    // Get theme logo dimensions
+    $custom_logo_args = get_theme_support('custom-logo');
+    $logo_height = isset($custom_logo_args[0]['height']) ? $custom_logo_args[0]['height'] : 100;
+    
+    // Add custom class to the logo image for specific styling
+    $html = str_replace('class="custom-logo"', 'class="custom-logo" style="max-height:' . $logo_height . 'px;"', $html);
+    
+    return $html;
+}
+add_filter('get_custom_logo', 'team1theme_custom_logo_setup');
+
+/**
+ * Set image size for logo uploads
+ */
+function team1theme_custom_logo_image_size() {
+    // Get theme logo dimensions
+    $custom_logo_args = get_theme_support('custom-logo');
+    $logo_height = isset($custom_logo_args[0]['height']) ? $custom_logo_args[0]['height'] : 100;
+    $logo_width = isset($custom_logo_args[0]['width']) ? $custom_logo_args[0]['width'] : 250;
+    
+    // Add logo size
+    add_image_size('team1theme-logo', $logo_width, $logo_height, false);
+}
+add_action('after_setup_theme', 'team1theme_custom_logo_image_size', 11);
 
 /**
  * Implement the Custom Header feature.

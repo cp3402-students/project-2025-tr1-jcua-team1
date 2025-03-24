@@ -47,6 +47,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 # Utilities
 	- Accessibility
 	- Alignments
+# Custom Team1Theme
+	- Custom Header
+	- Custom Logo
 
 --------------------------------------------------------------*/
 
@@ -239,6 +242,7 @@ button,
 [type="reset"],
 [type="submit"] {
 	-webkit-appearance: button;
+	appearance: button;
 }
 
 /**
@@ -322,6 +326,7 @@ textarea {
  */
 [type="search"] {
 	-webkit-appearance: textfield;
+	appearance: textfield;
 	outline-offset: -2px;
 }
 
@@ -967,3 +972,104 @@ textarea {
 	margin-right: auto;
 	margin-bottom: 1.5em;
 }
+
+/*--------------------------------------------------------------
+# Custom Team1Theme
+--------------------------------------------------------------*/
+
+/* Variables */
+:root {
+	--color-primary: #4169e1; /* Royal Blue */
+	--color-secondary: #800080; /* Purple */
+	--color-accent: #191970; /* Midnight Blue */
+	--color-background: #fff; /* White */
+	--color-text: black; /* Black */
+	--color-border: #ccc; /* Light Gray */
+	--color-highlight: #fff9c0; /* Light Yellow */
+	--color-header: whitesmoke; /* Green */
+	--font-size-header: 1.8rem;
+	--min-header-height: 100px;
+	--max-header-height: 250px;
+	--max-header-width: 250px;
+	--nav-links-gap: 15px;
+	--header-min-gap: 10px;
+    --header-max-gap: 50px;
+}
+
+/* Custom Header
+--------------------------------------------- */
+.site-header {
+	background-color: var(--color-header);
+	border-bottom: 1px solid #eaeaea;
+	display: flex;
+	justify-content: space-evenly;
+	gap: clamp(var(--header-min-gap), 5vw, var(--header-max-gap));
+	align-items: center;
+	min-height: var(--min-header-height);
+}
+
+.main-navigation {
+	width: auto;
+}
+
+/* Custom navigation 
+----------------------------------------------*/
+
+.navbar-nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	gap: var(--nav-links-gap);
+}
+
+.navbar-nav li a {
+	color: var(--color-text)
+}
+
+
+/* Custom Logo
+--------------------------------------------- */
+.custom-logo-link {
+    display: flex;
+    align-items: center;
+}
+
+.custom-logo {
+    max-height: var(--max-header-height);  
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Ensures logo keeps aspect ratio */
+}
+
+.site-branding {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: var(--min-header-height); 
+    padding: 10px;
+}
+
+.logo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--min-header-height); /* Match header height */
+    max-width: var(--max-header-width);
+}
+
+.site-title {
+    margin: 0;
+    font-size: var(--font-size-header);
+}
+
+.site-title a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.site-description {
+    margin: 0.5em 0;
+    color: var(--color-highlight);
+}
+
