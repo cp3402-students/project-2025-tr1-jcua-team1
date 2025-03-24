@@ -986,7 +986,7 @@ textarea {
 	--color-text: black; /* Black */
 	--color-border: #ccc; /* Light Gray */
 	--color-highlight: #fff9c0; /* Light Yellow */
-	--color-header: green; /* Green */
+	--color-header: whitesmoke; /* Green */
 	--font-size-header: 1.8rem;
 	--min-header-height: 100px;
 	--max-header-height: 250px;
@@ -1008,12 +1008,12 @@ textarea {
 	width: auto;
 }
 
-.navbar-nav {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	font-size: var(--font-size-header);
+/* Custom navigation 
+----------------------------------------------*/
+.navbar-nav ul li a {
+	color: var(--color-text)
 }
+
 
 /* Custom Logo
 --------------------------------------------- */
