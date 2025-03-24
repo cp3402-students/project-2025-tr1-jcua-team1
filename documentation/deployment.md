@@ -9,10 +9,9 @@
 - Docker cli (Linux)
 - Docker compose
 - Docker desktop (Windows, Mac)
-- WordPress core files
 
 **Workflow:**
-1. Make sure a docker-compose.yml file is defined in the root WordPress directory like this:
+1. Make sure a docker-compose.yml file is defined in the root directory like this:
     ```
     services:
     database:
@@ -37,7 +36,7 @@
         container_name: wp-ninjawarriors
         depends_on:
         - database
-        image: wordpress
+        image: wordpress:latest
         restart: unless-stopped
         ports:
         - 8080:80
@@ -48,12 +47,16 @@
         WORDPRESS_DB_USER: '${MYSQL_USER}'
         WORDPRESS_DB_PASSWORD: '${MYSQL_PASSWORD}'
         volumes:
-        - ./:/var/www/html
+        - wordpress_data:/var/www/html      # Persistent storage for WordPress core files
+        - ./themes:/var/www/html/wp-content/themes    # Local development of themes
+        - ./plugins:/var/www/html/wp-content/plugins  # Local development of plugins
+        - ./uploads:/var/www/html/wp-content/uploads  # Store uploaded media files locally
         networks:
         - wordpress-network
         
     volumes:
     db_data: 
+    wordpress_data:
 
     networks:
     wordpress-network:
@@ -61,9 +64,9 @@
 
     ```
 
-2. Ensure that a '.env' file is defined in the root WordPress directory.
+2. Ensure that a '.env' file is defined in the root directory.
 
-3. Clone the repo in the wp-content/themes directory:
+3. Clone the repo (or a specific branch) in directory:
     ```
     git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
     ```
@@ -79,14 +82,75 @@
     git pull
     ```
 
-3. Create new branch prior to modification.
+3. Create new branch prior to modification (best practice).
 
 4. Run Docker containers:
     ```
     docker-compose up -d
     ```
 
-5. Destroy Docker containers:
+5. Destroy Docker containers when finished:
     ```
     docker-compose down
+    ```
+
+## Deployment workflow
+
+### Deploying in staging web server (Microsoft Azure) with Docker:
+
+**Setting up:**
+
+1. Create virtual machine using chosen service provider.
+
+2. Download key pair for SSH.
+
+3. SSH into VM:
+    ```
+    ssh -i wp-staging-key.pem azureuser@20.167.48.156
+    ```
+
+4. Update VM:
+    ```
+    sudo apt update
+    ```
+
+5. Install Docker:
+    ```
+    sudo apt install -y docker.io
+    ```
+
+6. Enable and start Docker:
+    ```
+    sudo systemctl enable docker
+    sudo systemctl start docker
+    ```
+
+7. Install Docker Compose:
+    ```
+    sudo apt install -y docker-compose
+    ```
+
+8. Create .env file for passwords (in desired directory):
+    ```
+    nano .env
+    ```
+
+9. Define passwords with variables (for example):
+    ```
+    MYSQL_DATABASE = ninjawarriors
+    MYSQL_USER = ninjawarrior
+    MYSQL_PASSWORD = ninjawarrior_password
+    MYSQL_ROOT_PASSWORD = ninjawarrior_root_password
+    ```
+
+10. Create docker-compose.yml file:
+    ```
+    nano docker-compose.yml
+    ```
+
+11. Define docker-compose.yml file.
+
+12. Start up containers:
+    ```
+    sudo docker-compose up -d
     ```
