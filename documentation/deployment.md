@@ -10,6 +10,8 @@
 - Docker compose
 - Docker desktop (Windows, Mac)
 
+**Steps:**
+
 1. Make sure a docker-compose.yml file is defined in the root directory like this:
     ```
     services:
