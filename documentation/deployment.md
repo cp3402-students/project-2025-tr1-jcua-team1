@@ -10,7 +10,6 @@
 - Docker compose
 - Docker desktop (Windows, Mac)
 
-**Workflow:**
 1. Make sure a docker-compose.yml file is defined in the root directory like this:
     ```
     services:
@@ -72,7 +71,12 @@
     MYSQL_ROOT_PASSWORD = ninjawarrior_root_password
     ```
 
-3. Clone the repo (or a specific branch) in directory:
+3. Create a 'themes' directory in root directory:
+    ```
+    mkdir themes
+    ```
+
+4. Clone the repo (or a specific branch) in directory:
     ```
     git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
     ```
