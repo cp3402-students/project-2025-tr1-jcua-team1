@@ -96,9 +96,7 @@
 
 ## Deployment workflow
 
-### Deploying in staging web server (Microsoft Azure) with Docker:
-
-**Setting up:**
+### Initialising the staging web server (Microsoft Azure) with Docker:
 
 1. Create virtual machine using chosen service provider.
 
@@ -153,4 +151,32 @@
 12. Start up containers:
     ```
     sudo docker-compose up -d
+    ```
+
+**Adding custom theme:**
+
+13. Change directory into themes (create dir if needed).
+
+14. Clone the repo (or a specific branch) in directory:
+    ```
+    git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
+    ```
+
+### Example workflow (Updating theme code):
+
+1. Commit and push changes from local development.
+
+2. SSH into VM:
+    ```
+    ssh -i wp-staging-key.pem azureuser@20.167.48.156
+    ```
+    
+3. Fetch all changes:
+    ```
+    git fetch --all
+    ```
+
+4. Pull all changes:
+    ```
+    git pull
     ```
