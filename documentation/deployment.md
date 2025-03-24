@@ -176,13 +176,15 @@
     ```
     ssh -i wp-staging-key.pem azureuser@20.167.48.156
     ```
+
+3. Change directroy into custom theme folder
     
-3. Fetch all changes:
+4. Fetch all changes:
     ```
     git fetch --all
     ```
 
-4. Pull all changes:
+5. Pull all changes:
     ```
     git pull
     ```
