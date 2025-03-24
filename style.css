@@ -991,6 +991,9 @@ textarea {
 	--min-header-height: 100px;
 	--max-header-height: 250px;
 	--max-header-width: 250px;
+	--nav-links-gap: 15px;
+	--header-min-gap: 10px;
+    --header-max-gap: 50px;
 }
 
 /* Custom Header
@@ -999,7 +1002,8 @@ textarea {
 	background-color: var(--color-header);
 	border-bottom: 1px solid #eaeaea;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-evenly;
+	gap: clamp(var(--header-min-gap), 5vw, var(--header-max-gap));
 	align-items: center;
 	min-height: var(--min-header-height);
 }
@@ -1010,7 +1014,15 @@ textarea {
 
 /* Custom navigation 
 ----------------------------------------------*/
-.navbar-nav ul li a {
+
+.navbar-nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	gap: var(--nav-links-gap);
+}
+
+.navbar-nav li a {
 	color: var(--color-text)
 }
 
