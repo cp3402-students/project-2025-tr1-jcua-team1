@@ -986,7 +986,7 @@ textarea {
 	--color-text: black; /* Black */
 	--color-border: #ccc; /* Light Gray */
 	--color-highlight: #fff9c0; /* Light Yellow */
-	--color-header: whitesmoke; /* Green */
+	--color-header: pink;
 	--font-size-header: 1.8rem;
 	--min-header-height: 100px;
 	--max-header-height: 250px;
