@@ -174,7 +174,46 @@
     git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
     ```
 
-### Example workflow (Updating theme code):
+
+### Initialise Github actions (updating theme code workflow) in staging server:
+
+1. Add SSH private key and VM IP address in Github repo's secrets.
+
+2. Define .yml file in .github/workflows/ directory:
+    ```
+    name: Deploy WordPress Theme to Azure Staging VM
+
+    on:
+    push:
+        branches:
+        - main 
+
+    jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout code
+        uses: actions/checkout@v3
+
+        - name: Set up SSH Key
+        run: |
+            mkdir -p ~/.ssh
+            echo "${{ secrets.SSH_PRIVATE_KEY_STAGING }}" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan -H ${{ secrets.STAGING_VM_IP }} >> ~/.ssh/known_hosts
+
+        - name: Deploy Theme to Azure VM
+        run: |
+            ssh azureuser@${{ secrets.STAGING_VM_IP }} << 'EOF'
+            cd ~/wp/themes/project-2025-tr1-jcua-team1  # Adjust this path to your WordPress theme directory
+            git pull origin main  # Fetch latest changes
+            EOF
+    ```
+
+
+
+### Manual workflow of updating theme code:
 
 1. Commit and push changes from local development.
 
