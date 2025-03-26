@@ -12,7 +12,9 @@ The top section of the homepage (hero section) can be fully customised through t
 2. Here you can modify:
    - **Hero Heading**: The main title displayed on the homepage
    - **Hero Text**: The descriptive paragraph below the heading
-   - **Hero Background Colour**: Change the background colour of the hero section
+   - **Hero Background Image**: Upload an image to use as background (takes priority over background colour)
+   - **Background Image Overlay**: Adjust the darkness of the overlay on the background image
+   - **Hero Background Colour**: Change the background colour (used when no image is set)
    - **Hero Text Colour**: Change the colour of all text in the hero section
    - **Text Alignment**: Align text left, centre, or right
    - **Hero Section Width**: Adjust the width of the content area (50-100%)
