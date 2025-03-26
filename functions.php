@@ -225,6 +225,39 @@ function team1_theme_customize_register( $wp_customize ) {
         'label'    => __( 'Hero Background Color', 'team1theme' ),
         'section'  => 'homepage_settings',
     ) ) );
+
+    // Hero Background Image
+    $wp_customize->add_setting('hero_bg_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_bg_image', array(
+        'label'    => __('Hero Background Image', 'team1theme'),
+        'section'  => 'homepage_settings',
+        'priority' => 11, // Position after background color
+    )));
+
+    // Hero Background Image Opacity
+    $wp_customize->add_setting('hero_bg_opacity', array(
+        'default'           => '0.8',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control('hero_bg_opacity', array(
+        'label'       => __('Background Image Overlay Opacity', 'team1theme'),
+        'description' => __('Adjust the darkness of the background image (0 = transparent, 1 = solid color overlay)', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'range',
+        'priority'    => 12,
+        'input_attrs' => array(
+            'min'  => 0,
+            'max'  => 1,
+            'step' => 0.1,
+        ),
+    ));
     
     // Hero Text Color
     $wp_customize->add_setting( 'hero_text_color', array(

@@ -13,7 +13,14 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
-    <section class="hero-section" style="background-color: <?php echo esc_attr(get_theme_mod('hero_bg_color', '#f8f9fa')); ?>">
+    <section class="hero-section" 
+        <?php if (get_theme_mod('hero_bg_image')) : ?>
+            style="background-image: linear-gradient(rgba(0, 0, 0, <?php echo esc_attr(get_theme_mod('hero_bg_opacity', '0.8')); ?>), rgba(0, 0, 0, <?php echo esc_attr(get_theme_mod('hero_bg_opacity', '0.8')); ?>)), url('<?php echo esc_url(get_theme_mod('hero_bg_image')); ?>'); 
+                   background-size: cover; 
+                   background-position: center;"
+        <?php else : ?>
+            style="background-color: <?php echo esc_attr(get_theme_mod('hero_bg_color', '#f8f9fa')); ?>;"
+        <?php endif; ?>>
         <div class="container" style="max-width: <?php echo esc_attr(get_theme_mod('hero_width', '100')); ?>%; text-align: <?php echo esc_attr(get_theme_mod('hero_text_align', 'center')); ?>; color: <?php echo esc_attr(get_theme_mod('hero_text_color', '#333333')); ?>;">
             <h1><?php echo esc_html(get_theme_mod('hero_heading', 'Welcome to Our Website')); ?></h1>
             <p><?php echo esc_html(get_theme_mod('hero_text', 'This is your custom homepage. Add your content here.')); ?></p>
