@@ -226,6 +226,55 @@ function team1_theme_customize_register( $wp_customize ) {
         'section'  => 'homepage_settings',
     ) ) );
     
+    // Hero Text Color
+    $wp_customize->add_setting( 'hero_text_color', array(
+        'default'           => '#333333',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'hero_text_color', array(
+        'label'    => __( 'Hero Text Color', 'team1theme' ),
+        'section'  => 'homepage_settings',
+    ) ) );
+    
+    // Hero Text Alignment
+    $wp_customize->add_setting( 'hero_text_align', array(
+        'default'           => 'center',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( 'hero_text_align', array(
+        'label'    => __( 'Text Alignment', 'team1theme' ),
+        'section'  => 'homepage_settings',
+        'type'     => 'select',
+        'choices'  => array(
+            'left'   => __( 'Left', 'team1theme' ),
+            'center' => __( 'Center', 'team1theme' ),
+            'right'  => __( 'Right', 'team1theme' ),
+        ),
+    ) );
+    
+    // Hero Width
+    $wp_customize->add_setting( 'hero_width', array(
+        'default'           => '100',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( 'hero_width', array(
+        'label'       => __( 'Hero Section Width (%)', 'team1theme' ),
+        'description' => __( 'Width of the hero section content (50-100%)', 'team1theme' ),
+        'section'     => 'homepage_settings',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 50,
+            'max'  => 100,
+            'step' => 5,
+        ),
+    ) );
+    
     // Hero Button Text
     $wp_customize->add_setting( 'hero_button_text', array(
         'default'           => 'Learn More',

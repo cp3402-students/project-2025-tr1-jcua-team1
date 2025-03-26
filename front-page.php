@@ -14,7 +14,7 @@ get_header();
 
 <main id="primary" class="site-main">
     <section class="hero-section" style="background-color: <?php echo esc_attr(get_theme_mod('hero_bg_color', '#f8f9fa')); ?>">
-        <div class="container">
+        <div class="container" style="max-width: <?php echo esc_attr(get_theme_mod('hero_width', '100')); ?>%; text-align: <?php echo esc_attr(get_theme_mod('hero_text_align', 'center')); ?>; color: <?php echo esc_attr(get_theme_mod('hero_text_color', '#333333')); ?>;">
             <h1><?php echo esc_html(get_theme_mod('hero_heading', 'Welcome to Our Website')); ?></h1>
             <p><?php echo esc_html(get_theme_mod('hero_text', 'This is your custom homepage. Add your content here.')); ?></p>
             
