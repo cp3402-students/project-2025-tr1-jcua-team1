@@ -28,7 +28,10 @@ jobs:
     - name: Install PHP dependencies
       run: |
         if [ -f composer.json ]; then
-          composer install --no-progress --no-suggest
+          # Allow the required plugin
+          composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+          # Install dependencies without the deprecated --no-suggest flag
+          composer install --no-progress
         fi
         
     - name: Install JS dependencies
