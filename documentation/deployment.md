@@ -106,6 +106,108 @@
     docker-compose down
     ```
 
+### Automated PR testing with Github Actions
+
+#### Initialising automated PR testing:
+Automated PR testing using GitHub Actions helps ensure code quality by running tests before changes are merged to the main branch.
+
+1. Create `.github/workflows` directory in the repository if it doesn't exist:
+   ```
+   mkdir -p .github/workflows
+   ```
+
+2. Create a workflow file for PR testing:
+   ```
+   nano .github/workflows/pr-testing.yml
+   ```
+
+3. Add the following configuration to the workflow file:
+   ```yaml
+   name: Test Pull Request
+
+   on:
+     pull_request:
+       branches:
+         - main
+
+   jobs:
+     test:
+       runs-on: ubuntu-latest
+       
+       steps:
+       - name: Checkout code
+         uses: actions/checkout@v3
+         
+       - name: Set up PHP
+         uses: shivammathur/setup-php@v2
+         with:
+           php-version: '8.0'
+           extensions: mbstring, xml
+           coverage: none
+           
+       - name: Set up Node.js
+         uses: actions/setup-node@v3
+         with:
+           node-version: '16'
+           
+       - name: Install PHP dependencies
+         run: |
+           if [ -f composer.json ]; then
+             composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+             composer install --no-progress
+           fi
+           
+       - name: Install JS dependencies
+         run: |
+           if [ -f package.json ]; then
+             if [ -f package-lock.json ]; then
+               npm ci
+             else
+               npm install
+             fi
+           fi
+           
+       - name: PHP Lint
+         run: |
+           find . -name "*.php" -not -path "./vendor/*" -print0 | xargs -0 -n1 php -l
+           
+       - name: Run JavaScript/CSS linting
+         run: |
+           if [ -f package.json ]; then
+             if npm run --silent --if-present | grep -q "^  lint"; then
+               npm run lint
+             else
+               echo "No lint script found in package.json. Skipping linting step."
+             fi
+           else
+             echo "No package.json found. Skipping JavaScript/CSS linting."
+           fi
+           
+       - name: Run tests
+         run: |
+           if [ -f composer.json ] && grep -q "test" composer.json; then
+             composer run test
+           elif [ -f package.json ] && grep -q "test" package.json; then
+             npm test
+           fi
+   ```
+
+4. Commit and push the workflow file to the repository:
+   ```
+   git add .github/workflows/pr-testing.yml
+   git commit -m "Add PR testing workflow"
+   git push
+   ```
+
+#### How PR testing works:
+1. When a pull request is created against the main branch, GitHub Actions automatically runs the defined tests.
+2. The workflow checks:
+   - PHP syntax errors
+   - Code linting (if configured)
+   - Unit tests (if configured)
+3. Test results appear in the PR interface on GitHub, showing whether all checks have passed.
+4. Failed tests should be addressed before merging the PR to maintain code quality.
+
 ## Deployment workflow
 
 ### Initialising the staging web server (Microsoft Azure) with Docker:
