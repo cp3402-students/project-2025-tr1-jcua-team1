@@ -37,7 +37,13 @@ jobs:
     - name: Install JS dependencies
       run: |
         if [ -f package.json ]; then
-          npm ci
+          if [ -f package-lock.json ]; then
+            # Use npm ci if package-lock.json exists
+            npm ci
+          else
+            # Fall back to npm install if no package-lock.json
+            npm install
+          fi
         fi
         
     - name: PHP Lint
