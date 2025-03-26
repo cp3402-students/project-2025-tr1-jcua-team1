@@ -12,7 +12,10 @@ The top section of the homepage (hero section) can be fully customised through t
 2. Here you can modify:
    - **Hero Heading**: The main title displayed on the homepage
    - **Hero Text**: The descriptive paragraph below the heading
-   - **Hero Background Color**: Change the background color of the hero section
+   - **Hero Background Colour**: Change the background colour of the hero section
+   - **Hero Text Colour**: Change the colour of all text in the hero section
+   - **Text Alignment**: Align text left, centre, or right
+   - **Hero Section Width**: Adjust the width of the content area (50-100%)
    - **Hero Button Text**: The text displayed on the call-to-action button
    - **Hero Button URL**: Where the button links to (can be an internal page or external URL)
 3. Changes will be visible in the preview and will go live when you click "Publish"
