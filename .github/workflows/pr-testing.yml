@@ -52,8 +52,15 @@ jobs:
         
     - name: Run JavaScript/CSS linting
       run: |
-        if [ -f package.json ] && grep -q "lint" package.json; then
-          npm run lint
+        if [ -f package.json ]; then
+          # Check if the lint script exists in package.json
+          if npm run --silent --if-present | grep -q "^  lint"; then
+            npm run lint
+          else
+            echo "No lint script found in package.json. Skipping linting step."
+          fi
+        else
+          echo "No package.json found. Skipping JavaScript/CSS linting."
         fi
         
     - name: Run tests
