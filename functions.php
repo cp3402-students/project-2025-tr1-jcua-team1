@@ -179,6 +179,82 @@ function team1theme_custom_logo_image_size() {
 add_action('after_setup_theme', 'team1theme_custom_logo_image_size', 11);
 
 /**
+ * Add Homepage Customizer Settings
+ */
+function team1_theme_customize_register( $wp_customize ) {
+    // Add a section for homepage settings
+    $wp_customize->add_section( 'homepage_settings', array(
+        'title'    => __( 'Homepage Settings', 'team1theme' ),
+        'priority' => 30,
+    ) );
+
+    // Hero Heading
+    $wp_customize->add_setting( 'hero_heading', array(
+        'default'           => 'Welcome to Our Website',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( 'hero_heading', array(
+        'label'    => __( 'Hero Heading', 'team1theme' ),
+        'section'  => 'homepage_settings',
+        'type'     => 'text',
+    ) );
+
+    // Hero Text
+    $wp_customize->add_setting( 'hero_text', array(
+        'default'           => 'This is your custom homepage. Add your content here.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( 'hero_text', array(
+        'label'    => __( 'Hero Text', 'team1theme' ),
+        'section'  => 'homepage_settings',
+        'type'     => 'textarea',
+    ) );
+    
+    // Hero Background Color
+    $wp_customize->add_setting( 'hero_bg_color', array(
+        'default'           => '#f8f9fa',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'hero_bg_color', array(
+        'label'    => __( 'Hero Background Color', 'team1theme' ),
+        'section'  => 'homepage_settings',
+    ) ) );
+    
+    // Hero Button Text
+    $wp_customize->add_setting( 'hero_button_text', array(
+        'default'           => 'Learn More',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( 'hero_button_text', array(
+        'label'    => __( 'Hero Button Text', 'team1theme' ),
+        'section'  => 'homepage_settings',
+        'type'     => 'text',
+    ) );
+    
+    // Hero Button URL
+    $wp_customize->add_setting( 'hero_button_url', array(
+        'default'           => '#',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( 'hero_button_url', array(
+        'label'    => __( 'Hero Button URL', 'team1theme' ),
+        'section'  => 'homepage_settings',
+        'type'     => 'url',
+    ) );
+}
+add_action( 'customize_register', 'team1_theme_customize_register' );
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';

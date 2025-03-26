@@ -13,17 +13,21 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
-    <section class="hero-section">
+    <section class="hero-section" style="background-color: <?php echo esc_attr(get_theme_mod('hero_bg_color', '#f8f9fa')); ?>">
         <div class="container">
-            <h1>Welcome to Our Website</h1>
-            <p>This is your custom homepage. Add your content here.</p>
+            <h1><?php echo esc_html(get_theme_mod('hero_heading', 'Welcome to Our Website')); ?></h1>
+            <p><?php echo esc_html(get_theme_mod('hero_text', 'This is your custom homepage. Add your content here.')); ?></p>
+            
+            <?php if (get_theme_mod('hero_button_text')) : ?>
+                <a href="<?php echo esc_url(get_theme_mod('hero_button_url', '#')); ?>" class="hero-button">
+                    <?php echo esc_html(get_theme_mod('hero_button_text', 'Learn More')); ?>
+                </a>
+            <?php endif; ?>
         </div>
     </section>
 
     <section class="home-category-posts">
         <div class="container">
-            <h2>Latest Updates</h2>
-            
             <?php
             // Custom query to get posts from 'home' category
             $home_posts = new WP_Query( array(
@@ -32,7 +36,7 @@ get_header();
             ) );
 
             if ( !$home_posts->have_posts() ) : ?>
-                <div class="info-notice" style="background: #e5f5fa; border-left: 4px solid #00a0d2; padding: 10px; margin-bottom: 20px;">
+                <div class="info-notice">
                     <p>This is where posts from the 'home' category will show.</p>
                 </div>
             <?php else : ?>
