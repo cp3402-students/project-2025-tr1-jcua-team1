@@ -1,0 +1,56 @@
+name: Test Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+        extensions: mbstring, xml
+        coverage: none
+        
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        
+    - name: Install PHP dependencies
+      run: |
+        if [ -f composer.json ]; then
+          composer install --no-progress --no-suggest
+        fi
+        
+    - name: Install JS dependencies
+      run: |
+        if [ -f package.json ]; then
+          npm ci
+        fi
+        
+    - name: PHP Lint
+      run: |
+        find . -name "*.php" -not -path "./vendor/*" -print0 | xargs -0 -n1 php -l
+        
+    - name: Run JavaScript/CSS linting
+      run: |
+        if [ -f package.json ] && grep -q "lint" package.json; then
+          npm run lint
+        fi
+        
+    - name: Run tests
+      run: |
+        if [ -f composer.json ] && grep -q "test" composer.json; then
+          composer run test
+        elif [ -f package.json ] && grep -q "test" package.json; then
+          npm test
+        fi
