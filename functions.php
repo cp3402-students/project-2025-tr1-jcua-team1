@@ -382,6 +382,43 @@ function team1_theme_footer_customize_register( $wp_customize ) {
         'label'    => __( 'Footer Text Color', 'team1theme' ),
         'section'  => 'footer_settings',
     ) ) );
+    
+    // Footer Height (Padding)
+    $wp_customize->add_setting( 'footer_padding', array(
+        'default'           => '20',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( 'footer_padding', array(
+        'label'       => __( 'Footer Padding (px)', 'team1theme' ),
+        'description' => __( 'Controls the top and bottom padding of the footer', 'team1theme' ),
+        'section'     => 'footer_settings',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 0,
+            'max'  => 100,
+            'step' => 5,
+        ),
+    ) );
+    
+    // Footer Text Alignment
+    $wp_customize->add_setting( 'footer_text_align', array(
+        'default'           => 'center',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( 'footer_text_align', array(
+        'label'    => __( 'Footer Text Alignment', 'team1theme' ),
+        'section'  => 'footer_settings',
+        'type'     => 'select',
+        'choices'  => array(
+            'left'   => __( 'Left', 'team1theme' ),
+            'center' => __( 'Center', 'team1theme' ),
+            'right'  => __( 'Right', 'team1theme' ),
+        ),
+    ) );
 }
 add_action( 'customize_register', 'team1_theme_footer_customize_register' );
 
