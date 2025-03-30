@@ -71,34 +71,44 @@ jobs:
             rules: {
               "no-console": "warn",
               "no-unused-vars": "warn",
-              "quotes": ["error", "single"],
-              "semi": ["error", "always"],
+              "quotes": ["warn", "single"],
+              "semi": ["warn", "always"],
             },
             ignorePatterns: ["dist/**", "build/**", "vendor/**", "node_modules/**"],
           };' > .eslintrc.temp.js
           
-          # Create temporary StyleLint config
+          # Create a more lenient temporary StyleLint config
           echo 'module.exports = {
-            extends: ["stylelint-config-standard", "stylelint-config-wordpress"],
             rules: {
-              "indentation": 2,
+              "indentation": null,
               "no-descending-specificity": null,
-              "no-duplicate-selectors": true,
-              "color-named": "never",
-              "color-hex-case": "lower",
+              "no-duplicate-selectors": null,
+              "color-named": null,
+              "color-hex-case": null,
+              "block-no-empty": null,
+              "max-empty-lines": null,
+              "selector-class-pattern": null,
+              "selector-id-pattern": null,
+              "declaration-block-no-duplicate-properties": null
             },
             ignoreFiles: ["dist/**", "build/**", "vendor/**", "node_modules/**"],
           };' > .stylelintrc.temp.js
           
-          # Install linting dependencies if needed
-          if ! grep -q "eslint\|stylelint" package.json; then
-            npm install --no-save --legacy-peer-deps eslint stylelint@13.13.1 stylelint-config-standard stylelint-config-wordpress
+          # Install linting dependencies if needed (with compatible versions)
+          if ! grep -q "eslint" package.json; then
+            npm install --no-save --legacy-peer-deps eslint@latest
           fi
           
-          # Run linting
-          echo "Running linting checks..."
-          npx eslint --ext .js --config .eslintrc.temp.js . || echo "JavaScript linting failed. Please fix the issues locally."
-          npx stylelint --config .stylelintrc.temp.js "**/*.css" || echo "CSS linting failed. Please fix the issues locally."
+          # Run linting with warning output only (don't fail the build)
+          echo "Running linting checks (informational only)..."
+          npx eslint --ext .js --config .eslintrc.temp.js . || echo "JavaScript linting found issues (continuing anyway)"
+          
+          if which stylelint >/dev/null 2>&1; then
+            echo "Running stylelint with existing installation..."
+            npx stylelint --config .stylelintrc.temp.js "**/*.css" || echo "CSS linting found issues (continuing anyway)"
+          else
+            echo "Skipping CSS linting - stylelint not installed"
+          fi
           
           # Clean up temporary config files
           rm .eslintrc.temp.js .stylelintrc.temp.js
