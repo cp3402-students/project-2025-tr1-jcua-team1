@@ -92,7 +92,7 @@ jobs:
           
           # Install linting dependencies if needed
           if ! grep -q "eslint\|stylelint" package.json; then
-            npm install --no-save eslint stylelint stylelint-config-standard stylelint-config-wordpress
+            npm install --no-save eslint stylelint@13.13.1 stylelint-config-standard stylelint-config-wordpress
           fi
           
           # Run linting
