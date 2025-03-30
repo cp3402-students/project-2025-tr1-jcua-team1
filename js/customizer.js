@@ -1,4 +1,4 @@
-/* global wp, jQuery */
+/* global wp */
 /**
  * File customizer.js.
  *
