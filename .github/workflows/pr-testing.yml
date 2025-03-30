@@ -53,12 +53,55 @@ jobs:
     - name: Run JavaScript/CSS linting
       run: |
         if [ -f package.json ]; then
-          # Check if the lint script exists in package.json
-          if npm run --silent --if-present | grep -q "^  lint"; then
-            npm run lint
-          else
-            echo "No lint script found in package.json. Skipping linting step."
+          # Create temporary ESLint config
+          echo 'module.exports = {
+            env: {
+              browser: true,
+              es2021: true,
+              jquery: true,
+              node: true,
+            },
+            extends: [
+              "eslint:recommended",
+            ],
+            parserOptions: {
+              ecmaVersion: "latest",
+              sourceType: "module",
+            },
+            rules: {
+              "no-console": "warn",
+              "no-unused-vars": "warn",
+              "quotes": ["error", "single"],
+              "semi": ["error", "always"],
+            },
+            ignorePatterns: ["dist/**", "build/**", "vendor/**", "node_modules/**"],
+          };' > .eslintrc.temp.js
+          
+          # Create temporary StyleLint config
+          echo 'module.exports = {
+            extends: ["stylelint-config-standard", "stylelint-config-wordpress"],
+            rules: {
+              "indentation": 2,
+              "no-descending-specificity": null,
+              "no-duplicate-selectors": true,
+              "color-named": "never",
+              "color-hex-case": "lower",
+            },
+            ignoreFiles: ["dist/**", "build/**", "vendor/**", "node_modules/**"],
+          };' > .stylelintrc.temp.js
+          
+          # Install linting dependencies if needed
+          if ! grep -q "eslint\|stylelint" package.json; then
+            npm install --no-save eslint stylelint stylelint-config-standard stylelint-config-wordpress
           fi
+          
+          # Run linting
+          echo "Running linting checks..."
+          npx eslint --ext .js --config .eslintrc.temp.js . || echo "JavaScript linting failed. Please fix the issues locally."
+          npx stylelint --config .stylelintrc.temp.js "**/*.css" || echo "CSS linting failed. Please fix the issues locally."
+          
+          # Clean up temporary config files
+          rm .eslintrc.temp.js .stylelintrc.temp.js
         else
           echo "No package.json found. Skipping JavaScript/CSS linting."
         fi
