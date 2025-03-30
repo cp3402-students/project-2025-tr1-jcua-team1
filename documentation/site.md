@@ -45,6 +45,19 @@ The middle section of the homepage displays posts from the "home" category:
 
 The bottom section of the homepage is available for additional content. This area is currently empty but can be customised by your developer to showcase specific content or features.
 
+## Footer Customisation
+
+The website footer can be fully customised through the WordPress Customiser:
+
+1. Go to **Appearance → Customise → Footer Settings**
+2. Here you can modify:
+   - **Footer Text**: Change the copyright text or add custom content
+   - **Footer Background Colour**: Change the background colour of the footer
+   - **Footer Text Colour**: Change the colour of all text in the footer
+   - **Footer Padding**: Adjust the height of the footer by increasing or decreasing padding
+   - **Footer Text Alignment**: Align text left, centre, or right
+3. Changes will be visible in the preview and will go live when you click "Publish"
+
 ## Adding New Categories
 
 If you wish to organise your content using additional categories:
