@@ -337,6 +337,55 @@ function team1_theme_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'team1_theme_customize_register' );
 
 /**
+ * Add Footer Customizer Settings
+ */
+function team1_theme_footer_customize_register( $wp_customize ) {
+    // Add a section for footer settings
+    $wp_customize->add_section( 'footer_settings', array(
+        'title'    => __( 'Footer Settings', 'team1theme' ),
+        'priority' => 90,
+    ) );
+
+    // Footer Text
+    $wp_customize->add_setting( 'footer_text', array(
+        'default'           => 'Copyright © ' . date('Y') . ' ' . get_bloginfo('name'),
+        'sanitize_callback' => 'wp_kses_post',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( 'footer_text', array(
+        'label'    => __( 'Footer Text', 'team1theme' ),
+        'section'  => 'footer_settings',
+        'type'     => 'textarea',
+    ) );
+
+    // Footer Background Color
+    $wp_customize->add_setting( 'footer_bg_color', array(
+        'default'           => '#f8f9fa',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'footer_bg_color', array(
+        'label'    => __( 'Footer Background Color', 'team1theme' ),
+        'section'  => 'footer_settings',
+    ) ) );
+
+    // Footer Text Color
+    $wp_customize->add_setting( 'footer_text_color', array(
+        'default'           => '#333333',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'footer_text_color', array(
+        'label'    => __( 'Footer Text Color', 'team1theme' ),
+        'section'  => 'footer_settings',
+    ) ) );
+}
+add_action( 'customize_register', 'team1_theme_footer_customize_register' );
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
