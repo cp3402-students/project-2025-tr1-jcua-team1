@@ -53,67 +53,36 @@ jobs:
     - name: Run JavaScript/CSS linting
       run: |
         if [ -f package.json ]; then
-          # Create temporary ESLint config
-          echo 'module.exports = {
-            env: {
-              browser: true,
-              es2021: true,
-              jquery: true,
-              node: true,
-            },
-            extends: [
-              \'eslint:recommended\',
-            ],
-            parserOptions: {
-              ecmaVersion: \'latest\',
-              sourceType: \'module\',
-            },
-            rules: {
-              \'no-console\': \'warn\',
-              \'no-unused-vars\': \'warn\',
-              \'quotes\': [\'warn\', \'single\'],
-              \'semi\': [\'warn\', \'always\'],
-            },
-            ignorePatterns: [\'dist/**\', \'build/**\', \'vendor/**\', \'node_modules/**\'],
-          };' > .eslintrc.temp.js
+          # Create simple ESLint config
+          echo '{"extends": "eslint:recommended", "parserOptions": {"ecmaVersion": "latest"}, "env": {"browser": true, "node": true}}' > .eslintrc.json
           
-          # Create a more lenient temporary StyleLint config
-          echo 'module.exports = {
-            rules: {
-              "indentation": null,
-              "no-descending-specificity": null,
-              "no-duplicate-selectors": null,
-              "color-named": null,
-              "color-hex-case": null,
-              "block-no-empty": null,
-              "max-empty-lines": null,
-              "selector-class-pattern": null,
-              "selector-id-pattern": null,
-              "declaration-block-no-duplicate-properties": null
-            },
-            ignoreFiles: ["dist/**", "build/**", "vendor/**", "node_modules/**"],
-          };' > .stylelintrc.temp.js
+          # Create simple StyleLint config
+          echo '{"rules": {}}' > .stylelintrc.json
           
-          # Install linting dependencies if needed (with compatible versions)
+          # Install linting dependencies if needed
           if ! grep -q "eslint" package.json; then
             npm install --no-save --legacy-peer-deps eslint@latest
           fi
           
           # Install stylelint if needed
           if ! grep -q "stylelint" package.json; then
-            npm install --no-save --legacy-peer-deps stylelint@latest stylelint-config-standard@latest
+            npm install --no-save --legacy-peer-deps stylelint@latest
           fi
           
-          # Run linting with warning output only (don't fail the build)
-          echo "Running linting checks (informational only)..."
-          npx eslint --ext .js --config .eslintrc.temp.js . || echo "JavaScript linting found issues (continuing anyway)"
+          # Run linting with warning output only
+          echo "Running JavaScript linting checks..."
+          npx eslint --ext .js . || echo "JavaScript linting found issues (continuing anyway)"
           
-          # Run stylelint regardless of installation method
+          # Run CSS linting
           echo "Running CSS linting checks..."
-          npx stylelint --config .stylelintrc.temp.js "**/*.css" --ignore-path=.gitignore || echo "CSS linting found issues (continuing anyway)"
+          if [ -d "node_modules/stylelint" ]; then
+            npx stylelint "**/*.css" || echo "CSS linting found issues (continuing anyway)"
+          else
+            echo "Skipping CSS linting - stylelint not installed"
+          fi
           
-          # Clean up temporary config files
-          rm .eslintrc.temp.js .stylelintrc.temp.js
+          # Clean up
+          rm .eslintrc.json .stylelintrc.json
         else
           echo "No package.json found. Skipping JavaScript/CSS linting."
         fi
