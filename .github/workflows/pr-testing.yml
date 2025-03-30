@@ -116,6 +116,7 @@ jobs:
           rm .eslintrc.temp.js .stylelintrc.temp.js
         else
           echo "No package.json found. Skipping JavaScript/CSS linting."
+        fi
         
     - name: Run tests
       run: |
