@@ -99,22 +99,23 @@ jobs:
             npm install --no-save --legacy-peer-deps eslint@latest
           fi
           
+          # Install stylelint if needed
+          if ! grep -q "stylelint" package.json; then
+            npm install --no-save --legacy-peer-deps stylelint@latest stylelint-config-standard@latest
+          fi
+          
           # Run linting with warning output only (don't fail the build)
           echo "Running linting checks (informational only)..."
           npx eslint --ext .js --config .eslintrc.temp.js . || echo "JavaScript linting found issues (continuing anyway)"
           
-          if which stylelint >/dev/null 2>&1; then
-            echo "Running stylelint with existing installation..."
-            npx stylelint --config .stylelintrc.temp.js "**/*.css" || echo "CSS linting found issues (continuing anyway)"
-          else
-            echo "Skipping CSS linting - stylelint not installed"
-          fi
+          # Run stylelint regardless of installation method
+          echo "Running CSS linting checks..."
+          npx stylelint --config .stylelintrc.temp.js "**/*.css" --ignore-path=.gitignore || echo "CSS linting found issues (continuing anyway)"
           
           # Clean up temporary config files
           rm .eslintrc.temp.js .stylelintrc.temp.js
         else
           echo "No package.json found. Skipping JavaScript/CSS linting."
-        fi
         
     - name: Run tests
       run: |
