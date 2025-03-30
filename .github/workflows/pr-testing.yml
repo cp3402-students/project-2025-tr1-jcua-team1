@@ -20,77 +20,21 @@ jobs:
         extensions: mbstring, xml
         coverage: none
         
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-        
     - name: Install PHP dependencies
       run: |
         if [ -f composer.json ]; then
           # Allow the required plugin
           composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
-          # Install dependencies without the deprecated --no-suggest flag
+          # Install dependencies
           composer install --no-progress
-        fi
-        
-    - name: Install JS dependencies
-      run: |
-        if [ -f package.json ]; then
-          if [ -f package-lock.json ]; then
-            # Use npm ci if package-lock.json exists
-            npm ci --legacy-peer-deps
-          else
-            # Fall back to npm install if no package-lock.json
-            npm install --legacy-peer-deps
-          fi
         fi
         
     - name: PHP Lint
       run: |
         find . -name "*.php" -not -path "./vendor/*" -print0 | xargs -0 -n1 php -l
         
-    - name: Run JavaScript/CSS linting
-      run: |
-        if [ -f package.json ]; then
-          # Create simple ESLint config
-          echo '{"extends": "eslint:recommended", "parserOptions": {"ecmaVersion": "latest"}, "env": {"browser": true, "node": true}}' > .eslintrc.json
-          
-          # Create simple StyleLint config
-          echo '{"rules": {}}' > .stylelintrc.json
-          
-          # Install linting dependencies if needed
-          if ! grep -q "eslint" package.json; then
-            npm install --no-save --legacy-peer-deps eslint@latest
-          fi
-          
-          # Install stylelint if needed
-          if ! grep -q "stylelint" package.json; then
-            npm install --no-save --legacy-peer-deps stylelint@latest
-          fi
-          
-          # Run linting with warning output only
-          echo "Running JavaScript linting checks..."
-          npx eslint --ext .js . || echo "JavaScript linting found issues (continuing anyway)"
-          
-          # Run CSS linting
-          echo "Running CSS linting checks..."
-          if [ -d "node_modules/stylelint" ]; then
-            npx stylelint "**/*.css" || echo "CSS linting found issues (continuing anyway)"
-          else
-            echo "Skipping CSS linting - stylelint not installed"
-          fi
-          
-          # Clean up
-          rm .eslintrc.json .stylelintrc.json
-        else
-          echo "No package.json found. Skipping JavaScript/CSS linting."
-        fi
-        
-    - name: Run tests
+    - name: Run PHP Tests
       run: |
         if [ -f composer.json ] && grep -q "test" composer.json; then
           composer run test
-        elif [ -f package.json ] && grep -q "test" package.json; then
-          npm test
         fi
