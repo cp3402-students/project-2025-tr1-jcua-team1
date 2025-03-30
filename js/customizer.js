@@ -39,4 +39,20 @@
 			}
 		} );
 	} );
+
+	// Live preview for footer settings
+	wp.customize('footer_padding', function(value) {
+		value.bind(function(to) {
+			$('.site-footer').css({
+				'padding-top': to + 'px',
+				'padding-bottom': to + 'px'
+			});
+		});
+	});
+
+	wp.customize('footer_text_align', function(value) {
+		value.bind(function(to) {
+			$('.site-footer').css('text-align', to);
+		});
+	});
 }( jQuery ) );
