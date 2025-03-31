@@ -423,6 +423,109 @@ function team1_theme_footer_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'team1_theme_footer_customize_register' );
 
 /**
+ * Add Header Customizer Settings
+ */
+function team1_theme_header_customize_register( $wp_customize ) {
+    // Add a section for header settings
+    $wp_customize->add_section( 'header_settings', array(
+        'title'    => __( 'Header Settings', 'team1theme' ),
+        'priority' => 40, // Adjust as needed
+    ) );
+
+    // Header Background Color
+    $wp_customize->add_setting( 'header_bg_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_bg_color', array(
+        'label'    => __( 'Header Background Color', 'team1theme' ),
+        'section'  => 'header_settings',
+    ) ) );
+
+    // Header Text Color
+    $wp_customize->add_setting( 'header_text_color', array(
+        'default'           => '#000000',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_text_color', array(
+        'label'    => __( 'Header Text Color', 'team1theme' ),
+        'section'  => 'header_settings',
+    ) ) );
+
+    // Header Padding (Height)
+    $wp_customize->add_setting( 'header_padding', array(
+        'default'           => '20',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ) );
+
+    $wp_customize->add_control( 'header_padding', array(
+        'label'       => __( 'Header Padding (px)', 'team1theme' ),
+        'description' => __( 'Controls the top and bottom padding of the header', 'team1theme' ),
+        'section'     => 'header_settings',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 0,
+            'max'  => 100,
+            'step' => 5,
+        ),
+    ) );
+
+    // Header Text Alignment
+    $wp_customize->add_setting( 'header_text_align', array(
+        'default'           => 'left',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+
+    $wp_customize->add_control( 'header_text_align', array(
+        'label'    => __( 'Header Text Alignment', 'team1theme' ),
+        'section'  => 'header_settings',
+        'type'     => 'select',
+        'choices'  => array(
+            'left'   => __( 'Left', 'team1theme' ),
+            'center' => __( 'Center', 'team1theme' ),
+            'right'  => __( 'Right', 'team1theme' ),
+        ),
+    ) );
+
+    // Header Link Font Size
+    $wp_customize->add_setting( 'header_link_font_size', array(
+        'default'           => '16',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ) );
+
+    $wp_customize->add_control( 'header_link_font_size', array(
+        'label'       => __( 'Header Link Font Size (px)', 'team1theme' ),
+        'section'     => 'header_settings',
+        'type'        => 'number',
+        'input_attrs' => array(
+            'min'  => 10,
+            'max'  => 30,
+            'step' => 1,
+        ),
+    ) );
+
+    // Header Link Color
+    $wp_customize->add_setting( 'header_link_color', array(
+        'default'           => '#000000',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_link_color', array(
+        'label'    => __( 'Header Link Color', 'team1theme' ),
+        'section'  => 'header_settings',
+    ) ) );
+}
+add_action( 'customize_register', 'team1_theme_header_customize_register' );
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
