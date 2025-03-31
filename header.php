@@ -67,4 +67,10 @@
 			);
 			?>
 		</nav><!-- #site-navigation -->
+		<style>
+			#site-navigation ul li a {
+				font-size: <?php echo get_theme_mod( 'header_link_font_size', '16' ); ?>px;
+				color: <?php echo get_theme_mod( 'header_link_color', '#000000' ); ?>;
+			}
+		</style>
 	</header><!-- #masthead -->
