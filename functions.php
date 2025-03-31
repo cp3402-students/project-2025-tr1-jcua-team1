@@ -475,8 +475,8 @@ function team1_theme_header_customize_register( $wp_customize ) {
         ),
     ) );
 
-     // Header Text Alignment
-     $wp_customize->add_setting( 'header_text_align', array(
+    // Header Text Alignment
+    $wp_customize->add_setting( 'header_text_align', array(
         'default'           => 'left',
         'sanitize_callback' => 'sanitize_text_field',
         'transport'         => 'refresh',
@@ -492,6 +492,36 @@ function team1_theme_header_customize_register( $wp_customize ) {
             'right'  => __( 'Right', 'team1theme' ),
         ),
     ) );
+
+    // Header Link Font Size
+    $wp_customize->add_setting( 'header_link_font_size', array(
+        'default'           => '16',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ) );
+
+    $wp_customize->add_control( 'header_link_font_size', array(
+        'label'       => __( 'Header Link Font Size (px)', 'team1theme' ),
+        'section'     => 'header_settings',
+        'type'        => 'number',
+        'input_attrs' => array(
+            'min'  => 10,
+            'max'  => 30,
+            'step' => 1,
+        ),
+    ) );
+
+    // Header Link Color
+    $wp_customize->add_setting( 'header_link_color', array(
+        'default'           => '#000000',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_link_color', array(
+        'label'    => __( 'Header Link Color', 'team1theme' ),
+        'section'  => 'header_settings',
+    ) ) );
 }
 add_action( 'customize_register', 'team1_theme_header_customize_register' );
 
