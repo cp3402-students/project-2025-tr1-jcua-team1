@@ -7,9 +7,12 @@
  * @package Team1Theme
  */
 
-// Get our variables passed from single.php
-$show_post_meta = isset($show_post_meta) ? $show_post_meta : true;
-$featured_image_display = isset($featured_image_display) ? $featured_image_display : 'above';
+// Check if the helper function exists before using it
+$show_post_meta = function_exists('team1theme_should_show_post_meta') ? 
+    team1theme_should_show_post_meta() : true;
+
+// Get featured image display option with a safe default
+$featured_image_display = get_theme_mod('post_featured_image_display', 'above');
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
