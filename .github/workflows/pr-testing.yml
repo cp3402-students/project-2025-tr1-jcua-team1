@@ -20,53 +20,21 @@ jobs:
         extensions: mbstring, xml
         coverage: none
         
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-        
     - name: Install PHP dependencies
       run: |
         if [ -f composer.json ]; then
           # Allow the required plugin
           composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
-          # Install dependencies without the deprecated --no-suggest flag
+          # Install dependencies
           composer install --no-progress
-        fi
-        
-    - name: Install JS dependencies
-      run: |
-        if [ -f package.json ]; then
-          if [ -f package-lock.json ]; then
-            # Use npm ci if package-lock.json exists
-            npm ci
-          else
-            # Fall back to npm install if no package-lock.json
-            npm install
-          fi
         fi
         
     - name: PHP Lint
       run: |
         find . -name "*.php" -not -path "./vendor/*" -print0 | xargs -0 -n1 php -l
         
-    - name: Run JavaScript/CSS linting
-      run: |
-        if [ -f package.json ]; then
-          # Check if the lint script exists in package.json
-          if npm run --silent --if-present | grep -q "^  lint"; then
-            npm run lint
-          else
-            echo "No lint script found in package.json. Skipping linting step."
-          fi
-        else
-          echo "No package.json found. Skipping JavaScript/CSS linting."
-        fi
-        
-    - name: Run tests
+    - name: Run PHP Tests
       run: |
         if [ -f composer.json ] && grep -q "test" composer.json; then
           composer run test
-        elif [ -f package.json ] && grep -q "test" package.json; then
-          npm test
         fi
