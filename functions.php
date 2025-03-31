@@ -734,3 +734,8 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Add simple blog post meta box settings
+ */
+require get_template_directory() . '/inc/post-meta-boxes.php';
+
