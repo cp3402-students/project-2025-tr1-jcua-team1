@@ -13,6 +13,8 @@ project-2025-tr1-jcua-team1/
 ├── inc/                      # Helper functions and customiser settings
 │   ├── custom-header.php     # Custom header implementation
 │   ├── customizer.php        # Theme customiser settings
+│   ├── page-customizer.php   # Page-specific customiser settings
+│   ├── page-meta-boxes.php   # Per-page customisation options
 │   ├── template-functions.php # Theme enhancement functions
 │   ├── template-tags.php     # Template helper functions
 │   └── jetpack.php           # Jetpack compatibility
@@ -38,6 +40,7 @@ The theme includes extensive WordPress Customiser integration:
 - **Logo Options**: Customise logo size and appearance
 - **Homepage Settings**: Control the hero section, featured content, and layout
 - **Footer Settings**: Configure footer text, colours, and padding
+- **Page Template Settings**: Control page layouts, featured images, and text formatting
 
 ### 2. Front Page Template
 
@@ -57,6 +60,13 @@ A flexible front page template (`front-page.php`) with:
 
 - **Customisable Footer**: Change text, colours, padding, and alignment through the Customiser
 
+### 5. Page Customisation System
+
+- **Global Page Settings**: Site-wide defaults configurable through the Customiser
+- **Per-Page Overrides**: Individual page settings via meta boxes
+- **Text Alignment Controls**: Independent controls for headings and body text
+- **Layout Options**: Multiple page layouts (with sidebar, full-width, narrow content)
+
 ## Design System
 
 ### Colour Scheme
@@ -64,18 +74,18 @@ A flexible front page template (`front-page.php`) with:
 The theme uses CSS variables (defined in `style.css`) for consistent theming:
 
 ```css
-// filepath: /Users/josh/Desktop/nw-wp/themes/project-2025-tr1-jcua-team1/style.css
+// filepath: themes/project-2025-tr1-jcua-team1/style.css
 /* Variables */
 :root {
-	--color-primary: #4169e1; /* Royal Blue */
-	--color-secondary: #800080; /* Purple */
-	--color-accent: #191970; /* Midnight Blue */
-	--color-background: #fff; /* White */
-	--color-text: black; /* Black */
-	--color-border: #ccc; /* Light Gray */
-	--color-highlight: #fff9c0; /* Light Yellow */
-	--color-header: pink;
-	// ...existing code...
+    --color-primary: #4169e1; /* Royal Blue */
+    --color-secondary: #800080; /* Purple */
+    --color-accent: #191970; /* Midnight Blue */
+    --color-background: #fff; /* White */
+    --color-text: black; /* Black */
+    --color-border: #ccc; /* Light Gray */
+    --color-highlight: #fff9c0; /* Light Yellow */
+    --color-header: pink;
+    // ...existing code...
 }
 ```
 
@@ -86,17 +96,17 @@ To modify the colour scheme, edit these variables in `style.css`.
 The theme uses a system font stack for optimal performance and consistent appearance:
 
 ```css
-// filepath: /Users/josh/Desktop/nw-wp/themes/project-2025-tr1-jcua-team1/style.css
+// filepath: themes/project-2025-tr1-jcua-team1/style.css
 body,
 button,
 input,
 select,
 optgroup,
 textarea {
-	color: #404040;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	font-size: 1rem;
-	line-height: 1.5;
+    color: #404040;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 // ...existing code...
 ```
@@ -106,15 +116,15 @@ textarea {
 Key dimensions are defined as variables:
 
 ```css
-// filepath: /Users/josh/Desktop/nw-wp/themes/project-2025-tr1-jcua-team1/style.css
+// filepath: themes/project-2025-tr1-jcua-team1/style.css
 :root {
-	// ...existing code...
-	--font-size-header: 1.8rem;
-	--min-header-height: 100px;
-	--max-header-height: 250px;
-	--max-header-width: 250px;
-	--nav-links-gap: 15px;
-	--header-min-gap: 10px;
+    // ...existing code...
+    --font-size-header: 1.8rem;
+    --min-header-height: 100px;
+    --max-header-height: 250px;
+    --max-header-width: 250px;
+    --nav-links-gap: 15px;
+    --header-min-gap: 10px;
     --header-max-gap: 50px;
 }
 ```
@@ -129,7 +139,7 @@ To create a new content template:
 2. Reference it in your templates using:
 
 ```php
-// filepath: /Users/josh/Desktop/nw-wp/themes/project-2025-tr1-jcua-team1/index.php
+// filepath: themes/project-2025-tr1-jcua-team1/index.php
 // ...existing code...
 get_template_part('template-parts/content', get_post_type());
 // ...existing code...
@@ -142,7 +152,7 @@ To add new customiser settings:
 1. Extend the customiser registration functions in `inc/customizer.php`:
 
 ```php
-// filepath: /Users/josh/Desktop/nw-wp/themes/project-2025-tr1-jcua-team1/inc/customizer.php
+// filepath: themes/project-2025-tr1-jcua-team1/inc/customizer.php
 // ...existing code...
 function my_new_customizer_section($wp_customize) {
     // Add a new section
@@ -170,7 +180,7 @@ add_action('customize_register', 'my_new_customizer_section');
 2. For live preview, add corresponding JavaScript in `js/customizer.js`:
 
 ```javascript
-// filepath: /Users/josh/Desktop/nw-wp/themes/project-2025-tr1-jcua-team1/js/customizer.js
+// filepath: themes/project-2025-tr1-jcua-team1/js/customizer.js
 // ...existing code...
 wp.customize('my_new_setting', function(value) {
     value.bind(function(to) {
@@ -180,12 +190,120 @@ wp.customize('my_new_setting', function(value) {
 // ...existing code...
 ```
 
-### 3. Adding Custom Page Templates
+### 3. Page Customisation System
+
+The theme includes a comprehensive page customisation system with both global and per-page settings:
+
+#### Global Page Settings (`inc/page-customizer.php`)
+
+The theme provides global page settings through the WordPress Customiser:
+
+```php
+// filepath: themes/project-2025-tr1-jcua-team1/inc/page-customizer.php
+// ...existing code...
+function team1theme_page_customize_register($wp_customize) {
+    // Add a section for page template settings
+    $wp_customize->add_section('page_settings', array(
+        'title'    => __('Page Template Settings', 'team1theme'),
+        'priority' => 40,
+    ));
+    
+    // Layout settings
+    $wp_customize->add_setting('page_layout', array(
+        'default'           => 'with-sidebar',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    // Text alignment settings
+    $wp_customize->add_setting('page_heading_alignment', array(
+        'default'           => 'left',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_setting('page_text_alignment', array(
+        'default'           => 'left',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    // ... Add corresponding controls here ...
+}
+add_action('customize_register', 'team1theme_page_customize_register');
+```
+
+#### Per-Page Settings (`inc/page-meta-boxes.php`)
+
+For individual page customisation, the theme uses meta boxes:
+
+```php
+// filepath: themes/project-2025-tr1-jcua-team1/inc/page-meta-boxes.php
+// ...existing code...
+function team1theme_add_page_meta_boxes() {
+    add_meta_box(
+        'team1theme_page_settings',
+        __('Page Settings', 'team1theme'),
+        'team1theme_page_settings_callback',
+        'page',
+        'side',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'team1theme_add_page_meta_boxes');
+```
+
+The meta box includes fields to override global settings for individual pages:
+
+```php
+// ...existing code...
+function team1theme_page_settings_callback($post) {
+    // Get saved values
+    $page_layout = get_post_meta($post->ID, '_team1theme_page_layout', true);
+    $heading_alignment = get_post_meta($post->ID, '_team1theme_heading_alignment', true);
+    $text_alignment = get_post_meta($post->ID, '_team1theme_text_alignment', true);
+    
+    // Display options with "Theme Default" as first option...
+}
+```
+
+#### CSS Implementation (`inc/template-functions.php`)
+
+The theme implements the customisation CSS in two places:
+
+1. Global settings in `team1theme_page_customizer_css()` function
+2. Per-page overrides in `team1theme_page_specific_css()` function
+
+```php
+// filepath: themes/project-2025-tr1-jcua-team1/inc/template-functions.php
+// ...existing code...
+function team1theme_page_specific_css() {
+    if (!is_page()) {
+        return;
+    }
+    
+    $post_id = get_the_ID();
+    $heading_alignment = get_post_meta($post_id, '_team1theme_heading_alignment', true);
+    $text_alignment = get_post_meta($post_id, '_team1theme_text_alignment', true);
+    
+    // Output CSS with page-specific selectors...
+}
+add_action('wp_head', 'team1theme_page_specific_css', 25);
+```
+
+#### Extending the System
+
+To add new page customisation options:
+
+1. Add new settings and controls in `inc/page-customizer.php`
+2. Add corresponding fields in the meta box in `inc/page-meta-boxes.php`
+3. Update the save function in `inc/page-meta-boxes.php`
+4. Add CSS output in both `team1theme_page_customizer_css()` and `team1theme_page_specific_css()`
+5. Apply settings in relevant templates (like `page.php`)
+
+### 4. Adding Custom Page Templates
 
 1. Create a new template file in the theme root:
 
 ```php
-// filepath: /Users/josh/Desktop/nw-wp/themes/project-2025-tr1-jcua-team1/template-custom.php
+// filepath: themes/project-2025-tr1-jcua-team1/template-custom.php
 <?php
 /**
  * Template Name: Custom Template
@@ -209,54 +327,56 @@ get_header();
 get_footer();
 ```
 
-### 4. CSS Organisation
+### 5. CSS Organisation
 
 The theme's CSS is organised by component in `style.css`:
 
 ```css
-// filepath: /Users/josh/Desktop/nw-wp/themes/project-2025-tr1-jcua-team1/style.css
+// filepath: themes/project-2025-tr1-jcua-team1/style.css
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 # Generic
-	- Normalize
-	- Box sizing
+    - Normalize
+    - Box sizing
 # Base
-	- Typography
-	- Elements
-	- Links
-	- Forms
+    - Typography
+    - Elements
+    - Links
+    - Forms
 ## Layouts
 # Components
-	- Navigation
-	- Posts and pages
-	- Comments
-	- Widgets
-	- Media
-	- Captions
-	- Galleries
+    - Navigation
+    - Posts and pages
+    - Comments
+    - Widgets
+    - Media
+    - Captions
+    - Galleries
 # plugins
-	- Jetpack infinite scroll
+    - Jetpack infinite scroll
 # Utilities
-	- Accessibility
-	- Alignments
+    - Accessibility
+    - Alignments
 # Custom Team1Theme
-	- Custom Header
-	- Custom Logo
+    - Custom Header
+    - Custom Logo
+    - Page Layouts
+    - Text Alignment
 --------------------------------------------------------------*/
 // ...existing code...
 ```
 
 When adding new styles, follow this organisation pattern.
 
-### 5. Custom Logo
+### 6. Custom Logo
 
 The theme supports custom logos with specific dimensions. To modify logo behaviour:
 
 1. Edit the `add_theme_support('custom-logo')` parameters in `functions.php`:
 
 ```php
-// filepath: /Users/josh/Desktop/nw-wp/themes/project-2025-tr1-jcua-team1/functions.php
+// filepath: themes/project-2025-tr1-jcua-team1/functions.php
 // ...existing code...
 add_theme_support(
     'custom-logo',
@@ -280,8 +400,11 @@ When customising the theme, focus on these key files:
 - **style.css**: For styling changes and CSS variables
 - **front-page.php**: For homepage layout modifications
 - **inc/customizer.php**: For adding customisation options
+- **inc/page-customizer.php**: For page-specific customisation options
+- **inc/page-meta-boxes.php**: For per-page settings
 - **functions.php**: For adding features and functionality
 - **template-parts/*.php**: For content display modifications
+- **page.php**: For page template layout and structure
 
 ## Additional Resources
 
