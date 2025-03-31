@@ -526,6 +526,178 @@ function team1_theme_header_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'team1_theme_header_customize_register' );
 
 /**
+ * Add Blog Post Customizer Settings
+ */
+function team1_theme_blog_customize_register($wp_customize) {
+    // Add a section for blog post settings
+    $wp_customize->add_section('blog_post_settings', array(
+        'title'    => __('Blog Post Settings', 'team1theme'),
+        'priority' => 45,
+    ));
+
+    // Post Layout Options
+    $wp_customize->add_setting('post_layout', array(
+        'default'           => 'with-sidebar',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('post_layout', array(
+        'label'    => __('Default Post Layout', 'team1theme'),
+        'section'  => 'blog_post_settings',
+        'type'     => 'select',
+        'choices'  => array(
+            'with-sidebar' => __('With Sidebar', 'team1theme'),
+            'full-width'   => __('Full Width', 'team1theme'),
+            'narrow'       => __('Narrow Content', 'team1theme'),
+        ),
+    ));
+
+    // Featured Image Display
+    $wp_customize->add_setting('post_featured_image_display', array(
+        'default'           => 'above',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('post_featured_image_display', array(
+        'label'    => __('Featured Image Display', 'team1theme'),
+        'section'  => 'blog_post_settings',
+        'type'     => 'select',
+        'choices'  => array(
+            'none'       => __('Do Not Display', 'team1theme'),
+            'banner'     => __('Full Width Banner', 'team1theme'),
+            'above'      => __('Above Content', 'team1theme'),
+            'background' => __('Page Background', 'team1theme'),
+        ),
+    ));
+
+    // Post Content Background Color
+    $wp_customize->add_setting('post_content_bg', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'post_content_bg', array(
+        'label'    => __('Post Content Background', 'team1theme'),
+        'section'  => 'blog_post_settings',
+    )));
+
+    // Post Content Padding
+    $wp_customize->add_setting('post_content_padding', array(
+        'default'           => '30',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('post_content_padding', array(
+        'label'       => __('Content Padding (px)', 'team1theme'),
+        'section'     => 'blog_post_settings',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 0,
+            'max'  => 100,
+            'step' => 5,
+        ),
+    ));
+
+    // Show/Hide Post Meta (date, author, categories, etc.)
+    $wp_customize->add_setting('show_post_meta', array(
+        'default'           => true,
+        'sanitize_callback' => 'team1theme_sanitize_checkbox',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('show_post_meta', array(
+        'label'    => __('Show Post Meta Information', 'team1theme'),
+        'section'  => 'blog_post_settings',
+        'type'     => 'checkbox',
+    ));
+}
+add_action('customize_register', 'team1_theme_blog_customize_register');
+
+/**
+ * Generate custom CSS for blog post templates
+ */
+function team1theme_post_customizer_css() {
+    if (!is_singular('post')) {
+        return;
+    }
+    
+    // Get post background and padding from customizer
+    $post_bg = get_theme_mod('post_content_bg', '#ffffff');
+    $post_padding = get_theme_mod('post_content_padding', '30');
+    
+    // Get post-specific layout
+    $post_id = get_the_ID();
+    $post_layout = get_post_meta($post_id, '_team1theme_post_layout', true);
+    if ($post_layout === 'default' || empty($post_layout)) {
+        $post_layout = get_theme_mod('post_layout', 'with-sidebar');
+    }
+    
+    // Get featured image setting
+    $featured_image_display = get_post_meta($post_id, '_team1theme_featured_image_display', true);
+    if ($featured_image_display === 'default' || empty($featured_image_display)) {
+        $featured_image_display = get_theme_mod('post_featured_image_display', 'above');
+    }
+    ?>
+    <style type="text/css">
+        /* Base styling for single posts */
+        .single-post .site-main {
+            background-color: <?php echo esc_attr($post_bg); ?>;
+            padding: <?php echo esc_attr($post_padding); ?>px;
+        }
+        
+        /* Layout: Full Width */
+        .single-post .post-layout-full-width {
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        /* Layout: Narrow */
+        .single-post .post-layout-narrow {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Featured Image: Banner */
+        .single-post .post-featured-banner {
+            margin: -<?php echo esc_attr($post_padding); ?>px -<?php echo esc_attr($post_padding); ?>px <?php echo esc_attr($post_padding); ?>px;
+            max-width: none;
+        }
+        
+        .single-post .post-featured-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Featured Image: Background */
+        .single-post .featured-image-background {
+            position: relative;
+        }
+        
+        .single-post .featured-image-background:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('<?php echo esc_url(get_the_post_thumbnail_url($post_id, 'full')); ?>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: -1;
+        }
+    </style>
+    <?php
+}
+add_action('wp_head', 'team1theme_post_customizer_css', 25);
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
