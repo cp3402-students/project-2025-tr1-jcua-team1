@@ -25,7 +25,12 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'team1theme' ); ?></a>
 
-	<header id="masthead" class="site-header">
+	<header id="masthead" class="site-header" style="
+		background-color: <?php echo get_theme_mod( 'header_bg_color', '#ffffff' ); ?>;
+		padding-top: <?php echo get_theme_mod( 'header_padding', '20' ); ?>px;
+		padding-bottom: <?php echo get_theme_mod( 'header_padding', '20' ); ?>px;
+		text-align: <?php echo get_theme_mod( 'header_text_align', 'left' ); ?>;
+	">
 		<div class="site-branding">
 			<?php
 			if (has_custom_logo()) {
@@ -35,29 +40,17 @@
 				?>
 				<div class="logo-placeholder">
 					<?php if (is_front_page() && is_home()) : ?>
-						<h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></h1>
+						<h1 class="site-title" style="color: <?php echo get_theme_mod( 'header_text_color', '#000000' ); ?>;"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></h1>
 					<?php else : ?>
-						<p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
+						<p class="site-title" style="color: <?php echo get_theme_mod( 'header_text_color', '#000000' ); ?>;"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
 					<?php endif; ?>
 				</div>
-			<?php } 
-			/*
-				*This is an original code that displays the site title.
+			<?php }
 
-						if ( is_front_page() && is_home() ) :
-							?>
-							<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-							<?php
-						else :
-							?>
-							<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-							<?php
-						endif;
-			*/
 			$team1theme_description = get_bloginfo( 'description', 'display' );
 			if ( $team1theme_description || is_customize_preview() ) :
 				?>
-				<p class="site-description"><?php echo $team1theme_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+				<p class="site-description" style="color: <?php echo get_theme_mod( 'header_text_color', '#000000' ); ?>;"><?php echo $team1theme_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 			<?php endif; ?>
 		</div><!-- .site-branding -->
 
