@@ -94,6 +94,43 @@ function team1theme_page_customize_register($wp_customize) {
             'background' => __('Page Background', 'team1theme'),
         ),
     ));
+
+    // Heading Alignment Setting
+    $wp_customize->add_setting('page_heading_alignment', array(
+        'default'           => 'left',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('page_heading_alignment', array(
+        'label'    => __('Default Heading Alignment', 'team1theme'),
+        'section'  => 'page_settings',
+        'type'     => 'select',
+        'choices'  => array(
+            'left'   => __('Left', 'team1theme'),
+            'center' => __('Center', 'team1theme'),
+            'right'  => __('Right', 'team1theme'),
+        ),
+    ));
+    
+    // Body Text Alignment Setting
+    $wp_customize->add_setting('page_text_alignment', array(
+        'default'           => 'left',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('page_text_alignment', array(
+        'label'    => __('Default Body Text Alignment', 'team1theme'),
+        'section'  => 'page_settings',
+        'type'     => 'select',
+        'choices'  => array(
+            'left'   => __('Left', 'team1theme'),
+            'center' => __('Center', 'team1theme'),
+            'right'  => __('Right', 'team1theme'),
+            'justify' => __('Justify', 'team1theme'),
+        ),
+    ));
 }
 add_action('customize_register', 'team1theme_page_customize_register');
 
@@ -133,6 +170,23 @@ function team1theme_page_customizer_css() {
             display: none;
         }
         <?php endif; ?>
+        
+        /* Heading alignment */
+        .site-main h1, 
+        .site-main h2, 
+        .site-main h3, 
+        .site-main h4, 
+        .site-main h5, 
+        .site-main h6 {
+            text-align: <?php echo esc_attr(get_theme_mod('page_heading_alignment', 'left')); ?>;
+        }
+        
+        /* Body text alignment */
+        .site-main p, 
+        .site-main ul, 
+        .site-main ol {
+            text-align: <?php echo esc_attr(get_theme_mod('page_text_alignment', 'left')); ?>;
+        }
     </style>
     <?php
 }
