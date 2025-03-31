@@ -802,3 +802,8 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  */
 require get_template_directory() . '/inc/post-meta-boxes.php';
 
+/**
+ * Archive customization options.
+ */
+require get_template_directory() . '/inc/archive-customizer.php';
+
