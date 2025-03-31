@@ -15,6 +15,7 @@ project-2025-tr1-jcua-team1/
 │   ├── customizer.php        # General customiser settings
 │   ├── page-customizer.php   # Page-specific customiser settings
 │   ├── page-meta-boxes.php   # Per-page customisation options
+│   ├── post-meta-boxes.php   # Per-post customisation options
 │   ├── template-functions.php# Theme enhancement functions
 │   ├── template-tags.php     # Template helper functions
 │   └── jetpack.php           # Jetpack compatibility
@@ -42,6 +43,7 @@ The theme integrates extensively with the WordPress Customiser. Key settings inc
 - **Header Settings**: Options for background colour, text colour, padding, text alignment, plus the recently added settings for header link font size and header link colour.
 - **Footer Settings**: Configure footer text, colours, padding and alignment
 - **Page Template Settings**: Control layouts, featured images and text formatting on a global or per-page basis
+- **Blog Post Settings**: Control layouts, featured images, meta information display and text formatting on a global or per-post basis
 
 ### 2. Front Page Template
 
@@ -146,7 +148,7 @@ Focus on the following key files when making theme changes:
 ### Design Decisions
 
 - **Modularity**: The theme splits functionality across multiple files (template-parts, inc, js) to keep the code modular and maintainable.
-- **Customisability**: Nearly every visible element – from header links to layout spacing – can be modified using the WordPress Customiser, reducing the need for direct code changes.
+- **Customisability**: Nearly every visible element – from header links to layout spacing and blog post appearance – can be modified using the WordPress Customiser, reducing the need for direct code changes.
 - **Responsive Design**: The header and navigation systems are designed to be responsive, ensuring a consistent experience across devices.
 - **Accessibility**: Care has been taken to include accessible elements, such as skip links and proper heading structures.
 
