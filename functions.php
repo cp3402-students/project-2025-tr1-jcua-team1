@@ -614,6 +614,43 @@ function team1_theme_blog_customize_register($wp_customize) {
         'section'  => 'blog_post_settings',
         'type'     => 'checkbox',
     ));
+
+    // Heading Alignment
+    $wp_customize->add_setting('post_heading_alignment', array(
+        'default'           => 'left',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control('post_heading_alignment', array(
+        'label'    => __('Heading Alignment', 'team1theme'),
+        'section'  => 'blog_post_settings',
+        'type'     => 'select',
+        'choices'  => array(
+            'left'   => __('Left', 'team1theme'),
+            'center' => __('Center', 'team1theme'),
+            'right'  => __('Right', 'team1theme'),
+        ),
+    ));
+
+    // Text Alignment
+    $wp_customize->add_setting('post_text_alignment', array(
+        'default'           => 'left',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control('post_text_alignment', array(
+        'label'    => __('Text Alignment', 'team1theme'),
+        'section'  => 'blog_post_settings',
+        'type'     => 'select',
+        'choices'  => array(
+            'left'    => __('Left', 'team1theme'),
+            'center'  => __('Center', 'team1theme'),
+            'right'   => __('Right', 'team1theme'),
+            'justify' => __('Justify', 'team1theme'),
+        ),
+    ));
 }
 add_action('customize_register', 'team1_theme_blog_customize_register');
 
@@ -628,6 +665,10 @@ function team1theme_post_customizer_css() {
     // Get post background and padding from customizer
     $post_bg = get_theme_mod('post_content_bg', '#ffffff');
     $post_padding = get_theme_mod('post_content_padding', '30');
+
+    // Get heading and text alignment from customizer
+    $heading_alignment = get_theme_mod('post_heading_alignment', 'left');
+    $text_alignment = get_theme_mod('post_text_alignment', 'left');
     
     // Get post-specific layout
     $post_id = get_the_ID();
@@ -641,12 +682,33 @@ function team1theme_post_customizer_css() {
     if ($featured_image_display === 'default' || empty($featured_image_display)) {
         $featured_image_display = get_theme_mod('post_featured_image_display', 'above');
     }
+
+    // Get heading and text alignment from post meta, if set
+    $post_heading_alignment = get_post_meta($post_id, '_team1theme_heading_alignment', true);
+    if ($post_heading_alignment === 'default' || empty($post_heading_alignment)) {
+        $post_heading_alignment = $heading_alignment;
+    }
+
+    $post_text_alignment = get_post_meta($post_id, '_team1theme_text_alignment', true);
+    if ($post_text_alignment === 'default' || empty($post_text_alignment)) {
+        $post_text_alignment = $text_alignment;
+    }
     ?>
     <style type="text/css">
         /* Base styling for single posts */
         .single-post .site-main {
             background-color: <?php echo esc_attr($post_bg); ?>;
             padding: <?php echo esc_attr($post_padding); ?>px;
+        }
+
+        /* Heading Alignment */
+        .single-post .entry-title {
+            text-align: <?php echo esc_attr($post_heading_alignment); ?>;
+        }
+
+        /* Text Alignment */
+        .single-post .entry-content {
+            text-align: <?php echo esc_attr($post_text_alignment); ?>;
         }
         
         /* Layout: Full Width */
