@@ -706,9 +706,10 @@ function team1theme_post_customizer_css() {
             text-align: <?php echo esc_attr($post_heading_alignment); ?>;
         }
 
-        /* Text Alignment */
-        .single-post .entry-content {
-            text-align: <?php echo esc_attr($post_text_alignment); ?>;
+        /* Text Alignment - Increased specificity and added !important to override theme defaults */
+        .single-post #primary .entry-content,
+        .single-post #primary .entry-content p {
+            text-align: <?php echo esc_attr($post_text_alignment); ?> !important;
         }
         
         /* Layout: Full Width */
