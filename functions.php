@@ -443,6 +443,16 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
+ * Page template customization options.
+ */
+require get_template_directory() . '/inc/page-customizer.php';
+
+/**
+ * Page-specific meta boxes for overriding theme defaults.
+ */
+require get_template_directory() . '/inc/page-meta-boxes.php';
+
+/**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {

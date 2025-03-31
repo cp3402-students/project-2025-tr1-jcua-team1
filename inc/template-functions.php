@@ -35,3 +35,50 @@ function team1theme_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'team1theme_pingback_header' );
+
+/**
+ * Output page-specific CSS
+ */
+function team1theme_page_specific_css() {
+    if (!is_page()) {
+        return;
+    }
+    
+    $post_id = get_the_ID();
+    $heading_alignment = get_post_meta($post_id, '_team1theme_heading_alignment', true);
+    $text_alignment = get_post_meta($post_id, '_team1theme_text_alignment', true);
+    
+    // Only output CSS if we have page-specific settings
+    if ($heading_alignment === 'default' && $text_alignment === 'default') {
+        return;
+    }
+    
+    // Get default values from customizer for comparison
+    $default_heading_alignment = get_theme_mod('page_heading_alignment', 'left');
+    $default_text_alignment = get_theme_mod('page_text_alignment', 'left');
+    
+    // Generate CSS for page-specific settings
+    ?>
+    <style type="text/css">
+        <?php if ($heading_alignment !== 'default' && $heading_alignment !== $default_heading_alignment) : ?>
+        .page-id-<?php echo $post_id; ?> .site-main h1, 
+        .page-id-<?php echo $post_id; ?> .site-main h2, 
+        .page-id-<?php echo $post_id; ?> .site-main h3, 
+        .page-id-<?php echo $post_id; ?> .site-main h4, 
+        .page-id-<?php echo $post_id; ?> .site-main h5, 
+        .page-id-<?php echo $post_id; ?> .site-main h6 {
+            text-align: <?php echo esc_attr($heading_alignment); ?>;
+        }
+        <?php endif; ?>
+        
+        <?php if ($text_alignment !== 'default' && $text_alignment !== $default_text_alignment) : ?>
+        .page-id-<?php echo $post_id; ?> .site-main p, 
+        .page-id-<?php echo $post_id; ?> .site-main ul, 
+        .page-id-<?php echo $post_id; ?> .site-main ol {
+            text-align: <?php echo esc_attr($text_alignment); ?>;
+        }
+        <?php endif; ?>
+    </style>
+    <?php
+}
+add_action('wp_head', 'team1theme_page_specific_css', 25); // Priority after the customizer CSS

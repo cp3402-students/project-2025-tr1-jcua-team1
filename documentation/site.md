@@ -58,6 +58,47 @@ The website footer can be fully customised through the WordPress Customiser:
    - **Footer Text Alignment**: Align text left, centre, or right
 3. Changes will be visible in the preview and will go live when you click "Publish"
 
+## Page Customisation
+
+Individual pages can be customised both globally and on a per-page basis:
+
+### Global Page Settings
+
+These settings apply to all pages by default:
+
+1. Go to **Appearance → Customise → Page Template Settings**
+2. Here you can modify:
+   - **Default Page Layout**: Choose between with sidebar, full width, or narrow content
+   - **Show Page Title**: Toggle visibility of page titles
+   - **Page Content Background**: Set the background colour for page content
+   - **Content Padding**: Adjust the space around page content
+   - **Featured Image Display**: Choose how featured images appear (banner, above content, background, or hidden)
+   - **Default Heading Alignment**: Set text alignment for all headings (left, centre, or right)
+   - **Default Body Text Alignment**: Set text alignment for all body text (left, centre, right, or justify)
+3. Changes will be visible in the preview and will go live when you click "Publish"
+
+### Individual Page Settings
+
+For each specific page, you can override the global defaults:
+
+1. Edit any page in WordPress
+2. Look for the **Page Settings** box in the right sidebar
+3. Here you can customise:
+   - **Page Layout**: Override the default layout for this specific page
+   - **Show Page Title**: Choose whether to display the page title
+   - **Heading Alignment**: Set a different alignment for all headings on this page
+   - **Body Text Alignment**: Set a different alignment for all body text on this page
+4. These settings will only affect the individual page you're editing
+5. Select "Theme Default" for any option to use the global setting from the Customiser
+
+### Best Practices for Page Customisation
+
+1. **Consistency**: Use global settings for most pages to maintain a consistent look
+2. **Special Pages**: Use per-page overrides only for pages that truly need different styling
+3. **Typography**: Keep text alignment consistent with your brand style guide
+4. **Layout**: Choose full-width for landing pages and pages with large images
+5. **Testing**: Preview pages on mobile and desktop to ensure good appearance at all screen sizes
+
 ## Adding New Categories
 
 If you wish to organise your content using additional categories:
