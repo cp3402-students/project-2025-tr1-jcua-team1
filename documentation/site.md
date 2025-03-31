@@ -122,6 +122,37 @@ For each specific page, you can override the global defaults:
    - **Body Text Alignment**: Set a different alignment for all body text on this page.
 4. These settings will only affect the individual page you are editing. Select "Theme Default" for any option to revert to the global setting.
 
+## Blog Post Customisation
+
+Blog posts can be customised both globally and on a per-post basis:
+
+### Global Blog Post Settings
+
+These settings apply to all blog posts by default:
+
+1. Go to **Appearance → Customise → Blog Post Settings**
+2. Here you can modify:
+   - **Default Post Layout**: Choose between with sidebar, full width, or narrow content.
+   - **Featured Image Display**: Choose how featured images appear (banner, above content, background or hidden).
+   - **Post Content Background**: Set the background colour for post content.
+   - **Content Padding**: Adjust the space around post content.
+   - **Show Post Meta Information**: Toggle the visibility of post meta data (date, author, categories, etc.).
+   - **Heading Alignment**: Set text alignment for all headings (left, centre or right).
+   - **Text Alignment**: Set text alignment for all body text (left, centre, right or justify).
+3. Changes will be visible in the preview and will go live when you click "Publish"
+
+### Individual Post Settings
+
+For each specific post, you can override the global defaults:
+
+1. Edit any post in WordPress
+2. Look for the **Post Style Settings** box in the right sidebar
+3. Here you can customise:
+   - **Show Post Meta Information**: Choose whether to display the post meta information.
+   - **Heading Alignment**: Set a different alignment for all headings on this post.
+   - **Text Alignment**: Set a different alignment for all body text on this post.
+4. These settings will only affect the individual post you are editing. Select "Theme Default" for any option to revert to the global setting.
+
 ---
 
 This guide is intended to help you maintain the site without having to edit code. For any additional changes beyond the provided customiser settings, please contact your theme developer.
