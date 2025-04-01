@@ -45,6 +45,7 @@ The theme integrates extensively with the WordPress Customiser. Key settings inc
 - **Page Template Settings**: Control layouts, featured images, and text formatting on a global or per-page basis.
 - **Blog Post Settings**: Control layouts, featured images, meta information display, and text formatting on a global or per-post basis.
 - **Archive Settings**: Customise archive pages (categories, tags, dates, and authors) with options for layout, pagination style, and whether to display post excerpts.
+- **404 Page Options**: Customise the 404 error page with options for title, message, search form visibility, helpful widgets, and text alignment.
 
 ### 2. Archive Customisation
 
@@ -82,6 +83,10 @@ The front page (`front-page.php`) is designed for flexibility:
 - **Per-Page and Per-Post Overrides**: Use meta boxes on individual pages or posts to override global settings.
 - **Flexible Layout Options**: Choose from various layouts (with sidebar, full width, narrow content) as well as individual text alignment options.
 
+### 7. 404 Error Page
+
+- **Customisable 404 Page**: Allows customisation of the title, message, search form visibility, helpful widgets, and text alignment via the Customiser.
+
 ## Design System
 
 ### Colour Scheme
@@ -102,8 +107,6 @@ The theme utilises CSS variables (defined in `style.css`) to provide a consisten
     // ...existing code...
 }
 ```
-
-Adjust the variables in `style.css` to update the colour scheme site-wide.
 
 ### Typography
 

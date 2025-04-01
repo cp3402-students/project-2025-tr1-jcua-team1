@@ -167,6 +167,19 @@ Archive pages (like category listings, tag pages, and date-based archives) can b
     -   **Show Post Excerpts**: Toggle whether to display excerpts (summaries) of posts in the archive listings.
 3.  Changes will be visible in the preview and will go live when you click "Publish".
 
+## 404 Error Page Customisation
+
+The 404 error page can be customised through the WordPress Customiser:
+
+1. Go to **Appearance → Customise → 404 Page Options**
+2. Here you can modify:
+   - **404 Page Title**: Change the main title displayed on the 404 page.
+   - **404 Page Message**: Change the descriptive message displayed on the 404 page.
+   - **Show Search Form**: Toggle the visibility of the search form.
+   - **Show Helpful Widgets**: Toggle the visibility of helpful widgets (Recent Posts, Categories, Tag Cloud).
+   - **Text Alignment**: Choose whether the title and message text are aligned left, centre or right.
+3. Changes will be visible in the preview and will go live when you click "Publish".
+
 ---
 
 This guide is intended to help you maintain the site without having to edit code. For any additional changes beyond the provided customiser settings, please contact your theme developer.
