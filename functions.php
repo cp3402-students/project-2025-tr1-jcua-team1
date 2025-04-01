@@ -115,24 +115,116 @@ function team1theme_content_width() {
 add_action( 'after_setup_theme', 'team1theme_content_width', 0 );
 
 /**
- * Register widget area.
+ * Register widget areas.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function team1theme_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'team1theme' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'team1theme' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
+    // Main Sidebar (already exists)
+    register_sidebar(
+        array(
+            'name'          => esc_html__('Main Sidebar', 'team1theme'),
+            'id'            => 'sidebar-1',
+            'description'   => esc_html__('Add widgets here to appear in your main sidebar.', 'team1theme'),
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        )
+    );
+    
+    // Blog/Archive Sidebar
+    register_sidebar(
+        array(
+            'name'          => esc_html__('Blog Sidebar', 'team1theme'),
+            'id'            => 'sidebar-blog',
+            'description'   => esc_html__('Add widgets here to appear on blog and archive pages.', 'team1theme'),
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        )
+    );
+    
+    // Single Post Sidebar
+    register_sidebar(
+        array(
+            'name'          => esc_html__('Post Sidebar', 'team1theme'),
+            'id'            => 'sidebar-post',
+            'description'   => esc_html__('Add widgets here to appear on single post pages.', 'team1theme'),
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        )
+    );
+    
+    // Page Sidebar
+    register_sidebar(
+        array(
+            'name'          => esc_html__('Page Sidebar', 'team1theme'),
+            'id'            => 'sidebar-page',
+            'description'   => esc_html__('Add widgets here to appear on static pages.', 'team1theme'),
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        )
+    );
+    
+    // Footer Widgets (3 columns)
+    register_sidebar(
+        array(
+            'name'          => esc_html__('Footer 1', 'team1theme'),
+            'id'            => 'footer-1',
+            'description'   => esc_html__('Add widgets here to appear in footer column 1.', 'team1theme'),
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        )
+    );
+    
+    register_sidebar(
+        array(
+            'name'          => esc_html__('Footer 2', 'team1theme'),
+            'id'            => 'footer-2',
+            'description'   => esc_html__('Add widgets here to appear in footer column 2.', 'team1theme'),
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        )
+    );
+    
+    register_sidebar(
+        array(
+            'name'          => esc_html__('Footer 3', 'team1theme'),
+            'id'            => 'footer-3',
+            'description'   => esc_html__('Add widgets here to appear in footer column 3.', 'team1theme'),
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        )
+    );
+    
+    // Optional: Shop sidebar for WooCommerce if applicable
+    if (function_exists('is_woocommerce')) {
+        register_sidebar(
+            array(
+                'name'          => esc_html__('Shop Sidebar', 'team1theme'),
+                'id'            => 'sidebar-shop',
+                'description'   => esc_html__('Add widgets here to appear on shop pages.', 'team1theme'),
+                'before_widget' => '<section id="%1$s" class="widget %2$s">',
+                'after_widget'  => '</section>',
+                'before_title'  => '<h2 class="widget-title">',
+                'after_title'   => '</h2>',
+            )
+        );
+    }
 }
-add_action( 'widgets_init', 'team1theme_widgets_init' );
+add_action('widgets_init', 'team1theme_widgets_init');
 
 /**
  * Enqueue scripts and styles.
