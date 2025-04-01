@@ -97,6 +97,7 @@ add_action('customize_register', 'team1theme_logo_customize_register');
  */
 function team1theme_logo_customize_css() {
     $header_height = get_theme_mod('team1theme_header_height', 100);
+    $text_align = get_theme_mod('team1theme_404_text_align', 'left');
     
     $css = "
         .site-header {
@@ -107,6 +108,22 @@ function team1theme_logo_customize_css() {
         }
         .custom-logo {
             max-height: {$header_height}px;
+        }
+        
+        /* 404 page text alignment - only for header and main message */
+        .error-404 .page-header,
+        .error-404 .page-title,
+        .error-404 .page-content > p:first-of-type {
+            text-align: {$text_align} !important;
+        }
+        
+        /* Reset alignment for search form and widgets */
+        .error-404 .search-form,
+        .error-404 .widget,
+        .error-404 .widget-title,
+        .error-404 .widget ul,
+        .error-404 .widget_tag_cloud {
+            text-align: left;
         }
     ";
     
@@ -173,6 +190,24 @@ function team1theme_404_customize_register($wp_customize) {
         'label'    => __('Show Helpful Widgets', 'team1theme'),
         'section'  => 'team1theme_404_options',
         'type'     => 'checkbox',
+    ));
+    
+    // Text alignment setting
+    $wp_customize->add_setting('team1theme_404_text_align', array(
+        'default'           => 'left',
+        'sanitize_callback' => 'sanitize_text_field', // Using built-in WordPress sanitizer
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('team1theme_404_text_align', array(
+        'label'    => __('Text Alignment', 'team1theme'),
+        'section'  => 'team1theme_404_options',
+        'type'     => 'select',
+        'choices'  => array(
+            'left'    => __('Left', 'team1theme'),
+            'center'  => __('Center', 'team1theme'),
+            'right'   => __('Right', 'team1theme'),
+        ),
     ));
 }
 add_action('customize_register', 'team1theme_404_customize_register');
