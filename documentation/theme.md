@@ -38,34 +38,46 @@ project-2025-tr1-jcua-team1/
 
 The theme integrates extensively with the WordPress Customiser. Key settings include:
 
-- **Logo Options**: Customise logo size, appearance and fallback (site title when not set)
-- **Homepage Settings**: Manage the hero section, featured content and layout
-- **Header Settings**: Options for background colour, text colour, padding, text alignment, plus the recently added settings for header link font size and header link colour.
-- **Footer Settings**: Configure footer text, colours, padding and alignment
-- **Page Template Settings**: Control layouts, featured images and text formatting on a global or per-page basis
-- **Blog Post Settings**: Control layouts, featured images, meta information display and text formatting on a global or per-post basis
+- **Logo Options**: Customise logo size, appearance, and fallback (site title when not set).
+- **Homepage Settings**: Manage the hero section, featured content, and layout.
+- **Header Settings**: Options for background colour, text colour, padding, text alignment, plus settings for header link font size and header link colour.
+- **Footer Settings**: Configure footer text, colours, padding, and alignment.
+- **Page Template Settings**: Control layouts, featured images, and text formatting on a global or per-page basis.
+- **Blog Post Settings**: Control layouts, featured images, meta information display, and text formatting on a global or per-post basis.
+- **Archive Settings**: Customise archive pages (categories, tags, dates, and authors) with options for layout, pagination style, and whether to display post excerpts.
 
-### 2. Front Page Template
+### 2. Archive Customisation
+
+The archive template (`archive.php`) has been enhanced to support custom layouts and styles for category, tag, date, and author archives. Key features include:
+
+- **Custom Layouts**: Choose between a standard list, grid layout, or full-width display (no sidebar).
+- **Pagination Options**: Select between simple "Next/Previous" links or numbered pagination.
+- **Post Excerpts**: Toggle whether to display excerpts (summaries) of posts in archive listings.
+- **Category-Specific Template**: A dedicated `content-category.php` template is used for category archives, allowing for unique styling and layout.
+
+These settings can be managed via **Appearance → Customise → Archive Settings**.
+
+### 3. Front Page Template
 
 The front page (`front-page.php`) is designed for flexibility:
-- **Hero Section**: Fully customisable with heading, text, background image/colour, overlay, button text and URL.
+- **Hero Section**: Fully customisable with heading, text, background image/colour, overlay, button text, and URL.
 - **Home Category Posts**: Displays up to six most recent posts from the **home** category in a grid layout.
 - **Features Section**: Placeholder area for additional content.
 
-### 3. Header & Navigation
+### 4. Header & Navigation
 
-- **Custom Header**: Supports custom background, text colours, padding and text alignment.
-- **New Header Link Settings**: The header now includes customiser settings to adjust the navigation link font size and colour.
+- **Custom Header**: Supports custom background, text colours, padding, and text alignment.
+- **Header Link Settings**: The header includes customiser settings to adjust the navigation link font size and colour.
 - **Responsive Navigation**: Mobile-friendly menu system with a clear fallback (site title) if no logo is set.
 
-### 4. Footer
+### 5. Footer
 
-- **Customisable Footer**: Allows custom text, colours, padding and alignment via the Customiser.
+- **Customisable Footer**: Allows custom text, colours, padding, and alignment via the Customiser.
 
-### 5. Page Customisation System
+### 6. Page and Post Customisation System
 
 - **Global Settings**: Manage site-wide defaults through the Customiser.
-- **Per-Page Overrides**: Use meta boxes on individual pages to override global settings.
+- **Per-Page and Per-Post Overrides**: Use meta boxes on individual pages or posts to override global settings.
 - **Flexible Layout Options**: Choose from various layouts (with sidebar, full width, narrow content) as well as individual text alignment options.
 
 ## Design System

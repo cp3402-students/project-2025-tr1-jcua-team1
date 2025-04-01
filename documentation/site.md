@@ -153,6 +153,17 @@ For each specific post, you can override the global defaults:
    - **Text Alignment**: Set a different alignment for all body text on this post.
 4. These settings will only affect the individual post you are editing. Select "Theme Default" for any option to revert to the global setting.
 
+## Archive Customisation (Categories, Tags, Dates)
+
+Archive pages (like category listings, tag pages, and date-based archives) can be customised to control their layout and appearance:
+
+1.  Go to **Appearance → Customise → Archive Settings**
+2.  Here you can modify:
+    -   **Archive Layout**: Choose between a standard list, a grid layout, or a full-width display (no sidebar).
+    -   **Pagination Style**: Select either simple "Next/Previous" links or numbered pagination.
+    -   **Show Post Excerpts**: Toggle whether to display excerpts (summaries) of posts in the archive listings.
+3.  Changes will be visible in the preview and will go live when you click "Publish".
+
 ---
 
 This guide is intended to help you maintain the site without having to edit code. For any additional changes beyond the provided customiser settings, please contact your theme developer.
