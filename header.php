@@ -68,9 +68,18 @@
 			?>
 		</nav><!-- #site-navigation -->
 		<style>
+			#site-navigation {
+				background-color: <?php echo get_theme_mod('nav_bg_color', 'transparent'); ?>;
+			}
+			
 			#site-navigation ul li a {
-				font-size: <?php echo get_theme_mod( 'header_link_font_size', '16' ); ?>px;
-				color: <?php echo get_theme_mod( 'header_link_color', '#000000' ); ?>;
+				font-size: <?php echo get_theme_mod('header_link_font_size', '16'); ?>px;
+				color: <?php echo get_theme_mod('header_link_color', '#000000'); ?>;
+				padding: 5px <?php echo get_theme_mod('nav_link_spacing', '15'); ?>px;
+			}
+			
+			#site-navigation ul li a:hover {
+				color: <?php echo get_theme_mod('nav_link_hover_color', '#4169e1'); ?>;
 			}
 		</style>
 	</header><!-- #masthead -->
