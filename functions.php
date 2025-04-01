@@ -522,6 +522,48 @@ function team1_theme_header_customize_register( $wp_customize ) {
         'label'    => __( 'Header Link Color', 'team1theme' ),
         'section'  => 'header_settings',
     ) ) );
+
+    // Navigation Background Color
+    $wp_customize->add_setting('nav_bg_color', array(
+        'default'           => 'transparent',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'nav_bg_color', array(
+        'label'    => __('Navigation Background Color', 'team1theme'),
+        'section'  => 'header_settings',
+    )));
+
+    // Navigation Link Hover Color
+    $wp_customize->add_setting('nav_link_hover_color', array(
+        'default'           => '#4169e1', // Your primary color
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'nav_link_hover_color', array(
+        'label'    => __('Navigation Link Hover Color', 'team1theme'),
+        'section'  => 'header_settings',
+    )));
+
+    // Navigation Link Spacing
+    $wp_customize->add_setting('nav_link_spacing', array(
+        'default'           => '15',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control('nav_link_spacing', array(
+        'label'       => __('Navigation Link Spacing (px)', 'team1theme'),
+        'section'     => 'header_settings',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 5,
+            'max'  => 30,
+            'step' => 1,
+        ),
+    ));
 }
 add_action( 'customize_register', 'team1_theme_header_customize_register' );
 
