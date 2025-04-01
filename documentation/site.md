@@ -48,6 +48,9 @@ Your website header has been integrated with several customisation options to he
    - **Header Text Alignment**: Choose whether the text is aligned left, centre or right.
    - **Header Link Font Size**: Change the size (in pixels) of the navigation link text.
    - **Header Link Colour**: Set the colour of the navigation links.
+   - **Navigation Background Colour**: Set the background colour of the navigation menu.
+   - **Navigation Link Hover Colour**: Set the colour of the navigation links when hovered over.
+   - **Navigation Link Spacing**: Adjust the spacing between navigation links (in pixels).
 3. Any changes made here will update the header appearance instantly in the preview. Click "Publish" to apply your changes.
 
 ## Adding New Content

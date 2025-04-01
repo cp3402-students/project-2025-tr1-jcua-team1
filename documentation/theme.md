@@ -68,6 +68,8 @@ The front page (`front-page.php`) is designed for flexibility:
 
 - **Custom Header**: Supports custom background, text colours, padding, and text alignment.
 - **Header Link Settings**: The header includes customiser settings to adjust the navigation link font size and colour.
+- **Navigation Background and Link Colours**: The navigation menu's background and link colours can be customised via the Customiser.
+- **Navigation Link Spacing**: Adjust the spacing between navigation links using the Customiser.
 - **Responsive Navigation**: Mobile-friendly menu system with a clear fallback (site title) if no logo is set.
 
 ### 5. Footer
