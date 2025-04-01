@@ -21,12 +21,9 @@
         <div class="site-info">
             <?php echo wp_kses_post(get_theme_mod('footer_text', 'Copyright © ' . date('Y') . ' ' . get_bloginfo('name'))); ?>
             
-            <?php if (get_theme_mod('show_wordpress_credit', true)) : ?>
-                <span class="sep"> | </span>
-                <a href="<?php echo esc_url(__('https://wordpress.org/', 'team1theme')); ?>">
-                    <?php printf(esc_html__('Proudly powered by %s', 'team1theme'), 'WordPress'); ?>
-                </a>
-            <?php endif; ?>
+            <div class="ai-attribution">
+                <?php echo wp_kses_post(get_theme_mod('ai_attribution_text', 'Original idea, code generated with AI assistance.')); ?>
+            </div>
         </div><!-- .site-info -->
     </footer><!-- #colophon -->
 </div><!-- #page -->
