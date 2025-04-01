@@ -97,6 +97,7 @@ add_action('customize_register', 'team1theme_logo_customize_register');
  */
 function team1theme_logo_customize_css() {
     $header_height = get_theme_mod('team1theme_header_height', 100);
+    $text_align = get_theme_mod('team1theme_404_text_align', 'left');
     
     $css = "
         .site-header {
@@ -108,8 +109,105 @@ function team1theme_logo_customize_css() {
         .custom-logo {
             max-height: {$header_height}px;
         }
+        
+        /* 404 page text alignment - only for header and main message */
+        .error-404 .page-header,
+        .error-404 .page-title,
+        .error-404 .page-content > p:first-of-type {
+            text-align: {$text_align} !important;
+        }
+        
+        /* Reset alignment for search form and widgets */
+        .error-404 .search-form,
+        .error-404 .widget,
+        .error-404 .widget-title,
+        .error-404 .widget ul,
+        .error-404 .widget_tag_cloud {
+            text-align: left;
+        }
     ";
     
     wp_add_inline_style('team1theme-style', $css);
 }
 add_action('wp_enqueue_scripts', 'team1theme_logo_customize_css', 20);
+
+/**
+ * Add 404 page customization options
+ */
+function team1theme_404_customize_register($wp_customize) {
+    // Add 404 Page Section
+    $wp_customize->add_section('team1theme_404_options', array(
+        'title'       => __('404 Page Options', 'team1theme'),
+        'priority'    => 40,
+        'description' => __('Customize your 404 error page', 'team1theme'),
+    ));
+    
+    // 404 title
+    $wp_customize->add_setting('team1theme_404_title', array(
+        'default'           => __('Oops! That page can\'t be found.', 'team1theme'),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('team1theme_404_title', array(
+        'label'    => __('404 Page Title', 'team1theme'),
+        'section'  => 'team1theme_404_options',
+        'type'     => 'text',
+    ));
+    
+    // 404 message
+    $wp_customize->add_setting('team1theme_404_message', array(
+        'default'           => __('It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'team1theme'),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('team1theme_404_message', array(
+        'label'    => __('404 Page Message', 'team1theme'),
+        'section'  => 'team1theme_404_options',
+        'type'     => 'textarea',
+    ));
+    
+    // Show search form
+    $wp_customize->add_setting('team1theme_404_show_search', array(
+        'default'           => true,
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('team1theme_404_show_search', array(
+        'label'    => __('Show Search Form', 'team1theme'),
+        'section'  => 'team1theme_404_options',
+        'type'     => 'checkbox',
+    ));
+    
+    // Show widgets
+    $wp_customize->add_setting('team1theme_404_show_widgets', array(
+        'default'           => true,
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('team1theme_404_show_widgets', array(
+        'label'    => __('Show Helpful Widgets', 'team1theme'),
+        'section'  => 'team1theme_404_options',
+        'type'     => 'checkbox',
+    ));
+    
+    // Text alignment setting
+    $wp_customize->add_setting('team1theme_404_text_align', array(
+        'default'           => 'left',
+        'sanitize_callback' => 'sanitize_text_field', // Using built-in WordPress sanitizer
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('team1theme_404_text_align', array(
+        'label'    => __('Text Alignment', 'team1theme'),
+        'section'  => 'team1theme_404_options',
+        'type'     => 'select',
+        'choices'  => array(
+            'left'    => __('Left', 'team1theme'),
+            'center'  => __('Center', 'team1theme'),
+            'right'   => __('Right', 'team1theme'),
+        ),
+    ));
+}
+add_action('customize_register', 'team1theme_404_customize_register');
