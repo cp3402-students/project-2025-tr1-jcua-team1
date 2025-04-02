@@ -44,10 +44,6 @@
         
         <div class="site-info">
             <?php echo wp_kses_post(get_theme_mod('footer_text', 'Copyright © ' . date('Y') . ' ' . get_bloginfo('name'))); ?>
-            
-            <div class="ai-attribution">
-                <?php echo wp_kses_post(get_theme_mod('ai_attribution_text', 'Original idea, code generated with AI assistance.')); ?>
-            </div>
         </div><!-- .site-info -->
     </footer><!-- #colophon -->
 </div><!-- #page -->
