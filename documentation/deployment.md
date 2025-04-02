@@ -123,73 +123,46 @@ Automated PR testing using GitHub Actions helps ensure code quality by running t
 
 3. Add the following configuration to the workflow file:
    ```yaml
-   name: Test Pull Request
+    name: Test Pull Request
 
-   on:
-     pull_request:
-       branches:
-         - main
+    on:
+      pull_request:
+        branches:
+          - main
 
-   jobs:
-     test:
-       runs-on: ubuntu-latest
-       
-       steps:
-       - name: Checkout code
-         uses: actions/checkout@v3
-         
-       - name: Set up PHP
-         uses: shivammathur/setup-php@v2
-         with:
-           php-version: '8.0'
-           extensions: mbstring, xml
-           coverage: none
-           
-       - name: Set up Node.js
-         uses: actions/setup-node@v3
-         with:
-           node-version: '16'
-           
-       - name: Install PHP dependencies
-         run: |
-           if [ -f composer.json ]; then
-             composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
-             composer install --no-progress
-           fi
-           
-       - name: Install JS dependencies
-         run: |
-           if [ -f package.json ]; then
-             if [ -f package-lock.json ]; then
-               npm ci
-             else
-               npm install
-             fi
-           fi
-           
-       - name: PHP Lint
-         run: |
-           find . -name "*.php" -not -path "./vendor/*" -print0 | xargs -0 -n1 php -l
-           
-       - name: Run JavaScript/CSS linting
-         run: |
-           if [ -f package.json ]; then
-             if npm run --silent --if-present | grep -q "^  lint"; then
-               npm run lint
-             else
-               echo "No lint script found in package.json. Skipping linting step."
-             fi
-           else
-             echo "No package.json found. Skipping JavaScript/CSS linting."
-           fi
-           
-       - name: Run tests
-         run: |
-           if [ -f composer.json ] && grep -q "test" composer.json; then
-             composer run test
-           elif [ -f package.json ] && grep -q "test" package.json; then
-             npm test
-           fi
+    jobs:
+      test:
+        runs-on: ubuntu-latest
+        
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+          
+        - name: Set up PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: '8.0'
+            extensions: mbstring, xml
+            coverage: none
+            
+        - name: Install PHP dependencies
+          run: |
+            if [ -f composer.json ]; then
+              # Allow the required plugin
+              composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+              # Install dependencies
+              composer install --no-progress
+            fi
+            
+        - name: PHP Lint
+          run: |
+            find . -name "*.php" -not -path "./vendor/*" -print0 | xargs -0 -n1 php -l
+            
+        - name: Run PHP Tests
+          run: |
+            if [ -f composer.json ] && grep -q "test" composer.json; then
+              composer run test
+            fi
    ```
 
 4. Commit and push the workflow file to the repository:
@@ -199,12 +172,10 @@ Automated PR testing using GitHub Actions helps ensure code quality by running t
    git push
    ```
 
-#### How PR testing works:
+#### How PR testing works (current):
 1. When a pull request is created against the main branch, GitHub Actions automatically runs the defined tests.
 2. The workflow checks:
    - PHP syntax errors
-   - Code linting (if configured)
-   - Unit tests (if configured)
 3. Test results appear in the PR interface on GitHub, showing whether all checks have passed.
 4. Failed tests should be addressed before merging the PR to maintain code quality.
 
@@ -276,7 +247,6 @@ Automated PR testing using GitHub Actions helps ensure code quality by running t
     sudo git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
     ```
 
-
 ### Initialise Github actions (updating theme code workflow) in staging server:
 
 1. Add SSH private key and VM IP address in Github repo's secrets.
@@ -313,25 +283,108 @@ Automated PR testing using GitHub Actions helps ensure code quality by running t
             EOF
     ```
 
+### Initialising the production web server (Microsoft Azure) with Docker:
 
+1.  Create a new virtual machine using your chosen service provider for the production environment.
+2.  Download the key pair for SSH access to the production VM.
+3.  SSH into the production VM:
+    ````
+    ssh -i wp-production-key.pem azureuser@<PRODUCTION_VM_IP>
+    ````
+4.  Update the production VM:
+    ````
+    sudo apt update
+    ````
+5.  Install Docker:
+    ````
+    sudo apt install -y docker.io
+    ````
+6.  Enable and start Docker:
+    ````
+    sudo systemctl enable docker
+    sudo systemctl start docker
+    ````
+7.  Install Docker Compose:
+    ````
+    sudo apt install -y docker-compose
+    ````
+8.  Create a `.env` file for passwords (in the desired directory):
+    ````
+    nano .env
+    ````
+9.  Define passwords with variables (example):
+    ````
+    MYSQL_DATABASE = ninjawarriors
+    MYSQL_USER = ninjawarrior
+    MYSQL_PASSWORD = ninjawarrior_password
+    MYSQL_ROOT_PASSWORD = ninjawarrior_root_password
+    ````
+10. Create a `docker-compose.yml` file:
+    ````
+    nano docker-compose.yml
+    ````
+11. Define the `docker-compose.yml` file (ensure it's configured for production).
+12. Start up the containers:
+    ````
+    sudo docker-compose up -d
+    ````
+
+**Adding custom theme:**
+
+13. Change directory into themes (create dir if needed).
+14. Clone the repo (or a specific branch) in directory:
+    ````
+    sudo git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
+    ````
+
+### Initialise Github actions (updating theme code workflow) in production server:
+
+1.  Add SSH private key and VM IP address in Github repo's secrets (create new secrets for production).
+2.  Define `.yml` file in `.github/workflows/` directory:
+    ````yaml
+    name: Deploy WordPress Theme to Azure Production VM
+
+    on:
+      push:
+        branches:
+          - production
+
+    jobs:
+      deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v3
+
+          - name: Set up SSH Key
+            run: |
+              mkdir -p ~/.ssh
+              echo "${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}" > ~/.ssh/id_rsa
+              chmod 600 ~/.ssh/id_rsa
+              ssh-keyscan -H ${{ secrets.PRODUCTION_VM_IP }} >> ~/.ssh/known_hosts
+
+          - name: Deploy Theme to Azure VM
+            run: |
+              ssh azureuser@${{ secrets.PRODUCTION_VM_IP }} << 'EOF'
+                cd ~/wp/themes/project-2025-tr1-jcua-team1  # Adjust this path to your WordPress theme directory
+                sudo git pull origin production  # Fetch latest changes from production branch
+              EOF
+    ````
 
 ### Manual workflow of updating theme code:
 
-1. Commit and push changes from local development.
-
-2. SSH into VM:
-    ```
-    ssh -i wp-staging-key.pem azureuser@20.167.48.156
-    ```
-
-3. Change directroy into custom theme folder
-    
-4. Fetch all changes:
-    ```
+1.  Commit and push changes from local development to the `production` branch.
+2.  SSH into VM:
+    ````
+    ssh -i wp-production-key.pem azureuser@<PRODUCTION_VM_IP>
+    ````
+3.  Change directory into custom theme folder
+4.  Fetch all changes:
+    ````
     git fetch --all
-    ```
-
-5. Pull all changes:
-    ```
+    ````
+5.  Pull all changes:
+    ````
     git pull
-    ```
+    ````
