@@ -87,6 +87,12 @@ The front page (`front-page.php`) is designed for flexibility:
 
 - **Customisable 404 Page**: Allows customisation of the title, message, search form visibility, helpful widgets, and text alignment via the Customiser.
 
+### 8. Dynamic Sidebars
+
+- **Multiple Widget Areas**: The theme includes several widget areas, allowing you to add dynamic content to different parts of your website. These include the Main Sidebar, Blog Sidebar, Post Sidebar, Page Sidebar, Shop Sidebar (if WooCommerce is active), and three Footer widget areas.
+- **Context-Specific Sidebars**: Different sidebars are displayed based on the page context (e.g., blog pages, single posts, static pages).
+- **Customisable via Widgets**: Sidebars can be easily customised by adding, removing, and configuring widgets via **Appearance → Widgets** in the WordPress admin area.
+
 ## Design System
 
 ### Colour Scheme

@@ -18,6 +18,30 @@
         padding-bottom: <?php echo esc_attr(get_theme_mod('footer_padding', '20')); ?>px;
         text-align: <?php echo esc_attr(get_theme_mod('footer_text_align', 'center')); ?>;
     ">
+        <div class="site-footer-widgets">
+            <div class="container">
+                <div class="footer-widget-row">
+                    <?php if (is_active_sidebar('footer-1')) : ?>
+                        <div class="footer-widget-column">
+                            <?php dynamic_sidebar('footer-1'); ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if (is_active_sidebar('footer-2')) : ?>
+                        <div class="footer-widget-column">
+                            <?php dynamic_sidebar('footer-2'); ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if (is_active_sidebar('footer-3')) : ?>
+                        <div class="footer-widget-column">
+                            <?php dynamic_sidebar('footer-3'); ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        
         <div class="site-info">
             <?php echo wp_kses_post(get_theme_mod('footer_text', 'Copyright © ' . date('Y') . ' ' . get_bloginfo('name'))); ?>
             

@@ -180,6 +180,35 @@ The 404 error page can be customised through the WordPress Customiser:
    - **Text Alignment**: Choose whether the title and message text are aligned left, centre or right.
 3. Changes will be visible in the preview and will go live when you click "Publish".
 
+## Sidebar Customisation
+
+Your website features dynamic sidebars that can be customised using widgets. You can manage these sidebars via the WordPress admin area:
+
+1.  Go to **Appearance → Widgets**
+2.  You will see several available sidebars:
+    -   **Main Sidebar**: This sidebar appears on most pages of your site.
+    -   **Blog Sidebar**: This sidebar appears on the blog index and archive pages.
+    -   **Post Sidebar**: This sidebar appears on individual blog post pages.
+    -   **Page Sidebar**: This sidebar appears on static pages.
+    -   **Shop Sidebar**: This sidebar appears on WooCommerce shop pages (if WooCommerce is installed).
+    -   **Footer 1, Footer 2, Footer 3**: These sidebars appear in the footer of your site, arranged in three columns.
+3.  To add content to a sidebar, simply drag and drop widgets from the left-hand side into the desired sidebar.
+4.  To configure a widget, click the arrow to expand its settings.
+5.  Changes are saved automatically.
+
+## Widget Areas
+
+Your theme includes several widget areas, allowing you to add dynamic content to different parts of your website:
+
+1.  **Main Sidebar**: The primary sidebar, displayed on most pages.
+2.  **Blog Sidebar**: Displayed on the blog index and archive pages.
+3.  **Post Sidebar**: Displayed on individual blog posts.
+4.  **Page Sidebar**: Displayed on static pages.
+5.  **Shop Sidebar**: Displayed on WooCommerce shop pages (if WooCommerce is active).
+6.  **Footer 1**: First column of the footer widget area.
+7.  **Footer 2**: Second column of the footer widget area.
+8.  **Footer 3**: Third column of the footer widget area.
+
 ---
 
 This guide is intended to help you maintain the site without having to edit code. For any additional changes beyond the provided customiser settings, please contact your theme developer.
