@@ -65,7 +65,7 @@
 
     ```
 
-2. Ensure that a '.env' file is defined in the root directory.
+2. Ensure that a '.env' file is defined in the root directory (for example).
     ```
     MYSQL_DATABASE = ninjawarriors
     MYSQL_USER = ninjawarrior
@@ -216,7 +216,7 @@ Automated PR testing using GitHub Actions helps ensure code quality by running t
 
 2. Download key pair for SSH.
 
-3. SSH into VM:
+3. SSH into VM (example):
     ```
     ssh -i wp-staging-key.pem azureuser@20.167.48.156
     ```
@@ -273,7 +273,7 @@ Automated PR testing using GitHub Actions helps ensure code quality by running t
 
 14. Clone the repo (or a specific branch) in directory:
     ```
-    git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
+    sudo git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
     ```
 
 
