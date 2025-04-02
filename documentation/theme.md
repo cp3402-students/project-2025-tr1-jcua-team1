@@ -62,6 +62,9 @@ These settings can be managed via **Appearance → Customise → Archive Setting
 
 The front page (`front-page.php`) is designed for flexibility:
 - **Hero Section**: Fully customisable with heading, text, background image/colour, overlay, button text, and URL.
+- **Hero Foreground Image**: Allows you to upload an image to display as a content element within the hero section, separate from the background.
+- **Hero Image Position**: Choose whether to display the foreground image above or below the text content.
+- **Hero Image Max Width (%)**: Set the maximum width of the foreground image as a percentage of the hero section width.
 - **Home Category Posts**: Displays up to six most recent posts from the **home** category in a grid layout.
 - **Features Section**: Placeholder area for additional content.
 
