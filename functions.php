@@ -425,6 +425,59 @@ function team1_theme_customize_register( $wp_customize ) {
         'section'  => 'homepage_settings',
         'type'     => 'url',
     ) );
+
+    // Hero Foreground Image
+    $wp_customize->add_setting('hero_foreground_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_foreground_image', array(
+        'label'       => __('Hero Foreground Image', 'team1theme'),
+        'description' => __('This image appears in the hero section as content (not as background)', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'priority'    => 15,
+    )));
+
+    // Hero Image Position
+    $wp_customize->add_setting('hero_image_position', array(
+        'default'           => 'below',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control('hero_image_position', array(
+        'label'    => __('Hero Image Position', 'team1theme'),
+        'section'  => 'homepage_settings',
+        'type'     => 'select',
+        'priority' => 16,
+        'choices'  => array(
+            'below'  => __('Below Text', 'team1theme'),
+            'right'  => __('Right of Text', 'team1theme'),
+            'left'   => __('Left of Text', 'team1theme'),
+        ),
+    ));
+
+    // Hero Image Max Width
+    $wp_customize->add_setting('hero_image_max_width', array(
+        'default'           => '80',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control('hero_image_max_width', array(
+        'label'       => __('Hero Image Max Width (%)', 'team1theme'),
+        'description' => __('Maximum width of the hero image', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'range',
+        'priority'    => 17,
+        'input_attrs' => array(
+            'min'  => 20,
+            'max'  => 100,
+            'step' => 5,
+        ),
+    ));
 }
 add_action( 'customize_register', 'team1_theme_customize_register' );
 
