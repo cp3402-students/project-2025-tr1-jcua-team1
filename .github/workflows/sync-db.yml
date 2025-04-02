@@ -1,0 +1,83 @@
+name: Sync WordPress Posts & Pages to Staging
+
+on:
+  workflow_dispatch:  # Manual trigger
+  push:
+    branches:
+      - import-db  # Run on push to import-db branch
+
+jobs:
+  sync-database:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Install MySQL client
+      run: sudo apt-get update && sudo apt-get install -y mysql-client
+      
+    - name: Set up SSH Key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY_STAGING }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.STAGING_VM_IP }} >> ~/.ssh/known_hosts
+    
+    - name: Export content from source database
+      run: |
+        echo "Starting database export process..." > sync_log.txt
+        echo "Exporting only posts and postmeta tables..." >> sync_log.txt
+        
+        # Create dump directory
+        mkdir -p db_dumps
+        
+        # Export only wp_posts and wp_postmeta tables
+        mysqldump --host=${{ secrets.SOURCE_DB_HOST }} \
+                  --user=${{ secrets.SOURCE_DB_USER }} \
+                  --password=${{ secrets.SOURCE_DB_PASSWORD }} \
+                  --no-tablespaces \
+                  ${{ secrets.SOURCE_DB_NAME }} wp_posts wp_postmeta > db_dumps/content_export.sql
+        
+        echo "Database export completed. File size: $(du -h db_dumps/content_export.sql | cut -f1)" >> sync_log.txt
+      
+    - name: Transfer database dump to staging server
+      run: |
+        echo "Transferring database dump to staging server..." >> sync_log.txt
+        scp db_dumps/content_export.sql azureuser@${{ secrets.STAGING_VM_IP }}:~/content_export.sql
+        echo "Transfer completed." >> sync_log.txt
+      
+    - name: Import and run search-replace on staging
+      run: |
+        echo "Importing database content on staging server..." >> sync_log.txt
+        
+        ssh azureuser@${{ secrets.STAGING_VM_IP }} << 'EOF'
+        # Create backup before import
+        echo "Creating backup of current posts and postmeta tables..."
+        mkdir -p ~/db_backups
+        wp db export --tables=wp_posts,wp_postmeta ~/db_backups/pre_import_backup_$(date +"%Y%m%d%H%M%S").sql --path=/var/www/html
+        
+        # Import the content
+        echo "Importing new content..."
+        mysql --host=${{ secrets.STAGING_DB_HOST }} \
+              --user=${{ secrets.STAGING_DB_USER }} \
+              --password=${{ secrets.STAGING_DB_PASSWORD }} \
+              ${{ secrets.STAGING_DB_NAME }} < ~/content_export.sql
+        
+        # Run search-replace to update URLs
+        echo "Running search-replace to update URLs..."
+        wp search-replace 'http://localhost:8080' '${{ secrets.STAGING_SITE_URL }}' --all-tables --path=/var/www/html
+        
+        # Clean up
+        rm ~/content_export.sql
+        echo "Import and search-replace completed."
+        
+        EOF
+        
+        echo "Database sync process completed successfully." >> sync_log.txt
+      
+    - name: Upload sync log as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: db-sync-logs
+        path: sync_log.txt
