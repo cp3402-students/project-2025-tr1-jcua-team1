@@ -27,44 +27,14 @@ get_header();
             $hero_position = get_theme_mod('hero_image_position', 'below');
             $has_hero_image = get_theme_mod('hero_foreground_image');
             
-            // If image position is left, show it before text
-            if ($has_hero_image && $hero_position === 'left') : ?>
-                <div class="hero-content-wrapper hero-layout-<?php echo esc_attr($hero_position); ?>">
-                    <div class="hero-image">
-                        <img src="<?php echo esc_url(get_theme_mod('hero_foreground_image')); ?>" alt="<?php echo esc_attr(get_theme_mod('hero_heading', 'Hero Image')); ?>" style="max-width: <?php echo esc_attr(get_theme_mod('hero_image_max_width', '80')); ?>%;">
-                    </div>
-                    <div class="hero-text-content">
-                        <h1><?php echo esc_html(get_theme_mod('hero_heading', 'Welcome to Our Website')); ?></h1>
-                        <p><?php echo esc_html(get_theme_mod('hero_text', 'This is your custom homepage. Add your content here.')); ?></p>
-                        
-                        <?php if (get_theme_mod('hero_button_text')) : ?>
-                            <a href="<?php echo esc_url(get_theme_mod('hero_button_url', '#')); ?>" class="hero-button">
-                                <?php echo esc_html(get_theme_mod('hero_button_text', 'Learn More')); ?>
-                            </a>
-                        <?php endif; ?>
-                    </div>
+            // If image position is above, show it first
+            if ($has_hero_image && $hero_position === 'above') : ?>
+                <div class="hero-image">
+                    <img src="<?php echo esc_url(get_theme_mod('hero_foreground_image')); ?>" alt="<?php echo esc_attr(get_theme_mod('hero_heading', 'Hero Image')); ?>" style="max-width: <?php echo esc_attr(get_theme_mod('hero_image_max_width', '80')); ?>%;">
                 </div>
-            <?php 
-            // If image position is right, show text first then image
-            elseif ($has_hero_image && $hero_position === 'right') : ?>
-                <div class="hero-content-wrapper hero-layout-<?php echo esc_attr($hero_position); ?>">
-                    <div class="hero-text-content">
-                        <h1><?php echo esc_html(get_theme_mod('hero_heading', 'Welcome to Our Website')); ?></h1>
-                        <p><?php echo esc_html(get_theme_mod('hero_text', 'This is your custom homepage. Add your content here.')); ?></p>
-                        
-                        <?php if (get_theme_mod('hero_button_text')) : ?>
-                            <a href="<?php echo esc_url(get_theme_mod('hero_button_url', '#')); ?>" class="hero-button">
-                                <?php echo esc_html(get_theme_mod('hero_button_text', 'Learn More')); ?>
-                            </a>
-                        <?php endif; ?>
-                    </div>
-                    <div class="hero-image">
-                        <img src="<?php echo esc_url(get_theme_mod('hero_foreground_image')); ?>" alt="<?php echo esc_attr(get_theme_mod('hero_heading', 'Hero Image')); ?>" style="max-width: <?php echo esc_attr(get_theme_mod('hero_image_max_width', '80')); ?>%;">
-                    </div>
-                </div>
-            <?php
-            // Default layout (below or no image)
-            else : ?>
+            <?php endif; ?>
+            
+            <div class="hero-text-content">
                 <h1><?php echo esc_html(get_theme_mod('hero_heading', 'Welcome to Our Website')); ?></h1>
                 <p><?php echo esc_html(get_theme_mod('hero_text', 'This is your custom homepage. Add your content here.')); ?></p>
                 
@@ -73,12 +43,12 @@ get_header();
                         <?php echo esc_html(get_theme_mod('hero_button_text', 'Learn More')); ?>
                     </a>
                 <?php endif; ?>
-                
-                <?php if ($has_hero_image && $hero_position === 'below') : ?>
-                    <div class="hero-image">
-                        <img src="<?php echo esc_url(get_theme_mod('hero_foreground_image')); ?>" alt="<?php echo esc_attr(get_theme_mod('hero_heading', 'Hero Image')); ?>" style="max-width: <?php echo esc_attr(get_theme_mod('hero_image_max_width', '80')); ?>%;">
-                    </div>
-                <?php endif; ?>
+            </div>
+            
+            <?php if ($has_hero_image && $hero_position === 'below') : ?>
+                <div class="hero-image">
+                    <img src="<?php echo esc_url(get_theme_mod('hero_foreground_image')); ?>" alt="<?php echo esc_attr(get_theme_mod('hero_heading', 'Hero Image')); ?>" style="max-width: <?php echo esc_attr(get_theme_mod('hero_image_max_width', '80')); ?>%;">
+                </div>
             <?php endif; ?>
         </div>
     </section>

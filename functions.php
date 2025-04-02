@@ -453,9 +453,8 @@ function team1_theme_customize_register( $wp_customize ) {
         'type'     => 'select',
         'priority' => 16,
         'choices'  => array(
-            'below'  => __('Below Text', 'team1theme'),
-            'right'  => __('Right of Text', 'team1theme'),
-            'left'   => __('Left of Text', 'team1theme'),
+            'above' => __('Above Text', 'team1theme'),
+            'below' => __('Below Text', 'team1theme'),
         ),
     ));
 
