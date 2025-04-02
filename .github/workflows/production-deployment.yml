@@ -24,5 +24,5 @@ jobs:
       run: |
         ssh azureuser@${{ secrets.PRODUCTION_VM_IP }} << 'EOF'
           cd ~/wp/themes/project-2025-tr1-jcua-team1
-          git pull origin production
+          sudo git pull origin production
         EOF
