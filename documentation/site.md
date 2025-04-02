@@ -20,6 +20,9 @@ The top section of the homepage (hero section) can be fully customised through t
    - **Hero Section Width**: Adjust the width of the content area (50–100%)
    - **Hero Button Text**: The text displayed on the call-to-action button
    - **Hero Button URL**: Where the button links to (can be an internal page or external URL)
+   - **Hero Foreground Image**: Upload an image to display as a content element within the hero section, separate from the background.
+   - **Hero Image Position**: Choose whether to display the foreground image above or below the text content.
+   - **Hero Image Max Width (%)**: Set the maximum width of the foreground image as a percentage of the hero section width.
 3. Changes will be visible in the preview and will go live when you click "Publish"
 
 ### Featured Home Posts
