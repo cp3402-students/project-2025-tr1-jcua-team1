@@ -349,8 +349,12 @@ function team1theme_homepage_css() {
             .home-post-item .entry-title {
                 text-align: <?php echo esc_attr($title_alignment); ?>;
             }
+            .home-post-item .post-content {
+                text-align: <?php echo esc_attr($text_alignment); ?>;
+            }
             .home-post-item .entry-summary,
-            .home-post-item .entry-meta {
+            .home-post-item .entry-meta,
+            .home-post-item .entry-summary p {
                 text-align: <?php echo esc_attr($text_alignment); ?>;
             }
         </style>
