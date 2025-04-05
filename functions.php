@@ -14,14 +14,16 @@ if ( ! defined( '_S_VERSION' ) ) {
 
 /**
  * Include custom control classes at the right time in the WordPress loading process
+ * Only load during admin or customizer sessions
  */
 function team1theme_include_custom_controls() {
-    // Only include if we're in the admin area or during customizer preview
-    if (is_admin() || is_customize_preview()) {
+    // Only include if WP_Customize_Control exists (it will in the customizer)
+    if ( class_exists( 'WP_Customize_Control' ) ) {
         require_once get_template_directory() . '/inc/class-team1theme-color-scheme-control.php';
     }
 }
-add_action('after_setup_theme', 'team1theme_include_custom_controls', 0);
+// Use customize_register which is the proper hook for customizer controls
+add_action( 'customize_register', 'team1theme_include_custom_controls', 0 );
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
