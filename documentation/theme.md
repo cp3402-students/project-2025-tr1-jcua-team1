@@ -57,7 +57,7 @@ The archive template (`archive.php`) has been enhanced to support custom layouts
 -   **Post Excerpts**: Toggle whether to display excerpts (summaries) of posts in archive listings.
 -   **Category-Specific Template**: A dedicated `content-category.php` template is used for category archives, allowing for unique styling and layout.
 
-These settings can be managed via **Appearance → Customise → Archive Settings**.
+These settings can be managed via **Appearance → Customize → Archive Settings**.
 
 ### 3. Front Page Template
 
