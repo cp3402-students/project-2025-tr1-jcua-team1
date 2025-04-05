@@ -16,6 +16,7 @@ The top section of the homepage (hero section) can be fully customised through t
    - **Background Image Overlay**: Adjust the darkness of the overlay on the background image
    - **Hero Background Colour**: Change the background colour (used when no image is set)
    - **Hero Text Colour**: Change the colour of all text in the hero section
+   - **Header Alignment**: Align the hero heading text (left, centre, or right)
    - **Text Alignment**: Align text left, centre or right
    - **Hero Section Width**: Adjust the width of the content area (50–100%)
    - **Hero Button Text**: The text displayed on the call-to-action button
@@ -25,16 +26,49 @@ The top section of the homepage (hero section) can be fully customised through t
    - **Hero Image Max Width (%)**: Set the maximum width of the foreground image as a percentage of the hero section width.
 3. Changes will be visible in the preview and will go live when you click "Publish"
 
+### Image Carousel Section
+
+The homepage can optionally display an image carousel:
+
+1. Go to **Appearance → Customize → Homepage Settings**
+2. Scroll down to the **Image Carousel Settings** section
+3. Here you can modify:
+   - **Enable Image Carousel**: Toggle to show or hide the carousel on the homepage
+   - **Carousel Width (%)**: Set the width of the carousel container (50-100%)
+   - **Show Image Captions**: Choose whether to display captions below carousel images
+   - **Carousel Speed (ms)**: Control the timing between slide transitions (in milliseconds)
+   - **Carousel Image Height**: Choose how to normalize image heights (Auto, Fixed Height, Maintain Aspect Ratio, or Cover/Crop)
+   - **Carousel Container Height (%)**: Adjust the overall height of the carousel container
+   - **Fixed Image Height (px)**: Set an exact height for all carousel images (when Fixed Height is selected)
+   - **Image Aspect Ratio**: Choose the aspect ratio for images (when Maintain Aspect Ratio is selected)
+4. You can add up to 5 images to the carousel, each with:
+   - An uploaded image
+   - An optional caption
+   - An optional link URL
+5. Changes will be visible in the preview and will go live when you click "Publish"
+
 ### Featured Home Posts
 
-The middle section of the homepage displays posts from the **home** category:
+The middle section of the homepage displays posts from the **home** category. These settings are now located within the **Homepage Settings** in the WordPress Customiser:
 
-1. **Adding content to this section**:
+1. Go to **Appearance → Customize → Homepage Settings**
+2. Scroll down to the **Home Posts Display Options** section.
+3. Here you can modify:
+   - **Enable Links to Posts**: Choose whether the post titles and thumbnails link to the single post view.
+   - **Home Post Width (%)**: Adjust the width of each post in the grid (50-100%).
+   - **Post Title Alignment**: Align the post titles (left, centre, or right).
+   - **Post Heading Size**: Choose the HTML heading tag size for post titles (H2, H3, H4, or H5).
+   - **Show Post Titles**: Toggle the visibility of post titles.
+   - **Post Text Alignment**: Align the post excerpts (left, centre, right, or justify).
+   - **Show Post Meta Information**: Toggle the visibility of post meta data (date, author, categories, etc.).
+   - **Post Content Display**: Choose to display excerpt only or full content for homepage posts.
+   - **Content Headings Alignment**: Set alignment for headings inside post content.
+4. **Adding content to this section**:
    - Create a new post by going to **Posts → Add New**
    - Write your content and add a featured image
    - Assign the post to the **home** category
    - Publish the post
-2. **Important notes**:
+5. **Important notes**:
    - The homepage displays up to six most recent posts from the **home** category
    - Featured images are highly recommended for visual appeal
    - Use the excerpt field for a custom summary (otherwise WordPress will use the first part of your content)
@@ -55,6 +89,24 @@ Your website header has been integrated with several customisation options to he
    - **Navigation Link Hover Colour**: Set the colour of the navigation links when hovered over.
    - **Navigation Link Spacing**: Adjust the spacing between navigation links (in pixels).
 3. Any changes made here will update the header appearance instantly in the preview. Click "Publish" to apply your changes.
+
+## Enhanced Color Selection Tools
+
+Throughout the Customizer, you'll find an enhanced color selection interface that allows you to:
+
+1. **Select Theme Colors**: Choose from predefined theme colors that maintain a consistent design
+2. **Use Custom Colors**: Select your own custom colors using the color picker
+3. **Apply CSS Variables**: Use theme color variables like `--color-primary` or `--color-accent`
+
+This enhanced color selection is available in various sections including:
+- Homepage Settings (Hero Background, Text Colors)
+- Page Settings (Content Background, Text, Link Colors)
+- Header and Footer Settings
+
+To use the enhanced color selection:
+1. Click on a color setting field
+2. Select from the "Theme Colors" dropdown or use the color picker
+3. Changes will be visible in the preview immediately
 
 ## Adding New Content
 
@@ -80,7 +132,7 @@ Posts are intended for regularly updated content such as blog entries or news up
 If your website utilises an events calendar plugin:
 
 - The events will usually be managed within a dedicated **Events** post type or via a calendar interface provided by the plugin.
-- Consult the plugin’s own documentation for details on how to add, edit and delete events.
+- Consult the plugin's own documentation for details on how to add, edit and delete events.
 - Typically, events can be viewed and managed by going to the **Events** section in your WordPress dashboard.
 
 ## Footer Customisation
@@ -110,6 +162,9 @@ These settings apply to all pages by default:
    - **Show Page Title**: Toggle the visibility of page titles.
    - **Page Content Background**: Set the background colour for page content.
    - **Content Padding**: Adjust the space around page content.
+   - **Page Text Color**: Choose the color for page text content.
+   - **Page Heading Color**: Set the color for page headings.
+   - **Page Link Color**: Set the color for links within page content.
    - **Featured Image Display**: Choose how featured images appear (banner, above content, background or hidden).
    - **Default Heading Alignment**: Set text alignment for all headings (left, centre or right).
    - **Default Body Text Alignment**: Set text alignment for all body text (left, centre, right or justify).
@@ -224,6 +279,7 @@ Your website's color scheme can be customised through the WordPress Customiser:
    - **Background Color**: The main background color for the site.
    - **Text Color**: The default color for text content.
 3. Changes will be visible in the preview and will go live when you click "Publish".
+4. These colors are available throughout the theme as CSS variables, making color selection consistent across the site.
 
 ---
 

@@ -25,11 +25,19 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'team1theme' ); ?></a>
 
+	<?php 
+	// Get header border settings
+	$border_thickness = get_theme_mod('header_border_thickness', '0');
+	$border_color = get_theme_mod('header_border_color', '#cccccc');
+	$border_style = ($border_thickness > 0) ? "border-bottom: {$border_thickness}px solid {$border_color};" : "";
+	?>
+
 	<header id="masthead" class="site-header" style="
 		background-color: <?php echo get_theme_mod( 'header_bg_color', '#ffffff' ); ?>;
 		padding-top: <?php echo get_theme_mod( 'header_padding', '20' ); ?>px;
 		padding-bottom: <?php echo get_theme_mod( 'header_padding', '20' ); ?>px;
 		text-align: <?php echo get_theme_mod( 'header_text_align', 'left' ); ?>;
+		<?php echo $border_style; ?>
 	">
 		<div class="site-branding">
 			<?php

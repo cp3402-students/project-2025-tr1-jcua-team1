@@ -61,6 +61,14 @@ function team1theme_customize_preview_js() {
 add_action( 'customize_preview_init', 'team1theme_customize_preview_js' );
 
 /**
+ * Enqueue scripts for the customizer.
+ */
+function team1theme_customize_controls_js() {
+    wp_enqueue_script('jquery');
+}
+add_action('customize_controls_enqueue_scripts', 'team1theme_customize_controls_js');
+
+/**
  * Add logo size controls to the customizer
  */
 function team1theme_logo_customize_register($wp_customize) {
