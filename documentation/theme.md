@@ -68,6 +68,12 @@ The front page (`front-page.php`) is designed for flexibility:
 -   **Hero Image Position**: Choose whether to display the foreground image above or below the text content.
 -   **Hero Image Max Width (%)**: Set the maximum width of the foreground image as a percentage of the hero section width.
 -   **Home Category Posts**: Displays up to six most recent posts from the **home** category in a grid layout.
+-   **Home Category Posts Customisation**:
+    -   **Enable Links to Posts**: Choose whether the post titles and thumbnails link to the single post view.
+    -   **Home Post Width (%)**: Adjust the width of each post in the grid (50-100%).
+    -   **Post Title Alignment**: Align the post titles (left, centre, or right).
+    -   **Post Text Alignment**: Align the post excerpts (left, centre, right, or justify).
+    -   **Show Post Meta Information**: Toggle the visibility of post meta data (date, author, categories, etc.).
 -   **Features Section**: Placeholder area for additional content.
 
 ### 4. Header & Navigation

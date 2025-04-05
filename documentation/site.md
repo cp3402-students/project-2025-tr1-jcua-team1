@@ -28,14 +28,22 @@ The top section of the homepage (hero section) can be fully customised through t
 
 ### Featured Home Posts
 
-The middle section of the homepage displays posts from the **home** category:
+The middle section of the homepage displays posts from the **home** category. These settings are now located within the **Homepage Settings** in the WordPress Customiser:
 
-1. **Adding content to this section**:
+1. Go to **Appearance → Customize → Homepage Settings**
+2. Scroll down to the **Home Posts Display Options** section.
+3. Here you can modify:
+   - **Enable Links to Posts**: Choose whether the post titles and thumbnails link to the single post view.
+   - **Home Post Width (%)**: Adjust the width of each post in the grid (50-100%).
+   - **Post Title Alignment**: Align the post titles (left, centre, or right).
+   - **Post Text Alignment**: Align the post excerpts (left, centre, right, or justify).
+   - **Show Post Meta Information**: Toggle the visibility of post meta data (date, author, categories, etc.).
+4. **Adding content to this section**:
    - Create a new post by going to **Posts → Add New**
    - Write your content and add a featured image
    - Assign the post to the **home** category
    - Publish the post
-2. **Important notes**:
+5. **Important notes**:
    - The homepage displays up to six most recent posts from the **home** category
    - Featured images are highly recommended for visual appeal
    - Use the excerpt field for a custom summary (otherwise WordPress will use the first part of your content)
