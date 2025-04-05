@@ -35,7 +35,9 @@ get_header();
             <?php endif; ?>
             
             <div class="hero-text-content">
-                <h1><?php echo esc_html(get_theme_mod('hero_heading', 'Welcome to Our Website')); ?></h1>
+                <h1 style="padding-top: <?php echo esc_attr(get_theme_mod('hero_heading_padding_top', '20')); ?>px; padding-bottom: <?php echo esc_attr(get_theme_mod('hero_heading_padding_bottom', '20')); ?>px; padding-left: <?php echo esc_attr(get_theme_mod('hero_heading_padding_sides', '0')); ?>px; padding-right: <?php echo esc_attr(get_theme_mod('hero_heading_padding_sides', '0')); ?>px;">
+                    <?php echo esc_html(get_theme_mod('hero_heading', 'Welcome to Our Website')); ?>
+                </h1>
                 <p><?php echo esc_html(get_theme_mod('hero_text', 'This is your custom homepage. Add your content here.')); ?></p>
                 
                 <?php if (get_theme_mod('hero_button_text')) : ?>

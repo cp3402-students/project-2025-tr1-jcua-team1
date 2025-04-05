@@ -62,6 +62,67 @@ function team1_theme_homepage_customize_register($wp_customize) {
             ),
             'priority' => 20, // Position it before hero text alignment
         ));
+        
+        // Hero Heading Padding (Top)
+        $wp_customize->add_setting('hero_heading_padding_top', array(
+            'default'           => '20',
+            'sanitize_callback' => 'absint',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('hero_heading_padding_top', array(
+            'label'       => __('Hero Heading Padding Top (px)', 'team1theme'),
+            'description' => __('Space above the hero heading', 'team1theme'),
+            'section'     => 'homepage_settings',
+            'type'        => 'range',
+            'input_attrs' => array(
+                'min'  => 0,
+                'max'  => 100,
+                'step' => 5,
+            ),
+            'priority'    => 21, // Position right after alignment
+        ));
+        
+        // Hero Heading Padding (Bottom)
+        $wp_customize->add_setting('hero_heading_padding_bottom', array(
+            'default'           => '20',
+            'sanitize_callback' => 'absint',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('hero_heading_padding_bottom', array(
+            'label'       => __('Hero Heading Padding Bottom (px)', 'team1theme'),
+            'description' => __('Space below the hero heading', 'team1theme'),
+            'section'     => 'homepage_settings',
+            'type'        => 'range',
+            'input_attrs' => array(
+                'min'  => 0,
+                'max'  => 100,
+                'step' => 5,
+            ),
+            'priority'    => 22, // Position right after top padding
+        ));
+        
+        // Hero Heading Padding (Left/Right)
+        $wp_customize->add_setting('hero_heading_padding_sides', array(
+            'default'           => '0',
+            'sanitize_callback' => 'absint',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('hero_heading_padding_sides', array(
+            'label'       => __('Hero Heading Padding Left/Right (px)', 'team1theme'),
+            'description' => __('Space on left and right sides of the hero heading', 'team1theme'),
+            'section'     => 'homepage_settings',
+            'type'        => 'range',
+            'input_attrs' => array(
+                'min'  => 0,
+                'max'  => 100,
+                'step' => 5,
+            ),
+            'priority'    => 23, // Position right after bottom padding
+        ));
+        
         // Hero Background Color
         $wp_customize->add_setting('hero_bg_color', array(
             'default'           => '#f8f9fa',
@@ -649,6 +710,9 @@ function team1_theme_sanitize_checkbox($checked) {
 function team1theme_homepage_css() {
     if (is_front_page()) {
         $hero_header_align = get_theme_mod('hero_header_align', 'center');
+        $hero_heading_padding_top = get_theme_mod('hero_heading_padding_top', '20');
+        $hero_heading_padding_bottom = get_theme_mod('hero_heading_padding_bottom', '20');
+        $hero_heading_padding_sides = get_theme_mod('hero_heading_padding_sides', '0');
         
         // Get carousel settings
         $carousel_enabled = get_theme_mod('carousel_enable', false);
@@ -689,6 +753,10 @@ function team1theme_homepage_css() {
             .hero-section .hero-heading,
             .home-hero-heading {
                 text-align: <?php echo esc_attr($hero_header_align); ?>;
+                padding-top: <?php echo esc_attr($hero_heading_padding_top); ?>px;
+                padding-bottom: <?php echo esc_attr($hero_heading_padding_bottom); ?>px;
+                padding-left: <?php echo esc_attr($hero_heading_padding_sides); ?>px;
+                padding-right: <?php echo esc_attr($hero_heading_padding_sides); ?>px;
             }
             
             /* Apply hero background color properly - handle CSS variables */
