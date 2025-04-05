@@ -24,6 +24,7 @@ jobs:
       run: |
         ssh azureuser@${{ secrets.STAGING_VM_IP }} << 'EOF'
           cd ~/wp/themes/project-2025-tr1-jcua-team1  # Adjust this path to your WordPress theme directory
-          git config pull.rebase false
-          git pull origin main  # Fetch latest changes
+          git fetch --all
+          git checkout main
+          git pull
         EOF
