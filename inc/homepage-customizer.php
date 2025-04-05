@@ -390,8 +390,245 @@ function team1_theme_homepage_customize_register($wp_customize) {
         ),
         'priority'    => 97,
     ));
+
+    // Image Carousel Settings
+    // Add a separator/title for carousel settings
+    $wp_customize->add_setting('carousel_title_separator', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'carousel_title_separator', array(
+        'label'       => __('Image Carousel Settings', 'team1theme'),
+        'description' => __('Configure the image carousel that appears on the homepage.', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'hidden',
+        'priority'    => 200, // Position after all hero settings
+    )));
+    
+    // Enable/Disable Carousel
+    $wp_customize->add_setting('carousel_enable', array(
+        'default'           => false,
+        'sanitize_callback' => 'team1_theme_sanitize_checkbox',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('carousel_enable', array(
+        'label'       => __('Enable Image Carousel', 'team1theme'),
+        'description' => __('Show or hide the image carousel on the homepage', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'checkbox',
+        'priority'    => 201,
+    ));
+    
+    // Carousel Width
+    $wp_customize->add_setting('carousel_width', array(
+        'default'           => '100',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('carousel_width', array(
+        'label'       => __('Carousel Width (%)', 'team1theme'),
+        'description' => __('Width of the carousel container (50-100%)', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 50,
+            'max'  => 100,
+            'step' => 5,
+        ),
+        'priority'    => 204,
+    ));
+    
+    // Show/Hide Captions
+    $wp_customize->add_setting('carousel_show_captions', array(
+        'default'           => true,
+        'sanitize_callback' => 'team1_theme_sanitize_checkbox',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('carousel_show_captions', array(
+        'label'       => __('Show Image Captions', 'team1theme'),
+        'description' => __('Show or hide captions on carousel images', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'checkbox',
+        'priority'    => 205,
+    ));
+    
+    // Carousel Speed
+    $wp_customize->add_setting('carousel_speed', array(
+        'default'           => '5000',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('carousel_speed', array(
+        'label'       => __('Carousel Speed (ms)', 'team1theme'),
+        'description' => __('Time between automatic slide transitions in milliseconds (1000 = 1 second)', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'number',
+        'input_attrs' => array(
+            'min'  => 1000,
+            'max'  => 10000,
+            'step' => 500,
+        ),
+        'priority'    => 206,
+    ));
+    
+    // Carousel Image Size Normalization
+    $wp_customize->add_setting('carousel_image_height', array(
+        'default'           => 'auto',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('carousel_image_height', array(
+        'label'       => __('Carousel Image Height', 'team1theme'),
+        'description' => __('Choose how to normalize image heights in the carousel', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'select',
+        'choices'     => array(
+            'auto'        => __('Auto (Original Heights)', 'team1theme'),
+            'fixed'       => __('Fixed Height', 'team1theme'),
+            'ratio'       => __('Maintain Aspect Ratio', 'team1theme'),
+            'cover'       => __('Cover/Crop Images', 'team1theme'),
+        ),
+        'priority'    => 207,
+    ));
+    
+    // Carousel Container Height (%) - NEW SETTING
+    $wp_customize->add_setting('carousel_container_height', array(
+        'default'           => '100',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('carousel_container_height', array(
+        'label'       => __('Carousel Container Height (%)', 'team1theme'),
+        'description' => __('Adjust the overall height of the carousel container (50-150%)', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 50,
+            'max'  => 150,
+            'step' => 5,
+        ),
+        'priority'    => 207.5, // Between image height choice and fixed height
+    ));
+    
+    // Fixed Image Height (px)
+    $wp_customize->add_setting('carousel_fixed_height', array(
+        'default'           => '400',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('carousel_fixed_height', array(
+        'label'       => __('Fixed Image Height (px)', 'team1theme'),
+        'description' => __('Set the exact height for all carousel images (when Fixed Height is selected)', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'number',
+        'input_attrs' => array(
+            'min'  => 100,
+            'max'  => 800,
+            'step' => 10,
+        ),
+        'priority'    => 208,
+    ));
+    
+    // Aspect Ratio
+    $wp_customize->add_setting('carousel_aspect_ratio', array(
+        'default'           => '16:9',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('carousel_aspect_ratio', array(
+        'label'       => __('Image Aspect Ratio', 'team1theme'),
+        'description' => __('Choose aspect ratio for carousel images (when Maintain Aspect Ratio is selected)', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'select',
+        'choices'     => array(
+            '16:9' => __('16:9 (Widescreen)', 'team1theme'),
+            '4:3'  => __('4:3 (Standard)', 'team1theme'),
+            '1:1'  => __('1:1 (Square)', 'team1theme'),
+            '3:2'  => __('3:2 (Classic Photo)', 'team1theme'),
+            '2:1'  => __('2:1 (Panorama)', 'team1theme'),
+        ),
+        'priority'    => 209,
+    ));
+    
+    // Carousel Images (up to 5)
+    for ($i = 1; $i <= 5; $i++) {
+        // Image
+        $wp_customize->add_setting('carousel_image_' . $i, array(
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'carousel_image_' . $i, array(
+            'label'       => sprintf(__('Carousel Image %d', 'team1theme'), $i),
+            'description' => __('Select an image for the carousel', 'team1theme'),
+            'section'     => 'homepage_settings',
+            'priority'    => 210 + (($i - 1) * 3),
+        )));
+        
+        // Caption
+        $wp_customize->add_setting('carousel_caption_' . $i, array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('carousel_caption_' . $i, array(
+            'label'       => sprintf(__('Image %d Caption', 'team1theme'), $i),
+            'description' => __('Optional caption for this image', 'team1theme'),
+            'section'     => 'homepage_settings',
+            'type'        => 'text',
+            'priority'    => 210 + (($i - 1) * 3) + 1,
+        ));
+        
+        // Link
+        $wp_customize->add_setting('carousel_link_' . $i, array(
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('carousel_link_' . $i, array(
+            'label'       => sprintf(__('Image %d Link', 'team1theme'), $i),
+            'description' => __('Optional URL to link this image to', 'team1theme'),
+            'section'     => 'homepage_settings',
+            'type'        => 'url',
+            'priority'    => 210 + (($i - 1) * 3) + 2,
+        ));
+    }
+    
+    // Add a separator/title for home posts settings
+    $wp_customize->add_setting('home_posts_title_separator', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'home_posts_title_separator', array(
+        'label'       => __('Home Posts Display Options', 'team1theme'),
+        'description' => __('These settings control how posts in the "home" category display on the front page.', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'hidden',
+        'priority'    => 300, // Position after carousel settings
+    )));
+    // Enable/Disable links to single posts
 }
 add_action('customize_register', 'team1_theme_homepage_customize_register');
+
+/**
+ * Sanitize checkbox values
+ */
+function team1_theme_sanitize_checkbox($checked) {
+    return ( ( isset( $checked ) && true == $checked ) ? true : false );
+}
 
 /**
  * Add CSS for homepage customizer settings
@@ -399,6 +636,27 @@ add_action('customize_register', 'team1_theme_homepage_customize_register');
 function team1theme_homepage_css() {
     if (is_front_page()) {
         $hero_header_align = get_theme_mod('hero_header_align', 'center');
+        
+        // Get carousel settings
+        $carousel_enabled = get_theme_mod('carousel_enable', false);
+        $carousel_speed = get_theme_mod('carousel_speed', '5000');
+        $carousel_img_height = get_theme_mod('carousel_image_height', 'auto');
+        $carousel_fixed_height = get_theme_mod('carousel_fixed_height', '400');
+        $carousel_aspect_ratio = get_theme_mod('carousel_aspect_ratio', '16:9');
+        $carousel_container_height = get_theme_mod('carousel_container_height', '100');
+        $carousel_width = get_theme_mod('carousel_width', '100');
+        
+        // Get aspect ratio values for CSS
+        $aspect_ratio_css = '16 / 9'; // Default
+        if ($carousel_aspect_ratio === '4:3') {
+            $aspect_ratio_css = '4 / 3';
+        } elseif ($carousel_aspect_ratio === '1:1') {
+            $aspect_ratio_css = '1 / 1';
+        } elseif ($carousel_aspect_ratio === '3:2') {
+            $aspect_ratio_css = '3 / 2';
+        } elseif ($carousel_aspect_ratio === '2:1') {
+            $aspect_ratio_css = '2 / 1';
+        }
         
         // Get home posts settings
         $posts_width = get_theme_mod('home_posts_width', '100');
@@ -412,6 +670,151 @@ function team1theme_homepage_css() {
             .hero-section .hero-heading,
             .home-hero-heading {
                 text-align: <?php echo esc_attr($hero_header_align); ?>;
+            }
+            
+            /* Carousel Styling */
+            .image-carousel-section {
+                padding: 40px 0;
+            }
+            
+            /* Container for the whole carousel section - improved centering */
+            .image-carousel-section .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .carousel-container {
+                position: relative;
+                overflow: hidden;
+                width: <?php echo esc_attr($carousel_width); ?>%;
+                height: <?php echo esc_attr($carousel_container_height); ?>%;
+                margin: 0 auto;
+                max-width: 100%;
+            }
+            
+            .carousel-slider {
+                display: flex;
+                transition: transform 0.5s ease-in-out;
+                height: 100%; /* Use full height of container */
+            }
+            
+            .carousel-slide {
+                min-width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+                position: relative;
+                height: 100%; /* Use full height of container */
+            }
+            
+            <?php if ($carousel_img_height === 'fixed') : ?>
+            .carousel-slide {
+                height: <?php echo esc_attr($carousel_fixed_height); ?>px;
+                overflow: hidden;
+            }
+            
+            .carousel-slide img {
+                width: 100%;
+                height: <?php echo esc_attr($carousel_fixed_height); ?>px;
+                object-fit: cover;
+                object-position: center;
+                display: block;
+                margin: 0 auto;
+            }
+            <?php elseif ($carousel_img_height === 'ratio') : ?>
+            .carousel-slide {
+                width: 100%;
+                position: relative;
+                aspect-ratio: <?php echo esc_attr($aspect_ratio_css); ?>;
+                overflow: hidden;
+            }
+            
+            .carousel-slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                object-position: center;
+                display: block;
+                margin: 0 auto;
+            }
+            <?php elseif ($carousel_img_height === 'cover') : ?>
+            .carousel-slide {
+                width: 100%;
+                position: relative;
+                aspect-ratio: <?php echo esc_attr($aspect_ratio_css); ?>;
+                overflow: hidden;
+            }
+            
+            .carousel-slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                display: block;
+                margin: 0 auto;
+            }
+            <?php else : /* Auto height */ ?>
+            .carousel-slide img {
+                max-width: 100%;
+                max-height: 100%; /* Respect container height */
+                width: auto;
+                height: auto;
+                display: block;
+                margin: 0 auto;
+            }
+            <?php endif; ?>
+            
+            .carousel-caption {
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+                padding: 10px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                text-align: center;
+            }
+            
+            /* Controls section - ensure proper centering */
+            .carousel-controls {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 15px;
+                width: 100%;
+            }
+            
+            .carousel-prev,
+            .carousel-next {
+                background-color: #333;
+                color: white;
+                border: none;
+                padding: 8px 15px;
+                margin: 0 10px;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+            
+            .carousel-dots {
+                display: flex;
+                justify-content: center;
+                margin: 0 10px;
+            }
+            
+            .carousel-dot {
+                width: 10px;
+                height: 10px;
+                background-color: #bbb;
+                border-radius: 50%;
+                margin: 0 5px;
+                border: none;
+                padding: 0;
+                cursor: pointer;
+            }
+            
+            .carousel-dot.active {
+                background-color: #333;
             }
             
             /* Home Posts Styling */
@@ -441,6 +844,107 @@ function team1theme_homepage_css() {
                 text-align: <?php echo esc_attr($headings_alignment); ?>;
             }
         </style>
+        
+        <?php if ($carousel_enabled) : ?>
+        <script type="text/javascript">
+        (function() {
+            document.addEventListener('DOMContentLoaded', function() {
+                const slider = document.querySelector('.carousel-slider');
+                const slides = document.querySelectorAll('.carousel-slide');
+                const dots = document.querySelectorAll('.carousel-dot');
+                const prevBtn = document.querySelector('.carousel-prev');
+                const nextBtn = document.querySelector('.carousel-next');
+                
+                if (!slider || slides.length === 0) return;
+                
+                let currentSlide = 0;
+                let interval = null;
+                const slideCount = slides.length;
+                const slideInterval = <?php echo esc_js($carousel_speed); ?>;
+                
+                // Set initial position
+                updateSlider();
+                
+                // Auto-advance slides
+                startAutoSlide();
+                
+                // Add event listeners
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', function() {
+                        stopAutoSlide();
+                        navigateSlide(-1);
+                        startAutoSlide();
+                    });
+                }
+                
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', function() {
+                        stopAutoSlide();
+                        navigateSlide(1);
+                        startAutoSlide();
+                    });
+                }
+                
+                dots.forEach(function(dot, index) {
+                    dot.addEventListener('click', function() {
+                        stopAutoSlide();
+                        goToSlide(index);
+                        startAutoSlide();
+                    });
+                });
+                
+                // Pause on hover
+                slider.addEventListener('mouseenter', function() {
+                    stopAutoSlide();
+                });
+                
+                slider.addEventListener('mouseleave', function() {
+                    startAutoSlide();
+                });
+                
+                // Functions
+                function startAutoSlide() {
+                    if (interval === null) {
+                        interval = setInterval(function() {
+                            navigateSlide(1);
+                        }, slideInterval);
+                    }
+                }
+                
+                function stopAutoSlide() {
+                    if (interval !== null) {
+                        clearInterval(interval);
+                        interval = null;
+                    }
+                }
+                
+                function navigateSlide(direction) {
+                    currentSlide = (currentSlide + direction + slideCount) % slideCount;
+                    updateSlider();
+                }
+                
+                function goToSlide(index) {
+                    currentSlide = index;
+                    updateSlider();
+                }
+                
+                function updateSlider() {
+                    // Update slider position
+                    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                    
+                    // Update active dot
+                    dots.forEach(function(dot, index) {
+                        if (index === currentSlide) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        })();
+        </script>
+        <?php endif; ?>
         <?php
     }
 }
