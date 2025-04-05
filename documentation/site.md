@@ -8,7 +8,7 @@ The front page of the website has been designed to be easily customisable withou
 
 The top section of the homepage (hero section) can be fully customised through the WordPress Customiser:
 
-1. Go to **Appearance → Customise → Homepage Settings**
+1. Go to **Appearance → Customize → Homepage Settings**
 2. Here you can modify:
    - **Hero Heading**: The main title displayed on the homepage
    - **Hero Text**: The descriptive paragraph below the heading
@@ -43,7 +43,7 @@ The middle section of the homepage displays posts from the **home** category:
 
 Your website header has been integrated with several customisation options to help you maintain a consistent and appealing look across your site. You can modify these options via the WordPress Customiser:
 
-1. Go to **Appearance → Customise → Header Settings**
+1. Go to **Appearance → Customize → Header Settings**
 2. You can update the following:
    - **Header Background Colour**: Set the background colour of the header.
    - **Header Text Colour**: Change the colour of the site title and description.
@@ -63,7 +63,7 @@ Your website header has been integrated with several customisation options to he
 Pages are used for static content such as the About page, Contact page or any other information pages that do not change frequently.
 
 - To add a page, go to **Pages → Add New**
-- Enter your content and use the available meta boxes to customise the layout if needed (for example, overriding default page settings via **Page Settings** in the right sidebar).
+- Enter your content and use the available meta boxes to Customize the layout if needed (for example, overriding default page settings via **Page Settings** in the right sidebar).
 - When saving, choose whether to display the page title or use any custom layout options provided.
 
 ### Posts
@@ -87,7 +87,7 @@ If your website utilises an events calendar plugin:
 
 The website footer can be fully customised through the WordPress Customiser:
 
-1. Go to **Appearance → Customise → Footer Settings**
+1. Go to **Appearance → Customize → Footer Settings**
 2. Here you can modify:
    - **Footer Text**: Change the copyright text or add custom content.
    - **Footer Background Colour**: Change the background colour of the footer.
@@ -104,7 +104,7 @@ Individual pages can be customised both globally and on a per-page basis:
 
 These settings apply to all pages by default:
 
-1. Go to **Appearance → Customise → Page Template Settings**
+1. Go to **Appearance → Customize → Page Template Settings**
 2. Here you can modify:
    - **Default Page Layout**: Choose between with sidebar, full width, or narrow content.
    - **Show Page Title**: Toggle the visibility of page titles.
@@ -121,7 +121,7 @@ For each specific page, you can override the global defaults:
 
 1. Edit any page in WordPress
 2. Look for the **Page Settings** box in the right sidebar
-3. Here you can customise:
+3. Here you can Customize:
    - **Page Layout**: Override the default layout for this specific page.
    - **Show Page Title**: Choose whether to display the page title.
    - **Heading Alignment**: Set a different alignment for all headings on this page.
@@ -136,7 +136,7 @@ Blog posts can be customised both globally and on a per-post basis:
 
 These settings apply to all blog posts by default:
 
-1. Go to **Appearance → Customise → Blog Post Settings**
+1. Go to **Appearance → Customize → Blog Post Settings**
 2. Here you can modify:
    - **Default Post Layout**: Choose between with sidebar, full width, or narrow content.
    - **Featured Image Display**: Choose how featured images appear (banner, above content, background or hidden).
@@ -163,7 +163,7 @@ For each specific post, you can override the global defaults:
 
 Archive pages (like category listings, tag pages, and date-based archives) can be customised to control their layout and appearance:
 
-1.  Go to **Appearance → Customise → Archive Settings**
+1.  Go to **Appearance → Customize → Archive Settings**
 2.  Here you can modify:
     -   **Archive Layout**: Choose between a standard list, a grid layout, or a full-width display (no sidebar).
     -   **Pagination Style**: Select either simple "Next/Previous" links or numbered pagination.
@@ -174,7 +174,7 @@ Archive pages (like category listings, tag pages, and date-based archives) can b
 
 The 404 error page can be customised through the WordPress Customiser:
 
-1. Go to **Appearance → Customise → 404 Page Options**
+1. Go to **Appearance → Customize → 404 Page Options**
 2. Here you can modify:
    - **404 Page Title**: Change the main title displayed on the 404 page.
    - **404 Page Message**: Change the descriptive message displayed on the 404 page.
@@ -211,6 +211,19 @@ Your theme includes several widget areas, allowing you to add dynamic content to
 6.  **Footer 1**: First column of the footer widget area.
 7.  **Footer 2**: Second column of the footer widget area.
 8.  **Footer 3**: Third column of the footer widget area.
+
+## Color Scheme Customisation
+
+Your website's color scheme can be customised through the WordPress Customiser:
+
+1. Go to **Appearance → Customize → Color Scheme**
+2. Here you can modify:
+   - **Primary Color**: The main brand color used for key elements.
+   - **Secondary Color**: A complementary color for visual variety.
+   - **Accent Color**: Used for highlights and calls to action.
+   - **Background Color**: The main background color for the site.
+   - **Text Color**: The default color for text content.
+3. Changes will be visible in the preview and will go live when you click "Publish".
 
 ---
 

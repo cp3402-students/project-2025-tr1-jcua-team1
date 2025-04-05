@@ -38,63 +38,65 @@ project-2025-tr1-jcua-team1/
 
 The theme integrates extensively with the WordPress Customiser. Key settings include:
 
-- **Logo Options**: Customise logo size, appearance, and fallback (site title when not set).
-- **Homepage Settings**: Manage the hero section, featured content, and layout.
-- **Header Settings**: Options for background colour, text colour, padding, text alignment, plus settings for header link font size and header link colour.
-- **Footer Settings**: Configure footer text, colours, padding, and alignment.
-- **Page Template Settings**: Control layouts, featured images, and text formatting on a global or per-page basis.
-- **Blog Post Settings**: Control layouts, featured images, meta information display, and text formatting on a global or per-post basis.
-- **Archive Settings**: Customise archive pages (categories, tags, dates, and authors) with options for layout, pagination style, and whether to display post excerpts.
-- **404 Page Options**: Customise the 404 error page with options for title, message, search form visibility, helpful widgets, and text alignment.
+-   **Logo Options**: Customise logo size, appearance, and fallback (site title when not set).
+-   **Homepage Settings**: Manage the hero section, featured content, and layout.
+-   **Header Settings**: Options for background colour, text colour, padding, text alignment, plus settings for header link font size and header link colour.
+-   **Footer Settings**: Configure footer text, colours, padding, text alignment.
+-   **Page Template Settings**: Control layouts, featured images, and text formatting on a global or per-page basis.
+-   **Blog Post Settings**: Control layouts, featured images, meta information display, and text formatting on a global or per-post basis.
+-   **Archive Settings**: Customise archive pages (categories, tags, dates, and authors) with options for layout, pagination style, and whether to display post excerpts.
+-   **404 Page Options**: Customise the 404 error page with options for title, message, search form visibility, helpful widgets, and text alignment.
+-   **Color Scheme**: Customise the site's color scheme with options for primary, secondary, accent, background, and text colors.
 
 ### 2. Archive Customisation
 
 The archive template (`archive.php`) has been enhanced to support custom layouts and styles for category, tag, date, and author archives. Key features include:
 
-- **Custom Layouts**: Choose between a standard list, grid layout, or full-width display (no sidebar).
-- **Pagination Options**: Select between simple "Next/Previous" links or numbered pagination.
-- **Post Excerpts**: Toggle whether to display excerpts (summaries) of posts in archive listings.
-- **Category-Specific Template**: A dedicated `content-category.php` template is used for category archives, allowing for unique styling and layout.
+-   **Custom Layouts**: Choose between a standard list, grid layout, or full-width display (no sidebar).
+-   **Pagination Options**: Select between simple "Next/Previous" links or numbered pagination.
+-   **Post Excerpts**: Toggle whether to display excerpts (summaries) of posts in archive listings.
+-   **Category-Specific Template**: A dedicated `content-category.php` template is used for category archives, allowing for unique styling and layout.
 
-These settings can be managed via **Appearance → Customise → Archive Settings**.
+These settings can be managed via **Appearance → Customize → Archive Settings**.
 
 ### 3. Front Page Template
 
 The front page (`front-page.php`) is designed for flexibility:
-- **Hero Section**: Fully customisable with heading, text, background image/colour, overlay, button text, and URL.
-- **Hero Foreground Image**: Allows you to upload an image to display as a content element within the hero section, separate from the background.
-- **Hero Image Position**: Choose whether to display the foreground image above or below the text content.
-- **Hero Image Max Width (%)**: Set the maximum width of the foreground image as a percentage of the hero section width.
-- **Home Category Posts**: Displays up to six most recent posts from the **home** category in a grid layout.
-- **Features Section**: Placeholder area for additional content.
+
+-   **Hero Section**: Fully customisable with heading, text, background image/colour, overlay, button text, and URL.
+-   **Hero Foreground Image**: Allows you to upload an image to display as a content element within the hero section, separate from the background.
+-   **Hero Image Position**: Choose whether to display the foreground image above or below the text content.
+-   **Hero Image Max Width (%)**: Set the maximum width of the foreground image as a percentage of the hero section width.
+-   **Home Category Posts**: Displays up to six most recent posts from the **home** category in a grid layout.
+-   **Features Section**: Placeholder area for additional content.
 
 ### 4. Header & Navigation
 
-- **Custom Header**: Supports custom background, text colours, padding, and text alignment.
-- **Header Link Settings**: The header includes customiser settings to adjust the navigation link font size and colour.
-- **Navigation Background and Link Colours**: The navigation menu's background and link colours can be customised via the Customiser.
-- **Navigation Link Spacing**: Adjust the spacing between navigation links using the Customiser.
-- **Responsive Navigation**: Mobile-friendly menu system with a clear fallback (site title) if no logo is set.
+-   **Custom Header**: Supports custom background, text colours, padding, and text alignment.
+-   **Header Link Settings**: The header includes customiser settings to adjust the navigation link font size and colour.
+-   **Navigation Background and Link Colours**: The navigation menu's background and link colours can be customised via the Customiser.
+-   **Navigation Link Spacing**: Adjust the spacing between navigation links using the Customiser.
+-   **Responsive Navigation**: Mobile-friendly menu system with a clear fallback (site title) if no logo is set.
 
 ### 5. Footer
 
-- **Customisable Footer**: Allows custom text, colours, padding, and alignment via the Customiser.
+-   **Customisable Footer**: Allows custom text, colours, padding, and alignment via the Customiser.
 
 ### 6. Page and Post Customisation System
 
-- **Global Settings**: Manage site-wide defaults through the Customiser.
-- **Per-Page and Per-Post Overrides**: Use meta boxes on individual pages or posts to override global settings.
-- **Flexible Layout Options**: Choose from various layouts (with sidebar, full width, narrow content) as well as individual text alignment options.
+-   **Global Settings**: Manage site-wide defaults through the Customiser.
+-   **Per-Page and Per-Post Overrides**: Use meta boxes on individual pages or posts to override global settings.
+-   **Flexible Layout Options**: Choose from various layouts (with sidebar, full width, narrow content) as well as individual text alignment options.
 
 ### 7. 404 Error Page
 
-- **Customisable 404 Page**: Allows customisation of the title, message, search form visibility, helpful widgets, and text alignment via the Customiser.
+-   **Customisable 404 Page**: Allows customisation of the title, message, search form visibility, helpful widgets, and text alignment via the Customiser.
 
 ### 8. Dynamic Sidebars
 
-- **Multiple Widget Areas**: The theme includes several widget areas, allowing you to add dynamic content to different parts of your website. These include the Main Sidebar, Blog Sidebar, Post Sidebar, Page Sidebar, Shop Sidebar (if WooCommerce is active), and three Footer widget areas.
-- **Context-Specific Sidebars**: Different sidebars are displayed based on the page context (e.g., blog pages, single posts, static pages).
-- **Customisable via Widgets**: Sidebars can be easily customised by adding, removing, and configuring widgets via **Appearance → Widgets** in the WordPress admin area.
+-   **Multiple Widget Areas**: The theme includes several widget areas, allowing you to add dynamic content to different parts of your website. These include the Main Sidebar, Blog Sidebar, Post Sidebar, Page Sidebar, Shop Sidebar (if WooCommerce is active), and three Footer widget areas.
+-   **Context-Specific Sidebars**: Different sidebars are displayed based on the page context (e.g., blog pages, single posts, static pages).
+-   **Customisable via Widgets**: Sidebars can be easily customised by adding, removing, and configuring widgets via **Appearance → Widgets** in the WordPress admin area.
 
 ## Design System
 
@@ -107,9 +109,9 @@ The theme utilises CSS variables (defined in `style.css`) to provide a consisten
 :root {
     --color-primary: #4169e1;      /* Royal Blue */
     --color-secondary: #800080;    /* Purple */
-    --color-accent: #191970;       /* Midnight Blue */
+    --color-accent: #ff6b6b;       /* Salmon */
     --color-background: #fff;      /* White */
-    --color-text: black;           /* Black */
+    --color-text: #333333;           /* Dark Gray */
     --color-border: #ccc;          /* Light Gray */
     --color-highlight: #fff9c0;    /* Light Yellow */
     --color-header: pink;          /* Header background colour */
