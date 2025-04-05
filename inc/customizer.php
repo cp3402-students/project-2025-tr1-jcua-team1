@@ -225,7 +225,7 @@ function team1theme_color_scheme_customize_register($wp_customize) {
     
     // Primary Color
     $wp_customize->add_setting('color_primary', array(
-        'default'           => '#4169e1', // Default blue from your CSS variables
+        'default'           => '#4169e1',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'refresh',
     ));
@@ -237,13 +237,49 @@ function team1theme_color_scheme_customize_register($wp_customize) {
     
     // Secondary Color
     $wp_customize->add_setting('color_secondary', array(
-        'default'           => '#800080', // Default purple from your CSS variables
+        'default'           => '#800080',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'refresh',
     ));
     
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_secondary', array(
         'label'    => __('Secondary Color', 'team1theme'),
+        'section'  => 'team1theme_color_scheme',
+    )));
+    
+    // Accent Color
+    $wp_customize->add_setting('color_accent', array(
+        'default'           => '#ff6b6b',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_accent', array(
+        'label'    => __('Accent Color', 'team1theme'),
+        'section'  => 'team1theme_color_scheme',
+    )));
+    
+    // Background Color
+    $wp_customize->add_setting('color_background', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_background', array(
+        'label'    => __('Background Color', 'team1theme'),
+        'section'  => 'team1theme_color_scheme',
+    )));
+    
+    // Text Color
+    $wp_customize->add_setting('color_text', array(
+        'default'           => '#333333',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_text', array(
+        'label'    => __('Text Color', 'team1theme'),
         'section'  => 'team1theme_color_scheme',
     )));
 }
@@ -255,11 +291,17 @@ add_action('customize_register', 'team1theme_color_scheme_customize_register');
 function team1theme_color_scheme_css() {
     $color_primary = get_theme_mod('color_primary', '#4169e1');
     $color_secondary = get_theme_mod('color_secondary', '#800080');
+    $color_accent = get_theme_mod('color_accent', '#ff6b6b');
+    $color_background = get_theme_mod('color_background', '#ffffff');
+    $color_text = get_theme_mod('color_text', '#333333');
     
     $css = "
         :root {
             --color-primary: {$color_primary};
             --color-secondary: {$color_secondary};
+            --color-accent: {$color_accent};
+            --color-background: {$color_background};
+            --color-text: {$color_text};
         }
     ";
     
