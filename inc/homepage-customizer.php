@@ -284,6 +284,40 @@ function team1_theme_homepage_customize_register($wp_customize) {
         ),
         'priority' => 93,
     ));
+    // Post Heading Tag (h3, h4, etc.)
+    $wp_customize->add_setting('home_posts_heading_tag', array(
+        'default'           => 'h3',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('home_posts_heading_tag', array(
+        'label'       => __('Post Heading Size', 'team1theme'),
+        'description' => __('Choose the HTML heading tag for post titles', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'select',
+        'choices'     => array(
+            'h2' => __('H2 - Large', 'team1theme'),
+            'h3' => __('H3 - Medium', 'team1theme'),
+            'h4' => __('H4 - Small', 'team1theme'),
+            'h5' => __('H5 - Smaller', 'team1theme'),
+        ),
+        'priority'    => 93,
+    ));
+    // Show/Hide Post Titles
+    $wp_customize->add_setting('home_posts_show_titles', array(
+        'default'           => true,
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('home_posts_show_titles', array(
+        'label'       => __('Show Post Titles', 'team1theme'),
+        'description' => __('Show or hide titles on homepage posts', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'checkbox',
+        'priority'    => 94, // Position before meta controls
+    ));
     // Post Text Alignment
     $wp_customize->add_setting('home_posts_text_alignment', array(
         'default'           => 'left',
@@ -317,6 +351,45 @@ function team1_theme_homepage_customize_register($wp_customize) {
         'type'        => 'checkbox',
         'priority'    => 95,
     ));
+
+    // Post Content Display Type
+    $wp_customize->add_setting('home_posts_content_type', array(
+        'default'           => 'excerpt',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('home_posts_content_type', array(
+        'label'       => __('Post Content Display', 'team1theme'),
+        'description' => __('Choose to display excerpt or full content for homepage posts', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'select',
+        'choices'     => array(
+            'excerpt' => __('Excerpt Only', 'team1theme'),
+            'content' => __('Full Content', 'team1theme'),
+        ),
+        'priority'    => 96,
+    ));
+
+    // Post Content Headings Alignment
+    $wp_customize->add_setting('home_posts_headings_alignment', array(
+        'default'           => 'left',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control('home_posts_headings_alignment', array(
+        'label'       => __('Content Headings Alignment', 'team1theme'),
+        'description' => __('Alignment for headings (h1, h2, h3, etc.) inside post content', 'team1theme'),
+        'section'     => 'homepage_settings',
+        'type'        => 'select',
+        'choices'     => array(
+            'left'   => __('Left', 'team1theme'),
+            'center' => __('Center', 'team1theme'),
+            'right'  => __('Right', 'team1theme'),
+        ),
+        'priority'    => 97,
+    ));
 }
 add_action('customize_register', 'team1_theme_homepage_customize_register');
 
@@ -331,6 +404,7 @@ function team1theme_homepage_css() {
         $posts_width = get_theme_mod('home_posts_width', '100');
         $title_alignment = get_theme_mod('home_posts_title_alignment', 'left');
         $text_alignment = get_theme_mod('home_posts_text_alignment', 'left');
+        $headings_alignment = get_theme_mod('home_posts_headings_alignment', 'left');
         
         ?>
         <style type="text/css">
@@ -353,9 +427,18 @@ function team1theme_homepage_css() {
                 text-align: <?php echo esc_attr($text_alignment); ?>;
             }
             .home-post-item .entry-summary,
+            .home-post-item .entry-content,
             .home-post-item .entry-meta,
-            .home-post-item .entry-summary p {
+            .home-post-item .entry-summary p,
+            .home-post-item .entry-content p {
                 text-align: <?php echo esc_attr($text_alignment); ?>;
+            }
+            .home-post-item .entry-content h1,
+            .home-post-item .entry-content h2,
+            .home-post-item .entry-content h3,
+            .home-post-item .entry-content h4,
+            .home-post-item .entry-content h5 {
+                text-align: <?php echo esc_attr($headings_alignment); ?>;
             }
         </style>
         <?php

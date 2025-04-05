@@ -62,8 +62,11 @@ get_header();
                 'posts_per_page' => 6, // Adjust number as needed
             ) );
 
-            // Get customizer setting for enabling links
+            // Get customizer settings
             $enable_links = get_theme_mod('home_posts_enable_links', true);
+            $content_type = get_theme_mod('home_posts_content_type', 'excerpt');
+            $show_titles = get_theme_mod('home_posts_show_titles', true);
+            $heading_tag = get_theme_mod('home_posts_heading_tag', 'h3');
 
             if ( !$home_posts->have_posts() ) : ?>
                 <div class="info-notice">
@@ -86,20 +89,27 @@ get_header();
                             <?php endif; ?>
                             
                             <div class="post-content">
-                                <h3 class="entry-title">
-                                    <?php if ($enable_links) : ?>
-                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                    <?php else : ?>
-                                        <?php the_title(); ?>
-                                    <?php endif; ?>
-                                </h3>
+                                <?php if ($show_titles) : ?>
+                                    <<?php echo esc_attr($heading_tag); ?> class="entry-title">
+                                        <?php if ($enable_links) : ?>
+                                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                        <?php else : ?>
+                                            <?php the_title(); ?>
+                                        <?php endif; ?>
+                                    </<?php echo esc_attr($heading_tag); ?>>
+                                <?php endif; ?>
+                                
                                 <?php if (get_theme_mod('home_posts_show_meta', true)) : ?>
                                 <div class="entry-meta">
                                     <?php echo get_the_date(); ?>
                                 </div>
                                 <?php endif; ?>
-                                <div class="entry-summary">
-                                    <?php the_excerpt(); ?>
+                                <div class="entry-content">
+                                    <?php if ($content_type === 'excerpt') : ?>
+                                        <?php the_excerpt(); ?>
+                                    <?php else : ?>
+                                        <?php the_content(); ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </article>
