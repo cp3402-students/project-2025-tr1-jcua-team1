@@ -62,6 +62,9 @@ get_header();
                 'posts_per_page' => 6, // Adjust number as needed
             ) );
 
+            // Get customizer setting for enabling links
+            $enable_links = get_theme_mod('home_posts_enable_links', true);
+
             if ( !$home_posts->have_posts() ) : ?>
                 <div class="info-notice">
                     <p>This is where posts from the 'home' category will show.</p>
@@ -72,17 +75,29 @@ get_header();
                         <article id="post-<?php the_ID(); ?>" <?php post_class('home-post-item'); ?>>
                             <?php if ( has_post_thumbnail() ) : ?>
                                 <div class="post-thumbnail">
-                                    <a href="<?php the_permalink(); ?>">
+                                    <?php if ($enable_links) : ?>
+                                        <a href="<?php the_permalink(); ?>">
+                                            <?php the_post_thumbnail( 'medium' ); ?>
+                                        </a>
+                                    <?php else : ?>
                                         <?php the_post_thumbnail( 'medium' ); ?>
-                                    </a>
+                                    <?php endif; ?>
                                 </div>
                             <?php endif; ?>
                             
                             <div class="post-content">
-                                <h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                                <h3 class="entry-title">
+                                    <?php if ($enable_links) : ?>
+                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                    <?php else : ?>
+                                        <?php the_title(); ?>
+                                    <?php endif; ?>
+                                </h3>
+                                <?php if (get_theme_mod('home_posts_show_meta', true)) : ?>
                                 <div class="entry-meta">
                                     <?php echo get_the_date(); ?>
                                 </div>
+                                <?php endif; ?>
                                 <div class="entry-summary">
                                     <?php the_excerpt(); ?>
                                 </div>
