@@ -498,6 +498,37 @@ function team1_theme_header_customize_register( $wp_customize ) {
             'step' => 1,
         ),
     ));
+
+    // Header Bottom Border Settings
+    $wp_customize->add_setting('header_border_thickness', array(
+        'default'           => '0',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control('header_border_thickness', array(
+        'label'       => __('Header Bottom Border Thickness (px)', 'team1theme'),
+        'description' => __('Set to 0 to disable the border', 'team1theme'),
+        'section'     => 'header_settings',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 0,
+            'max'  => 20,
+            'step' => 1,
+        ),
+    ));
+
+    // Header Bottom Border Color
+    $wp_customize->add_setting('header_border_color', array(
+        'default'           => '#cccccc',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'header_border_color', array(
+        'label'    => __('Header Bottom Border Color', 'team1theme'),
+        'section'  => 'header_settings',
+    )));
 }
 add_action( 'customize_register', 'team1_theme_header_customize_register' );
 
