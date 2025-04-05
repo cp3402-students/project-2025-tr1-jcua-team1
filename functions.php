@@ -306,6 +306,26 @@ function team1_theme_customize_register( $wp_customize ) {
         'type'     => 'textarea',
     ) );
     
+    // Hero Header Alignment
+    $wp_customize->add_setting( 'hero_header_align', array(
+        'default'           => 'center',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( 'hero_header_align', array(
+        'label'    => __( 'Header Alignment', 'team1theme' ),
+        'description' => __( 'Alignment for the hero headline', 'team1theme' ),
+        'section'  => 'homepage_settings',
+        'type'     => 'select',
+        'choices'  => array(
+            'left'   => __( 'Left', 'team1theme' ),
+            'center' => __( 'Center', 'team1theme' ),
+            'right'  => __( 'Right', 'team1theme' ),
+        ),
+        'priority' => 20, // Position it before hero text alignment
+    ) );
+
     // Hero Background Color
     $wp_customize->add_setting( 'hero_bg_color', array(
         'default'           => '#f8f9fa',
@@ -945,6 +965,26 @@ function team1theme_post_customizer_css() {
     <?php
 }
 add_action('wp_head', 'team1theme_post_customizer_css', 25);
+
+/**
+ * Add this to your theme's CSS output function that handles the homepage
+ */
+function team1theme_homepage_css() {
+    if (is_front_page()) {
+        $hero_header_align = get_theme_mod('hero_header_align', 'center');
+        
+        ?>
+        <style type="text/css">
+            .hero-section h1,
+            .hero-section .hero-heading,
+            .home-hero-heading {
+                text-align: <?php echo esc_attr($hero_header_align); ?>;
+            }
+        </style>
+        <?php
+    }
+}
+add_action('wp_head', 'team1theme_homepage_css', 20);
 
 /**
  * Implement the Custom Header feature.
