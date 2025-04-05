@@ -16,6 +16,7 @@ The top section of the homepage (hero section) can be fully customised through t
    - **Background Image Overlay**: Adjust the darkness of the overlay on the background image
    - **Hero Background Colour**: Change the background colour (used when no image is set)
    - **Hero Text Colour**: Change the colour of all text in the hero section
+   - **Header Alignment**: Align the hero heading text (left, centre, or right)
    - **Text Alignment**: Align text left, centre or right
    - **Hero Section Width**: Adjust the width of the content area (50–100%)
    - **Hero Button Text**: The text displayed on the call-to-action button
