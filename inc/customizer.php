@@ -211,3 +211,58 @@ function team1theme_404_customize_register($wp_customize) {
     ));
 }
 add_action('customize_register', 'team1theme_404_customize_register');
+
+/**
+ * Add color scheme options to the Customizer
+ */
+function team1theme_color_scheme_customize_register($wp_customize) {
+    // Add Color Scheme Section
+    $wp_customize->add_section('team1theme_color_scheme', array(
+        'title'       => __('Color Scheme', 'team1theme'),
+        'priority'    => 20,
+        'description' => __('Define your site\'s color scheme', 'team1theme'),
+    ));
+    
+    // Primary Color
+    $wp_customize->add_setting('color_primary', array(
+        'default'           => '#4169e1', // Default blue from your CSS variables
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_primary', array(
+        'label'    => __('Primary Color', 'team1theme'),
+        'section'  => 'team1theme_color_scheme',
+    )));
+    
+    // Secondary Color
+    $wp_customize->add_setting('color_secondary', array(
+        'default'           => '#800080', // Default purple from your CSS variables
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ));
+    
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'color_secondary', array(
+        'label'    => __('Secondary Color', 'team1theme'),
+        'section'  => 'team1theme_color_scheme',
+    )));
+}
+add_action('customize_register', 'team1theme_color_scheme_customize_register');
+
+/**
+ * Apply color scheme to CSS variables
+ */
+function team1theme_color_scheme_css() {
+    $color_primary = get_theme_mod('color_primary', '#4169e1');
+    $color_secondary = get_theme_mod('color_secondary', '#800080');
+    
+    $css = "
+        :root {
+            --color-primary: {$color_primary};
+            --color-secondary: {$color_secondary};
+        }
+    ";
+    
+    wp_add_inline_style('team1theme-style', $css);
+}
+add_action('wp_enqueue_scripts', 'team1theme_color_scheme_css', 10);
