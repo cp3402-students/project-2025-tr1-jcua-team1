@@ -13,6 +13,17 @@ if ( ! defined( '_S_VERSION' ) ) {
 }
 
 /**
+ * Include custom control classes at the right time in the WordPress loading process
+ */
+function team1theme_include_custom_controls() {
+    // Only include if we're in the admin area or during customizer preview
+    if (is_admin() || is_customize_preview()) {
+        require_once get_template_directory() . '/inc/class-team1theme-color-scheme-control.php';
+    }
+}
+add_action('after_setup_theme', 'team1theme_include_custom_controls', 0);
+
+/**
  * Sets up theme defaults and registers support for various WordPress features.
  *
  * Note that this function is hooked into the after_setup_theme hook, which
