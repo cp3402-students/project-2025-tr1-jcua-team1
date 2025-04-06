@@ -13,11 +13,39 @@
 function team1_theme_homepage_customize_register($wp_customize) {
     // First ensure our custom control class is available
     if (class_exists('Team1Theme_Color_Scheme_Control')) {
-        // Add a section for homepage settings
-        $wp_customize->add_section('homepage_settings', array(
-            'title'    => __('Homepage Settings', 'team1theme'),
-            'priority' => 30,
+        
+        // Create a Homepage panel to contain all homepage-related sections
+        $wp_customize->add_panel('homepage_panel', array(
+            'title'       => __('Homepage Settings', 'team1theme'),
+            'description' => __('Customize the appearance and content of your homepage', 'team1theme'),
+            'priority'    => 30,
         ));
+        
+        // Hero Section
+        $wp_customize->add_section('hero_section', array(
+            'title'       => __('Hero Section', 'team1theme'),
+            'description' => __('Configure the hero section at the top of the homepage', 'team1theme'),
+            'panel'       => 'homepage_panel',
+            'priority'    => 10,
+        ));
+        
+        // Carousel Section
+        $wp_customize->add_section('carousel_section', array(
+            'title'       => __('Image Carousel', 'team1theme'),
+            'description' => __('Configure the image carousel on the homepage', 'team1theme'),
+            'panel'       => 'homepage_panel',
+            'priority'    => 20,
+        ));
+        
+        // Featured Posts Section
+        $wp_customize->add_section('home_posts_section', array(
+            'title'       => __('Featured Posts', 'team1theme'),
+            'description' => __('Configure how posts from the "home" category are displayed', 'team1theme'),
+            'panel'       => 'homepage_panel',
+            'priority'    => 30,
+        ));
+        
+        // HERO SECTION SETTINGS
         // Hero Heading
         $wp_customize->add_setting('hero_heading', array(
             'default'           => 'Welcome to Our Website',
@@ -27,9 +55,11 @@ function team1_theme_homepage_customize_register($wp_customize) {
         
         $wp_customize->add_control('hero_heading', array(
             'label'    => __('Hero Heading', 'team1theme'),
-            'section'  => 'homepage_settings',
+            'section'  => 'hero_section',
             'type'     => 'text',
+            'priority' => 10,
         ));
+        
         // Hero Text
         $wp_customize->add_setting('hero_text', array(
             'default'           => 'This is your custom homepage. Add your content here.',
@@ -39,8 +69,9 @@ function team1_theme_homepage_customize_register($wp_customize) {
         
         $wp_customize->add_control('hero_text', array(
             'label'    => __('Hero Text', 'team1theme'),
-            'section'  => 'homepage_settings',
+            'section'  => 'hero_section',
             'type'     => 'textarea',
+            'priority' => 20,
         ));
         
         // Hero Header Alignment
@@ -51,16 +82,16 @@ function team1_theme_homepage_customize_register($wp_customize) {
         ));
         
         $wp_customize->add_control('hero_header_align', array(
-            'label'    => __('Header Alignment', 'team1theme'),
+            'label'       => __('Header Alignment', 'team1theme'),
             'description' => __('Alignment for the hero headline', 'team1theme'),
-            'section'  => 'homepage_settings',
-            'type'     => 'select',
-            'choices'  => array(
+            'section'     => 'hero_section',
+            'type'        => 'select',
+            'choices'     => array(
                 'left'   => __('Left', 'team1theme'),
                 'center' => __('Center', 'team1theme'),
                 'right'  => __('Right', 'team1theme'),
             ),
-            'priority' => 20, // Position it before hero text alignment
+            'priority'    => 30,
         ));
         
         // Hero Heading Padding (Top)
@@ -73,14 +104,14 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('hero_heading_padding_top', array(
             'label'       => __('Hero Heading Padding Top (px)', 'team1theme'),
             'description' => __('Space above the hero heading', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'hero_section',
             'type'        => 'range',
             'input_attrs' => array(
                 'min'  => 0,
                 'max'  => 100,
                 'step' => 5,
             ),
-            'priority'    => 21, // Position right after alignment
+            'priority'    => 40,
         ));
         
         // Hero Heading Padding (Bottom)
@@ -93,14 +124,14 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('hero_heading_padding_bottom', array(
             'label'       => __('Hero Heading Padding Bottom (px)', 'team1theme'),
             'description' => __('Space below the hero heading', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'hero_section',
             'type'        => 'range',
             'input_attrs' => array(
                 'min'  => 0,
                 'max'  => 100,
                 'step' => 5,
             ),
-            'priority'    => 22, // Position right after top padding
+            'priority'    => 50,
         ));
         
         // Hero Heading Padding (Left/Right)
@@ -113,29 +144,30 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('hero_heading_padding_sides', array(
             'label'       => __('Hero Heading Padding Left/Right (px)', 'team1theme'),
             'description' => __('Space on left and right sides of the hero heading', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'hero_section',
             'type'        => 'range',
             'input_attrs' => array(
                 'min'  => 0,
                 'max'  => 100,
                 'step' => 5,
             ),
-            'priority'    => 23, // Position right after bottom padding
+            'priority'    => 60,
         ));
         
         // Hero Background Color
         $wp_customize->add_setting('hero_bg_color', array(
             'default'           => '#f8f9fa',
-            'sanitize_callback' => 'sanitize_text_field', // Allow CSS variables
+            'sanitize_callback' => 'sanitize_text_field',
             'transport'         => 'refresh',
         ));
         
         $wp_customize->add_control(new Team1Theme_Color_Scheme_Control($wp_customize, 'hero_bg_color', array(
-            'label'    => __('Hero Background Color', 'team1theme'),
+            'label'       => __('Hero Background Color', 'team1theme'),
             'description' => __('Choose from theme colors or select a custom color', 'team1theme'),
-            'section'  => 'homepage_settings',
-            'priority' => 10,
+            'section'     => 'hero_section',
+            'priority'    => 70,
         )));
+        
         // Hero Background Image
         $wp_customize->add_setting('hero_bg_image', array(
             'default'           => '',
@@ -144,42 +176,45 @@ function team1_theme_homepage_customize_register($wp_customize) {
         ));
         
         $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_bg_image', array(
-            'label'    => __('Hero Background Image', 'team1theme'),
-            'section'  => 'homepage_settings',
-            'priority' => 11, // Position after background color
+            'label'       => __('Hero Background Image', 'team1theme'),
+            'section'     => 'hero_section',
+            'priority'    => 80,
         )));
+        
         // Hero Background Image Opacity
         $wp_customize->add_setting('hero_bg_opacity', array(
             'default'           => '0.8',
             'sanitize_callback' => 'sanitize_text_field',
             'transport'         => 'refresh',
         ));
+        
         $wp_customize->add_control('hero_bg_opacity', array(
             'label'       => __('Background Image Overlay Opacity', 'team1theme'),
             'description' => __('Adjust the darkness of the background image (0 = transparent, 1 = solid color overlay)', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'hero_section',
             'type'        => 'range',
-            'priority'    => 12,
             'input_attrs' => array(
                 'min'  => 0,
                 'max'  => 1,
                 'step' => 0.1,
             ),
+            'priority'    => 90,
         ));
         
         // Hero Text Color
         $wp_customize->add_setting('hero_text_color', array(
             'default'           => '#333333',
-            'sanitize_callback' => 'sanitize_text_field', // Allow CSS variables
+            'sanitize_callback' => 'sanitize_text_field',
             'transport'         => 'refresh',
         ));
         
         $wp_customize->add_control(new Team1Theme_Color_Scheme_Control($wp_customize, 'hero_text_color', array(
-            'label'    => __('Hero Text Color', 'team1theme'),
+            'label'       => __('Hero Text Color', 'team1theme'),
             'description' => __('Choose from theme colors or select a custom color', 'team1theme'),
-            'section'  => 'homepage_settings',
-            'priority' => 13,
+            'section'     => 'hero_section',
+            'priority'    => 100,
         )));
+        
         // Hero Text Alignment
         $wp_customize->add_setting('hero_text_align', array(
             'default'           => 'center',
@@ -189,13 +224,14 @@ function team1_theme_homepage_customize_register($wp_customize) {
         
         $wp_customize->add_control('hero_text_align', array(
             'label'    => __('Text Alignment', 'team1theme'),
-            'section'  => 'homepage_settings',
+            'section'  => 'hero_section',
             'type'     => 'select',
             'choices'  => array(
                 'left'   => __('Left', 'team1theme'),
                 'center' => __('Center', 'team1theme'),
                 'right'  => __('Right', 'team1theme'),
             ),
+            'priority' => 110,
         ));
         
         // Hero Width
@@ -208,13 +244,14 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('hero_width', array(
             'label'       => __('Hero Section Width (%)', 'team1theme'),
             'description' => __('Width of the hero section content (50-100%)', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'hero_section',
             'type'        => 'range',
             'input_attrs' => array(
                 'min'  => 50,
                 'max'  => 100,
                 'step' => 5,
             ),
+            'priority'    => 120,
         ));
         
         // Hero Button Text
@@ -226,8 +263,9 @@ function team1_theme_homepage_customize_register($wp_customize) {
         
         $wp_customize->add_control('hero_button_text', array(
             'label'    => __('Hero Button Text', 'team1theme'),
-            'section'  => 'homepage_settings',
+            'section'  => 'hero_section',
             'type'     => 'text',
+            'priority' => 130,
         ));
         
         // Hero Button URL
@@ -239,298 +277,64 @@ function team1_theme_homepage_customize_register($wp_customize) {
         
         $wp_customize->add_control('hero_button_url', array(
             'label'    => __('Hero Button URL', 'team1theme'),
-            'section'  => 'homepage_settings',
+            'section'  => 'hero_section',
             'type'     => 'url',
+            'priority' => 140,
         ));
+        
         // Hero Foreground Image
         $wp_customize->add_setting('hero_foreground_image', array(
             'default'           => '',
             'sanitize_callback' => 'esc_url_raw',
             'transport'         => 'refresh',
         ));
+        
         $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_foreground_image', array(
             'label'       => __('Hero Foreground Image', 'team1theme'),
             'description' => __('This image appears in the hero section as content (not as background)', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'priority'    => 15,
+            'section'     => 'hero_section',
+            'priority'    => 150,
         )));
+        
         // Hero Image Position
         $wp_customize->add_setting('hero_image_position', array(
             'default'           => 'below',
             'sanitize_callback' => 'sanitize_text_field',
             'transport'         => 'refresh',
         ));
+        
         $wp_customize->add_control('hero_image_position', array(
             'label'    => __('Hero Image Position', 'team1theme'),
-            'section'  => 'homepage_settings',
+            'section'  => 'hero_section',
             'type'     => 'select',
-            'priority' => 16,
             'choices'  => array(
                 'above' => __('Above Text', 'team1theme'),
                 'below' => __('Below Text', 'team1theme'),
             ),
+            'priority' => 160,
         ));
+        
         // Hero Image Max Width
         $wp_customize->add_setting('hero_image_max_width', array(
             'default'           => '80',
             'sanitize_callback' => 'absint',
             'transport'         => 'refresh',
         ));
+        
         $wp_customize->add_control('hero_image_max_width', array(
             'label'       => __('Hero Image Max Width (%)', 'team1theme'),
             'description' => __('Maximum width of the hero image', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'hero_section',
             'type'        => 'range',
-            'priority'    => 17,
             'input_attrs' => array(
                 'min'  => 20,
                 'max'  => 100,
                 'step' => 5,
             ),
-        ));
-        // Add a separator/title for home posts settings
-        $wp_customize->add_setting('home_posts_title_separator', array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
+            'priority'    => 170,
         ));
         
-        $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'home_posts_title_separator', array(
-            'label'       => __('Home Posts Display Options', 'team1theme'),
-            'description' => __('These settings control how posts in the "home" category display on the front page.', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'type'        => 'hidden',
-            'priority'    => 90, // Position at the end of the hero section settings
-        )));
-        // Enable/Disable links to single posts
-        $wp_customize->add_setting('home_posts_enable_links', array(
-            'default'           => true,
-            'sanitize_callback' => 'sanitize_text_field',
-            'transport'         => 'refresh',
-        ));
-        
-        $wp_customize->add_control('home_posts_enable_links', array(
-            'label'       => __('Enable Links to Posts', 'team1theme'),
-            'description' => __('When disabled, post titles and thumbnails will not link to single posts', 'team1theme'),
-            'section'  => 'homepage_settings',
-            'type'     => 'checkbox',
-            'priority'    => 91,
-        ));
-        // Post Width
-        $wp_customize->add_setting('home_posts_width', array(
-            'default'           => '100',
-            'sanitize_callback' => 'absint', 
-            'transport'         => 'refresh',
-        ));
-        
-        $wp_customize->add_control('home_posts_width', array(
-            'label'       => __('Home Post Width (%)', 'team1theme'),
-            'description' => __('Width of each post in the grid (50-100%)', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'type'        => 'range',
-            'input_attrs' => array(
-                'min'  => 50,
-                'max'  => 100, 
-                'step' => 5,
-            ),
-            'priority'    => 92,
-        ));
-        // Post Header/Title Alignment
-        $wp_customize->add_setting('home_posts_title_alignment', array(
-            'default'           => 'left',
-            'sanitize_callback' => 'sanitize_text_field',
-            'transport'         => 'refresh',
-        ));
-        
-        $wp_customize->add_control('home_posts_title_alignment', array(
-            'label'    => __('Post Title Alignment', 'team1theme'),
-            'section'  => 'homepage_settings',
-            'type'     => 'select',
-            'choices'  => array(
-                'left'   => __('Left', 'team1theme'),
-                'center' => __('Center', 'team1theme'),
-                'right'  => __('Right', 'team1theme'),
-            ),
-            'priority' => 93,
-        ));
-        // Post Heading Tag (h3, h4, etc.)
-        $wp_customize->add_setting('home_posts_heading_tag', array(
-            'default'           => 'h3',
-            'sanitize_callback' => 'sanitize_text_field',
-            'transport'         => 'refresh',
-        ));
-        
-        $wp_customize->add_control('home_posts_heading_tag', array(
-            'label'       => __('Post Heading Size', 'team1theme'),
-            'description' => __('Choose the HTML heading tag for post titles', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'type'        => 'select',
-            'choices'     => array(
-                'h2' => __('H2 - Large', 'team1theme'),
-                'h3' => __('H3 - Medium', 'team1theme'),
-                'h4' => __('H4 - Small', 'team1theme'),
-                'h5' => __('H5 - Smaller', 'team1theme'),
-            ),
-            'priority'    => 93,
-        ));
-        // Show/Hide Post Titles
-        $wp_customize->add_setting('home_posts_show_titles', array(
-            'default'           => true,
-            'sanitize_callback' => 'sanitize_text_field',
-            'transport'         => 'refresh',
-        ));
-        
-        $wp_customize->add_control('home_posts_show_titles', array(
-            'label'       => __('Show Post Titles', 'team1theme'),
-            'description' => __('Show or hide titles on homepage posts', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'type'        => 'checkbox',
-            'priority'    => 94, // Position before meta controls
-        ));
-        // Post Text Alignment
-        $wp_customize->add_setting('home_posts_text_alignment', array(
-            'default'           => 'left',
-            'sanitize_callback' => 'sanitize_text_field',
-            'transport'         => 'refresh',
-        ));
-        
-        $wp_customize->add_control('home_posts_text_alignment', array(
-            'label'    => __('Post Text Alignment', 'team1theme'),
-            'section'  => 'homepage_settings',
-            'type'     => 'select',
-            'choices'  => array(
-                'left'    => __('Left', 'team1theme'),
-                'center'  => __('Center', 'team1theme'),
-                'right'   => __('Right', 'team1theme'),
-                'justify' => __('Justify', 'team1theme'),
-            ),
-            'priority' => 94,
-        ));
-        // Show/Hide Post Meta on Homepage
-        $wp_customize->add_setting('home_posts_show_meta', array(
-            'default'           => true,
-            'sanitize_callback' => 'sanitize_text_field',
-            'transport'         => 'refresh',
-        ));
-        
-        $wp_customize->add_control('home_posts_show_meta', array(
-            'label'       => __('Show Post Meta Information', 'team1theme'),
-            'description' => __('Show or hide date, author, etc. on homepage posts', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'type'        => 'checkbox',
-            'priority'    => 95,
-        ));
-
-        // Post Content Display Type
-        $wp_customize->add_setting('home_posts_content_type', array(
-            'default'           => 'excerpt',
-            'sanitize_callback' => 'sanitize_text_field',
-            'transport'         => 'refresh',
-        ));
-        
-        $wp_customize->add_control('home_posts_content_type', array(
-            'label'       => __('Post Content Display', 'team1theme'),
-            'description' => __('Choose to display excerpt or full content for homepage posts', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'type'        => 'select',
-            'choices'     => array(
-                'excerpt' => __('Excerpt Only', 'team1theme'),
-                'content' => __('Full Content', 'team1theme'),
-            ),
-            'priority'    => 96,
-        ));
-
-        // Post Content Headings Alignment
-        $wp_customize->add_setting('home_posts_headings_alignment', array(
-            'default'           => 'left',
-            'sanitize_callback' => 'sanitize_text_field',
-            'transport'         => 'refresh',
-        ));
-        
-        $wp_customize->add_control('home_posts_headings_alignment', array(
-            'label'       => __('Content Headings Alignment', 'team1theme'),
-            'description' => __('Alignment for headings (h1, h2, h3, etc.) inside post content', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'type'        => 'select',
-            'choices'     => array(
-                'left'   => __('Left', 'team1theme'),
-                'center' => __('Center', 'team1theme'),
-                'right'  => __('Right', 'team1theme'),
-            ),
-            'priority'    => 97,
-        ));
-
-        // Post Ordering Options
-        $wp_customize->add_setting('home_posts_orderby', array(
-            'default'           => 'date',
-            'sanitize_callback' => 'sanitize_text_field',
-            'transport'         => 'refresh',
-        ));
-        
-        $wp_customize->add_control('home_posts_orderby', array(
-            'label'       => __('Order Posts By', 'team1theme'),
-            'description' => __('Select how to order the homepage posts', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'type'        => 'select',
-            'choices'     => array(
-                'date'          => __('Publication Date', 'team1theme'),
-                'modified'      => __('Last Modified Date', 'team1theme'),
-                'title'         => __('Title', 'team1theme'),
-                'menu_order'    => __('Custom Order (Page Attributes)', 'team1theme'),
-                'comment_count' => __('Comment Count', 'team1theme'),
-                'rand'          => __('Random', 'team1theme'),
-            ),
-            'priority'    => 97, // After other home post settings
-        ));
-        
-        // Order Direction
-        $wp_customize->add_setting('home_posts_order', array(
-            'default'           => 'DESC',
-            'sanitize_callback' => 'sanitize_text_field',
-            'transport'         => 'refresh',
-        ));
-        
-        $wp_customize->add_control('home_posts_order', array(
-            'label'       => __('Order Direction', 'team1theme'),
-            'description' => __('Ascending (A-Z, oldest to newest) or Descending (Z-A, newest to oldest)', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'type'        => 'select',
-            'choices'     => array(
-                'ASC'  => __('Ascending', 'team1theme'),
-                'DESC' => __('Descending', 'team1theme'),
-            ),
-            'priority'    => 98,
-        ));
-        
-        // Sticky Posts First
-        $wp_customize->add_setting('home_posts_sticky_first', array(
-            'default'           => true,
-            'sanitize_callback' => 'team1_theme_sanitize_checkbox',
-            'transport'         => 'refresh',
-        ));
-        
-        $wp_customize->add_control('home_posts_sticky_first', array(
-            'label'       => __('Show Sticky Posts First', 'team1theme'),
-            'description' => __('Always display sticky posts at the top of the list', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'type'        => 'checkbox',
-            'priority'    => 99,
-        ));
-
-        // Image Carousel Settings
-        // Add a separator/title for carousel settings
-        $wp_customize->add_setting('carousel_title_separator', array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        
-        $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'carousel_title_separator', array(
-            'label'       => __('Image Carousel Settings', 'team1theme'),
-            'description' => __('Configure the image carousel that appears on the homepage.', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'type'        => 'hidden',
-            'priority'    => 200, // Position after all hero settings
-        )));
-        
+        // CAROUSEL SECTION SETTINGS
         // Enable/Disable Carousel
         $wp_customize->add_setting('carousel_enable', array(
             'default'           => false,
@@ -541,9 +345,9 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('carousel_enable', array(
             'label'       => __('Enable Image Carousel', 'team1theme'),
             'description' => __('Show or hide the image carousel on the homepage', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'carousel_section',
             'type'        => 'checkbox',
-            'priority'    => 201,
+            'priority'    => 10,
         ));
         
         // Carousel Position
@@ -556,13 +360,13 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('carousel_position', array(
             'label'       => __('Carousel Position', 'team1theme'),
             'description' => __('Choose where to display the carousel on the homepage', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'carousel_section',
             'type'        => 'select',
             'choices'     => array(
                 'above_hero' => __('Above Hero Section', 'team1theme'),
                 'below_hero' => __('Below Hero Section', 'team1theme'),
             ),
-            'priority'    => 202,
+            'priority'    => 20,
             'active_callback' => function() {
                 return get_theme_mod('carousel_enable', false);
             },
@@ -578,14 +382,14 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('carousel_width', array(
             'label'       => __('Carousel Width (%)', 'team1theme'),
             'description' => __('Width of the carousel container (50-100%)', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'carousel_section',
             'type'        => 'range',
             'input_attrs' => array(
                 'min'  => 50,
                 'max'  => 100,
                 'step' => 5,
             ),
-            'priority'    => 204,
+            'priority'    => 30,
         ));
         
         // Show/Hide Captions
@@ -598,9 +402,9 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('carousel_show_captions', array(
             'label'       => __('Show Image Captions', 'team1theme'),
             'description' => __('Show or hide captions on carousel images', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'carousel_section',
             'type'        => 'checkbox',
-            'priority'    => 205,
+            'priority'    => 40,
         ));
         
         // Carousel Speed
@@ -613,14 +417,14 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('carousel_speed', array(
             'label'       => __('Carousel Speed (ms)', 'team1theme'),
             'description' => __('Time between automatic slide transitions in milliseconds (1000 = 1 second)', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'carousel_section',
             'type'        => 'number',
             'input_attrs' => array(
                 'min'  => 1000,
                 'max'  => 10000,
                 'step' => 500,
             ),
-            'priority'    => 206,
+            'priority'    => 50,
         ));
         
         // Carousel Image Size Normalization
@@ -633,7 +437,7 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('carousel_image_height', array(
             'label'       => __('Carousel Image Height', 'team1theme'),
             'description' => __('Choose how to normalize image heights in the carousel', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'carousel_section',
             'type'        => 'select',
             'choices'     => array(
                 'auto'        => __('Auto (Original Heights)', 'team1theme'),
@@ -641,10 +445,10 @@ function team1_theme_homepage_customize_register($wp_customize) {
                 'ratio'       => __('Maintain Aspect Ratio', 'team1theme'),
                 'cover'       => __('Cover/Crop Images', 'team1theme'),
             ),
-            'priority'    => 207,
+            'priority'    => 60,
         ));
         
-        // Carousel Container Height (%) - NEW SETTING
+        // Carousel Container Height (%)
         $wp_customize->add_setting('carousel_container_height', array(
             'default'           => '100',
             'sanitize_callback' => 'absint',
@@ -654,14 +458,14 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('carousel_container_height', array(
             'label'       => __('Carousel Container Height (%)', 'team1theme'),
             'description' => __('Adjust the overall height of the carousel container (50-150%)', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'carousel_section',
             'type'        => 'range',
             'input_attrs' => array(
                 'min'  => 50,
                 'max'  => 150,
                 'step' => 5,
             ),
-            'priority'    => 207.5, // Between image height choice and fixed height
+            'priority'    => 70,
         ));
         
         // Fixed Image Height (px)
@@ -674,14 +478,14 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('carousel_fixed_height', array(
             'label'       => __('Fixed Image Height (px)', 'team1theme'),
             'description' => __('Set the exact height for all carousel images (when Fixed Height is selected)', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'carousel_section',
             'type'        => 'number',
             'input_attrs' => array(
                 'min'  => 100,
                 'max'  => 800,
                 'step' => 10,
             ),
-            'priority'    => 208,
+            'priority'    => 80,
         ));
         
         // Aspect Ratio
@@ -694,7 +498,7 @@ function team1_theme_homepage_customize_register($wp_customize) {
         $wp_customize->add_control('carousel_aspect_ratio', array(
             'label'       => __('Image Aspect Ratio', 'team1theme'),
             'description' => __('Choose aspect ratio for carousel images (when Maintain Aspect Ratio is selected)', 'team1theme'),
-            'section'     => 'homepage_settings',
+            'section'     => 'carousel_section',
             'type'        => 'select',
             'choices'     => array(
                 '16:9' => __('16:9 (Widescreen)', 'team1theme'),
@@ -703,7 +507,7 @@ function team1_theme_homepage_customize_register($wp_customize) {
                 '3:2'  => __('3:2 (Classic Photo)', 'team1theme'),
                 '2:1'  => __('2:1 (Panorama)', 'team1theme'),
             ),
-            'priority'    => 209,
+            'priority'    => 90,
         ));
         
         // Carousel Images (up to 5)
@@ -718,8 +522,8 @@ function team1_theme_homepage_customize_register($wp_customize) {
             $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'carousel_image_' . $i, array(
                 'label'       => sprintf(__('Carousel Image %d', 'team1theme'), $i),
                 'description' => __('Select an image for the carousel', 'team1theme'),
-                'section'     => 'homepage_settings',
-                'priority'    => 210 + (($i - 1) * 3),
+                'section'     => 'carousel_section',
+                'priority'    => 100 + (($i - 1) * 3),
             )));
             
             // Caption
@@ -732,9 +536,9 @@ function team1_theme_homepage_customize_register($wp_customize) {
             $wp_customize->add_control('carousel_caption_' . $i, array(
                 'label'       => sprintf(__('Image %d Caption', 'team1theme'), $i),
                 'description' => __('Optional caption for this image', 'team1theme'),
-                'section'     => 'homepage_settings',
+                'section'     => 'carousel_section',
                 'type'        => 'text',
-                'priority'    => 210 + (($i - 1) * 3) + 1,
+                'priority'    => 100 + (($i - 1) * 3) + 1,
             ));
             
             // Link
@@ -747,32 +551,238 @@ function team1_theme_homepage_customize_register($wp_customize) {
             $wp_customize->add_control('carousel_link_' . $i, array(
                 'label'       => sprintf(__('Image %d Link', 'team1theme'), $i),
                 'description' => __('Optional URL to link this image to', 'team1theme'),
-                'section'     => 'homepage_settings',
+                'section'     => 'carousel_section',
                 'type'        => 'url',
-                'priority'    => 210 + (($i - 1) * 3) + 2,
+                'priority'    => 100 + (($i - 1) * 3) + 2,
             ));
         }
         
-        // Add a separator/title for home posts settings
-        $wp_customize->add_setting('home_posts_title_separator', array(
-            'default'           => '',
+        // HOME POSTS SECTION SETTINGS
+        // Enable/Disable links to single posts
+        $wp_customize->add_setting('home_posts_enable_links', array(
+            'default'           => true,
             'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
         ));
         
-        $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'home_posts_title_separator', array(
-            'label'       => __('Home Posts Display Options', 'team1theme'),
-            'description' => __('These settings control how posts in the "home" category display on the front page.', 'team1theme'),
-            'section'     => 'homepage_settings',
-            'type'        => 'hidden',
-            'priority'    => 300, // Position after carousel settings
-        )));
+        $wp_customize->add_control('home_posts_enable_links', array(
+            'label'       => __('Enable Links to Posts', 'team1theme'),
+            'description' => __('When disabled, post titles and thumbnails will not link to single posts', 'team1theme'),
+            'section'     => 'home_posts_section',
+            'type'        => 'checkbox',
+            'priority'    => 10,
+        ));
+        
+        // Post Width
+        $wp_customize->add_setting('home_posts_width', array(
+            'default'           => '100',
+            'sanitize_callback' => 'absint', 
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_width', array(
+            'label'       => __('Home Post Width (%)', 'team1theme'),
+            'description' => __('Width of each post in the grid (50-100%)', 'team1theme'),
+            'section'     => 'home_posts_section',
+            'type'        => 'range',
+            'input_attrs' => array(
+                'min'  => 50,
+                'max'  => 100, 
+                'step' => 5,
+            ),
+            'priority'    => 20,
+        ));
+        
+        // Post Header/Title Alignment
+        $wp_customize->add_setting('home_posts_title_alignment', array(
+            'default'           => 'left',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_title_alignment', array(
+            'label'    => __('Post Title Alignment', 'team1theme'),
+            'section'  => 'home_posts_section',
+            'type'     => 'select',
+            'choices'  => array(
+                'left'   => __('Left', 'team1theme'),
+                'center' => __('Center', 'team1theme'),
+                'right'  => __('Right', 'team1theme'),
+            ),
+            'priority' => 30,
+        ));
+        
+        // Post Heading Tag (h3, h4, etc.)
+        $wp_customize->add_setting('home_posts_heading_tag', array(
+            'default'           => 'h3',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_heading_tag', array(
+            'label'       => __('Post Heading Size', 'team1theme'),
+            'description' => __('Choose the HTML heading tag for post titles', 'team1theme'),
+            'section'     => 'home_posts_section',
+            'type'        => 'select',
+            'choices'     => array(
+                'h2' => __('H2 - Large', 'team1theme'),
+                'h3' => __('H3 - Medium', 'team1theme'),
+                'h4' => __('H4 - Small', 'team1theme'),
+                'h5' => __('H5 - Smaller', 'team1theme'),
+            ),
+            'priority'    => 40,
+        ));
+        
+        // Show/Hide Post Titles
+        $wp_customize->add_setting('home_posts_show_titles', array(
+            'default'           => true,
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_show_titles', array(
+            'label'       => __('Show Post Titles', 'team1theme'),
+            'description' => __('Show or hide titles on homepage posts', 'team1theme'),
+            'section'     => 'home_posts_section',
+            'type'        => 'checkbox',
+            'priority'    => 50,
+        ));
+        
+        // Post Text Alignment
+        $wp_customize->add_setting('home_posts_text_alignment', array(
+            'default'           => 'left',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_text_alignment', array(
+            'label'    => __('Post Text Alignment', 'team1theme'),
+            'section'  => 'home_posts_section',
+            'type'     => 'select',
+            'choices'  => array(
+                'left'    => __('Left', 'team1theme'),
+                'center'  => __('Center', 'team1theme'),
+                'right'   => __('Right', 'team1theme'),
+                'justify' => __('Justify', 'team1theme'),
+            ),
+            'priority' => 60,
+        ));
+        
+        // Show/Hide Post Meta on Homepage
+        $wp_customize->add_setting('home_posts_show_meta', array(
+            'default'           => true,
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_show_meta', array(
+            'label'       => __('Show Post Meta Information', 'team1theme'),
+            'description' => __('Show or hide date, author, etc. on homepage posts', 'team1theme'),
+            'section'     => 'home_posts_section',
+            'type'        => 'checkbox',
+            'priority'    => 70,
+        ));
+
+        // Post Content Display Type
+        $wp_customize->add_setting('home_posts_content_type', array(
+            'default'           => 'excerpt',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_content_type', array(
+            'label'       => __('Post Content Display', 'team1theme'),
+            'description' => __('Choose to display excerpt or full content for homepage posts', 'team1theme'),
+            'section'     => 'home_posts_section',
+            'type'        => 'select',
+            'choices'     => array(
+                'excerpt' => __('Excerpt Only', 'team1theme'),
+                'content' => __('Full Content', 'team1theme'),
+            ),
+            'priority'    => 80,
+        ));
+
+        // Post Content Headings Alignment
+        $wp_customize->add_setting('home_posts_headings_alignment', array(
+            'default'           => 'left',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_headings_alignment', array(
+            'label'       => __('Content Headings Alignment', 'team1theme'),
+            'description' => __('Alignment for headings (h1, h2, h3, etc.) inside post content', 'team1theme'),
+            'section'     => 'home_posts_section',
+            'type'        => 'select',
+            'choices'     => array(
+                'left'   => __('Left', 'team1theme'),
+                'center' => __('Center', 'team1theme'),
+                'right'  => __('Right', 'team1theme'),
+            ),
+            'priority'    => 90,
+        ));
+
+        // Post Ordering Options
+        $wp_customize->add_setting('home_posts_orderby', array(
+            'default'           => 'date',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_orderby', array(
+            'label'       => __('Order Posts By', 'team1theme'),
+            'description' => __('Select how to order the homepage posts', 'team1theme'),
+            'section'     => 'home_posts_section',
+            'type'        => 'select',
+            'choices'     => array(
+                'date'          => __('Publication Date', 'team1theme'),
+                'modified'      => __('Last Modified Date', 'team1theme'),
+                'title'         => __('Title', 'team1theme'),
+                'menu_order'    => __('Custom Order (Page Attributes)', 'team1theme'),
+                'comment_count' => __('Comment Count', 'team1theme'),
+                'rand'          => __('Random', 'team1theme'),
+            ),
+            'priority'    => 100,
+        ));
+        
+        // Order Direction
+        $wp_customize->add_setting('home_posts_order', array(
+            'default'           => 'DESC',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_order', array(
+            'label'       => __('Order Direction', 'team1theme'),
+            'description' => __('Ascending (A-Z, oldest to newest) or Descending (Z-A, newest to oldest)', 'team1theme'),
+            'section'     => 'home_posts_section',
+            'type'        => 'select',
+            'choices'     => array(
+                'ASC'  => __('Ascending', 'team1theme'),
+                'DESC' => __('Descending', 'team1theme'),
+            ),
+            'priority'    => 110,
+        ));
+        
+        // Sticky Posts First
+        $wp_customize->add_setting('home_posts_sticky_first', array(
+            'default'           => true,
+            'sanitize_callback' => 'team1_theme_sanitize_checkbox',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_sticky_first', array(
+            'label'       => __('Show Sticky Posts First', 'team1theme'),
+            'description' => __('Always display sticky posts at the top of the list', 'team1theme'),
+            'section'     => 'home_posts_section',
+            'type'        => 'checkbox',
+            'priority'    => 120,
+        ));
 
     } else {
         // If custom control class is not available, fall back to standard color controls
         // Rest of your standard customizer code here...
     }
-
-    // Enable/Disable links to single posts
 }
 add_action('customize_register', 'team1_theme_homepage_customize_register');
 
