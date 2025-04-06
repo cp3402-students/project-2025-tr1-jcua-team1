@@ -546,6 +546,28 @@ function team1_theme_homepage_customize_register($wp_customize) {
             'priority'    => 201,
         ));
         
+        // Carousel Position
+        $wp_customize->add_setting('carousel_position', array(
+            'default'           => 'below_hero',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('carousel_position', array(
+            'label'       => __('Carousel Position', 'team1theme'),
+            'description' => __('Choose where to display the carousel on the homepage', 'team1theme'),
+            'section'     => 'homepage_settings',
+            'type'        => 'select',
+            'choices'     => array(
+                'above_hero' => __('Above Hero Section', 'team1theme'),
+                'below_hero' => __('Below Hero Section', 'team1theme'),
+            ),
+            'priority'    => 202,
+            'active_callback' => function() {
+                return get_theme_mod('carousel_enable', false);
+            },
+        ));
+        
         // Carousel Width
         $wp_customize->add_setting('carousel_width', array(
             'default'           => '100',
