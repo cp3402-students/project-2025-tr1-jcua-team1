@@ -282,6 +282,108 @@ function team1_theme_homepage_customize_register($wp_customize) {
             'priority' => 140,
         ));
         
+        // Hero Button Background Color
+        $wp_customize->add_setting('hero_button_bg_color', array(
+            'default'           => '#4169e1', // Royal Blue / Primary color
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control(new Team1Theme_Color_Scheme_Control($wp_customize, 'hero_button_bg_color', array(
+            'label'       => __('Button Background Color', 'team1theme'),
+            'description' => __('Choose button background color', 'team1theme'),
+            'section'     => 'hero_section',
+            'priority'    => 141,
+        )));
+        
+        // Hero Button Text Color
+        $wp_customize->add_setting('hero_button_text_color', array(
+            'default'           => '#ffffff', // White
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control(new Team1Theme_Color_Scheme_Control($wp_customize, 'hero_button_text_color', array(
+            'label'       => __('Button Text Color', 'team1theme'),
+            'description' => __('Choose button text color', 'team1theme'),
+            'section'     => 'hero_section',
+            'priority'    => 142,
+        )));
+        
+        // Hero Button Padding (Top/Bottom)
+        $wp_customize->add_setting('hero_button_padding_tb', array(
+            'default'           => '10',
+            'sanitize_callback' => 'absint',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('hero_button_padding_tb', array(
+            'label'       => __('Button Padding Top/Bottom (px)', 'team1theme'),
+            'description' => __('Space above and below the button text', 'team1theme'),
+            'section'     => 'hero_section',
+            'type'        => 'range',
+            'input_attrs' => array(
+                'min'  => 5,
+                'max'  => 30,
+                'step' => 1,
+            ),
+            'priority'    => 143,
+        ));
+        
+        // Hero Button Padding (Left/Right)
+        $wp_customize->add_setting('hero_button_padding_lr', array(
+            'default'           => '20',
+            'sanitize_callback' => 'absint',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('hero_button_padding_lr', array(
+            'label'       => __('Button Padding Left/Right (px)', 'team1theme'),
+            'description' => __('Space to the left and right of the button text', 'team1theme'),
+            'section'     => 'hero_section',
+            'type'        => 'range',
+            'input_attrs' => array(
+                'min'  => 10,
+                'max'  => 50,
+                'step' => 2,
+            ),
+            'priority'    => 144,
+        ));
+        
+        // Hero Button Border Radius
+        $wp_customize->add_setting('hero_button_border_radius', array(
+            'default'           => '4',
+            'sanitize_callback' => 'absint',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('hero_button_border_radius', array(
+            'label'       => __('Button Border Radius (px)', 'team1theme'),
+            'description' => __('Roundness of button corners (0 = square corners)', 'team1theme'),
+            'section'     => 'hero_section',
+            'type'        => 'range',
+            'input_attrs' => array(
+                'min'  => 0,
+                'max'  => 50,
+                'step' => 1,
+            ),
+            'priority'    => 145,
+        ));
+        
+        // Hero Button Hover Background Color
+        $wp_customize->add_setting('hero_button_hover_bg_color', array(
+            'default'           => '#2a4cba', // Darker blue
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control(new Team1Theme_Color_Scheme_Control($wp_customize, 'hero_button_hover_bg_color', array(
+            'label'       => __('Button Hover Background Color', 'team1theme'),
+            'description' => __('Background color when hovering over button', 'team1theme'),
+            'section'     => 'hero_section',
+            'priority'    => 146,
+        )));
+        
         // Hero Foreground Image
         $wp_customize->add_setting('hero_foreground_image', array(
             'default'           => '',
@@ -833,6 +935,12 @@ function team1theme_homepage_css() {
         // Process and handle CSS variables for colors
         $hero_bg_color = get_theme_mod('hero_bg_color', '#f8f9fa');
         $hero_text_color = get_theme_mod('hero_text_color', '#333333');
+        $hero_button_bg_color = get_theme_mod('hero_button_bg_color', '#4169e1');
+        $hero_button_text_color = get_theme_mod('hero_button_text_color', '#ffffff');
+        $hero_button_padding_tb = get_theme_mod('hero_button_padding_tb', '10');
+        $hero_button_padding_lr = get_theme_mod('hero_button_padding_lr', '20');
+        $hero_button_border_radius = get_theme_mod('hero_button_border_radius', '4');
+        $hero_button_hover_bg_color = get_theme_mod('hero_button_hover_bg_color', '#2a4cba');
         
         // Handle both hex colors and CSS variables
         // By not processing CSS variables with esc_attr, we allow them to work as intended
@@ -852,6 +960,21 @@ function team1theme_homepage_css() {
             .hero-section {
                 background-color: <?php echo $hero_bg_color; ?>;
                 color: <?php echo $hero_text_color; ?>;
+            }
+            
+            /* Hero Button Styling */
+            .hero-section .hero-button {
+                background-color: <?php echo esc_attr($hero_button_bg_color); ?>;
+                color: <?php echo esc_attr($hero_button_text_color); ?>;
+                padding: <?php echo esc_attr($hero_button_padding_tb); ?>px <?php echo esc_attr($hero_button_padding_lr); ?>px;
+                border-radius: <?php echo esc_attr($hero_button_border_radius); ?>px;
+                text-decoration: none;
+                display: inline-block;
+                transition: background-color 0.3s ease;
+            }
+            
+            .hero-section .hero-button:hover {
+                background-color: <?php echo esc_attr($hero_button_hover_bg_color); ?>;
             }
             
             /* Carousel Styling */
