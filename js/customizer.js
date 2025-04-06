@@ -55,4 +55,25 @@
 			$('.site-footer').css('text-align', to);
 		});
 	});
+
+	// Live preview for header border settings
+	wp.customize('header_border_thickness', function(value) {
+		value.bind(function(to) {
+			var color = wp.customize.value('header_border_color')();
+			if (to === '0') {
+				$('.site-header').css('border-bottom', 'none');
+			} else {
+				$('.site-header').css('border-bottom', to + 'px solid ' + color);
+			}
+		});
+	});
+
+	wp.customize('header_border_color', function(value) {
+		value.bind(function(to) {
+			var thickness = wp.customize.value('header_border_thickness')();
+			if (thickness !== '0') {
+				$('.site-header').css('border-bottom', thickness + 'px solid ' + to);
+			}
+		});
+	});
 }( jQuery ) );

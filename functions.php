@@ -13,6 +13,19 @@ if ( ! defined( '_S_VERSION' ) ) {
 }
 
 /**
+ * Include custom control classes at the right time in the WordPress loading process
+ * Only load during admin or customizer sessions
+ */
+function team1theme_include_custom_controls() {
+    // Only include if WP_Customize_Control exists (it will in the customizer)
+    if ( class_exists( 'WP_Customize_Control' ) ) {
+        require_once get_template_directory() . '/inc/class-team1theme-color-scheme-control.php';
+    }
+}
+// Use customize_register which is the proper hook for customizer controls
+add_action( 'customize_register', 'team1theme_include_custom_controls', 0 );
+
+/**
  * Sets up theme defaults and registers support for various WordPress features.
  *
  * Note that this function is hooked into the after_setup_theme hook, which
@@ -271,216 +284,6 @@ function team1theme_custom_logo_image_size() {
 add_action('after_setup_theme', 'team1theme_custom_logo_image_size', 11);
 
 /**
- * Add Homepage Customizer Settings
- */
-function team1_theme_customize_register( $wp_customize ) {
-    // Add a section for homepage settings
-    $wp_customize->add_section( 'homepage_settings', array(
-        'title'    => __( 'Homepage Settings', 'team1theme' ),
-        'priority' => 30,
-    ) );
-
-    // Hero Heading
-    $wp_customize->add_setting( 'hero_heading', array(
-        'default'           => 'Welcome to Our Website',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport'         => 'refresh',
-    ) );
-    
-    $wp_customize->add_control( 'hero_heading', array(
-        'label'    => __( 'Hero Heading', 'team1theme' ),
-        'section'  => 'homepage_settings',
-        'type'     => 'text',
-    ) );
-
-    // Hero Text
-    $wp_customize->add_setting( 'hero_text', array(
-        'default'           => 'This is your custom homepage. Add your content here.',
-        'sanitize_callback' => 'sanitize_textarea_field',
-        'transport'         => 'refresh',
-    ) );
-    
-    $wp_customize->add_control( 'hero_text', array(
-        'label'    => __( 'Hero Text', 'team1theme' ),
-        'section'  => 'homepage_settings',
-        'type'     => 'textarea',
-    ) );
-    
-    // Hero Background Color
-    $wp_customize->add_setting( 'hero_bg_color', array(
-        'default'           => '#f8f9fa',
-        'sanitize_callback' => 'sanitize_hex_color',
-        'transport'         => 'refresh',
-    ) );
-    
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'hero_bg_color', array(
-        'label'    => __( 'Hero Background Color', 'team1theme' ),
-        'section'  => 'homepage_settings',
-    ) ) );
-
-    // Hero Background Image
-    $wp_customize->add_setting('hero_bg_image', array(
-        'default'           => '',
-        'sanitize_callback' => 'esc_url_raw',
-        'transport'         => 'refresh',
-    ));
-
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_bg_image', array(
-        'label'    => __('Hero Background Image', 'team1theme'),
-        'section'  => 'homepage_settings',
-        'priority' => 11, // Position after background color
-    )));
-
-    // Hero Background Image Opacity
-    $wp_customize->add_setting('hero_bg_opacity', array(
-        'default'           => '0.8',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport'         => 'refresh',
-    ));
-
-    $wp_customize->add_control('hero_bg_opacity', array(
-        'label'       => __('Background Image Overlay Opacity', 'team1theme'),
-        'description' => __('Adjust the darkness of the background image (0 = transparent, 1 = solid color overlay)', 'team1theme'),
-        'section'     => 'homepage_settings',
-        'type'        => 'range',
-        'priority'    => 12,
-        'input_attrs' => array(
-            'min'  => 0,
-            'max'  => 1,
-            'step' => 0.1,
-        ),
-    ));
-    
-    // Hero Text Color
-    $wp_customize->add_setting( 'hero_text_color', array(
-        'default'           => '#333333',
-        'sanitize_callback' => 'sanitize_hex_color',
-        'transport'         => 'refresh',
-    ) );
-    
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'hero_text_color', array(
-        'label'    => __( 'Hero Text Color', 'team1theme' ),
-        'section'  => 'homepage_settings',
-    ) ) );
-    
-    // Hero Text Alignment
-    $wp_customize->add_setting( 'hero_text_align', array(
-        'default'           => 'center',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport'         => 'refresh',
-    ) );
-    
-    $wp_customize->add_control( 'hero_text_align', array(
-        'label'    => __( 'Text Alignment', 'team1theme' ),
-        'section'  => 'homepage_settings',
-        'type'     => 'select',
-        'choices'  => array(
-            'left'   => __( 'Left', 'team1theme' ),
-            'center' => __( 'Center', 'team1theme' ),
-            'right'  => __( 'Right', 'team1theme' ),
-        ),
-    ) );
-    
-    // Hero Width
-    $wp_customize->add_setting( 'hero_width', array(
-        'default'           => '100',
-        'sanitize_callback' => 'absint',
-        'transport'         => 'refresh',
-    ) );
-    
-    $wp_customize->add_control( 'hero_width', array(
-        'label'       => __( 'Hero Section Width (%)', 'team1theme' ),
-        'description' => __( 'Width of the hero section content (50-100%)', 'team1theme' ),
-        'section'     => 'homepage_settings',
-        'type'        => 'range',
-        'input_attrs' => array(
-            'min'  => 50,
-            'max'  => 100,
-            'step' => 5,
-        ),
-    ) );
-    
-    // Hero Button Text
-    $wp_customize->add_setting( 'hero_button_text', array(
-        'default'           => 'Learn More',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport'         => 'refresh',
-    ) );
-    
-    $wp_customize->add_control( 'hero_button_text', array(
-        'label'    => __( 'Hero Button Text', 'team1theme' ),
-        'section'  => 'homepage_settings',
-        'type'     => 'text',
-    ) );
-    
-    // Hero Button URL
-    $wp_customize->add_setting( 'hero_button_url', array(
-        'default'           => '#',
-        'sanitize_callback' => 'esc_url_raw',
-        'transport'         => 'refresh',
-    ) );
-    
-    $wp_customize->add_control( 'hero_button_url', array(
-        'label'    => __( 'Hero Button URL', 'team1theme' ),
-        'section'  => 'homepage_settings',
-        'type'     => 'url',
-    ) );
-
-    // Hero Foreground Image
-    $wp_customize->add_setting('hero_foreground_image', array(
-        'default'           => '',
-        'sanitize_callback' => 'esc_url_raw',
-        'transport'         => 'refresh',
-    ));
-
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_foreground_image', array(
-        'label'       => __('Hero Foreground Image', 'team1theme'),
-        'description' => __('This image appears in the hero section as content (not as background)', 'team1theme'),
-        'section'     => 'homepage_settings',
-        'priority'    => 15,
-    )));
-
-    // Hero Image Position
-    $wp_customize->add_setting('hero_image_position', array(
-        'default'           => 'below',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport'         => 'refresh',
-    ));
-
-    $wp_customize->add_control('hero_image_position', array(
-        'label'    => __('Hero Image Position', 'team1theme'),
-        'section'  => 'homepage_settings',
-        'type'     => 'select',
-        'priority' => 16,
-        'choices'  => array(
-            'above' => __('Above Text', 'team1theme'),
-            'below' => __('Below Text', 'team1theme'),
-        ),
-    ));
-
-    // Hero Image Max Width
-    $wp_customize->add_setting('hero_image_max_width', array(
-        'default'           => '80',
-        'sanitize_callback' => 'absint',
-        'transport'         => 'refresh',
-    ));
-
-    $wp_customize->add_control('hero_image_max_width', array(
-        'label'       => __('Hero Image Max Width (%)', 'team1theme'),
-        'description' => __('Maximum width of the hero image', 'team1theme'),
-        'section'     => 'homepage_settings',
-        'type'        => 'range',
-        'priority'    => 17,
-        'input_attrs' => array(
-            'min'  => 20,
-            'max'  => 100,
-            'step' => 5,
-        ),
-    ));
-}
-add_action( 'customize_register', 'team1_theme_customize_register' );
-
-/**
  * Add Footer Customizer Settings
  */
 function team1_theme_footer_customize_register( $wp_customize ) {
@@ -708,6 +511,37 @@ function team1_theme_header_customize_register( $wp_customize ) {
             'step' => 1,
         ),
     ));
+
+    // Header Bottom Border Settings
+    $wp_customize->add_setting('header_border_thickness', array(
+        'default'           => '0',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control('header_border_thickness', array(
+        'label'       => __('Header Bottom Border Thickness (px)', 'team1theme'),
+        'description' => __('Set to 0 to disable the border', 'team1theme'),
+        'section'     => 'header_settings',
+        'type'        => 'range',
+        'input_attrs' => array(
+            'min'  => 0,
+            'max'  => 20,
+            'step' => 1,
+        ),
+    ));
+
+    // Header Bottom Border Color
+    $wp_customize->add_setting('header_border_color', array(
+        'default'           => '#cccccc',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'header_border_color', array(
+        'label'    => __('Header Bottom Border Color', 'team1theme'),
+        'section'  => 'header_settings',
+    )));
 }
 add_action( 'customize_register', 'team1_theme_header_customize_register' );
 
@@ -992,4 +826,9 @@ require get_template_directory() . '/inc/post-meta-boxes.php';
  * Archive customization options.
  */
 require get_template_directory() . '/inc/archive-customizer.php';
+
+/**
+ * Homepage customizer settings.
+ */
+require get_template_directory() . '/inc/homepage-customizer.php';
 
