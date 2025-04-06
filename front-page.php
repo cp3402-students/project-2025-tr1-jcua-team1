@@ -13,6 +13,13 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
+    <?php 
+    // Check if carousel is enabled and should be displayed above hero
+    if (get_theme_mod('carousel_enable', false) && get_theme_mod('carousel_position', 'below_hero') === 'above_hero') : 
+        get_template_part('template-parts/home', 'carousel');
+    endif; 
+    ?>
+
     <section class="hero-section" 
         <?php if (get_theme_mod('hero_bg_image')) : ?>
             style="background-image: linear-gradient(rgba(0, 0, 0, <?php echo esc_attr(get_theme_mod('hero_bg_opacity', '0.8')); ?>), rgba(0, 0, 0, <?php echo esc_attr(get_theme_mod('hero_bg_opacity', '0.8')); ?>)), url('<?php echo esc_url(get_theme_mod('hero_bg_image')); ?>'); 
@@ -55,7 +62,10 @@ get_header();
         </div>
     </section>
 
-    <?php if (get_theme_mod('carousel_enable', false)) : ?>
+    <?php 
+    // Check if carousel is enabled and should be displayed below hero (default)
+    if (get_theme_mod('carousel_enable', false) && get_theme_mod('carousel_position', 'below_hero') === 'below_hero') : 
+    ?>
     <section class="image-carousel-section">
         <div class="container">
             <div class="carousel-container">
@@ -120,7 +130,7 @@ get_header();
         </div>
     </section>
     <?php endif; ?>
-
+    
     <section class="home-category-posts">
         <div class="container">
             <?php
