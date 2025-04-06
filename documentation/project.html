@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<div lang="en">
 
 <head>
   <title>Team 1 - Project Details for CP3402</title>
@@ -22,7 +22,7 @@
   </style>
 </head>
 
-<body>
+<div>
   <p>
     Note: replace the ?? with your own content, and complete all of the details.
   </p>
@@ -48,19 +48,91 @@
     <li><a href="https://github.com/cp3402-students/project-2025-tr1-jcua-team1" target="_blank">GitHub repository - project/theme</a></li>
     <li><a href="https://itatjcu.slack.com/archives/G0WDN6M4H" target="_blank">Slack group</a> (right-click on your Slack group
       name and choose "Copy Link" to get this URL).</li>
-    <li><a href="#" target="_blank">Starter Theme</a></li>
+    <li><a href="https://discord.gg/7zzZkQYa" target="_blank">Discord Channel</a> (Main comms)</li>
+    <li><a href="https://underscores.me/" target="_blank">Starter Theme</a></li>
   </ul>
+
   <h2>Local Environments</h2>
   <p>Brief description of local environments used by team members</p>
-
-  <p>Docker was used by all team members for local development environments.</p>
+  <p>Half of the team tried XAMP and the other half tried Docker.</p>
 
   <h2>References (sources of copied resources)</h2>
   <p>...</p>
-  <h2>GenAI declaration and details (list what you used)</h2>
-  <p>Any use of generative AI must be appropriately acknowledged and include a <a
-      href="https://www.jcu.edu.au/students/learning-centre/during-the-study-period/academic-integrity/generative-artificial-intelligence"
-      target="_blank">declaration of AI-Generated Material</a></p>
+
+  <div id="ai-acknowledgement">
+    <h2>AI Use Acknowledgement</h2>
+  
+    <p>
+      I acknowledge the use of <a href="https://chat.openai.com/" target="_blank">ChatGPT</a> to assist in the development of a custom WordPress theme based on the 
+      <a href="https://underscores.me/" target="_blank">Underscores starter theme</a>.
+      This generative AI was used to guide implementation of specific theme features such as header customization, front-page layout, and other theme components.
+    </p>
+  
+    <p>
+      Additionally, AI was used to generate visual illustrations throughout the website. These images were created using generative AI tools with carefully written prompts that convey the desired message or emotion for each section. Image descriptions and captions include the original prompts used to generate them for transparency and attribution purposes.
+    </p>
+  
+    <p>
+      For example, the following prompt was used to generate a testimonial-themed illustration:
+      <blockquote>
+        <em>"Generate a simple illustration with no text that encompasses 'Don't Just Take Our Word For It! Find Out What Parents and Students Think of Our Programs!'"</em>
+      </blockquote>
+    </p>
+  
+    <p>
+      The following structured prompt was used to interact with ChatGPT. This prompt was designed to request context-aware, file-specific guidance for building and customizing WordPress themes:
+    </p>
+  
+    <h2>Prompt:</h2>
+    <div>
+      <p>
+        I'm building a custom WordPress theme based on the 
+        <a href="https://underscores.me/" target="_blank">Underscores starter theme</a>, and I want help with 
+        <strong>[**]</strong>.
+      </p>
+  
+      <h3>Goal</h3>
+      <p>
+        Please help me customise this feature to match the following goal:<br>
+        - <strong>[**]</strong>
+      </p>
+  
+      <h3>Scope</h3>
+      <ul>
+        <li>Which WordPress <strong>template files</strong> and <strong>theme folders</strong> are involved</li>
+        <li>Whether any <strong>functions</strong> need to be added to <code>functions.php</code></li>
+        <li>Any required <strong>HTML</strong>, <strong>PHP</strong>, or <strong>CSS</strong> code</li>
+        <li>Use of relevant <strong>WordPress functions, hooks, or filters</strong></li>
+        <li>Compatibility with the <strong>Block Editor (Gutenberg)</strong> if applicable</li>
+        <li>Where to place any <strong>custom JavaScript or assets</strong></li>
+      </ul>
+  
+      <h3>Guidance & Examples</h3>
+      <ul>
+        <li>Walk me through the solution step-by-step</li>
+        <li>Provide clear <strong>code examples</strong> and <strong>explanations</strong></li>
+        <li>Mention <strong>which file(s)</strong> each code block should go into</li>
+        <li>Recommend <strong>best practices</strong> when working with Underscores</li>
+        <li>Provide links to <strong>relevant WordPress documentation</strong> if available</li>
+      </ul>
+  
+      <h3>Output Format</h3>
+      <ol>
+        <li><strong>Overview</strong> – What’s being built and why</li>
+        <li><strong>Files Affected</strong> – List of filenames and paths</li>
+        <li><strong>Code Snippets</strong> – Clearly labeled blocks of code</li>
+        <li><strong>Instructions</strong> – Where and how to implement the code</li>
+        <li><strong>Additional Notes</strong> – Caveats, improvements, or references</li>
+      </ol>
+    </div>
+  
+    <p>
+      The outputs from these prompts were directly applied in building the theme and customising code within specific WordPress files such as 
+      <code>header.php</code>, <code>functions.php</code>, and <code>style.css</code>. All outputs were reviewed, tested, and modified as needed to meet project goals.
+    </p>
+  </div>
+
+
   <p>...</p>
   <h2>Login Information for WordPress admin</h2>
   <p>Login: ??</p>
@@ -68,6 +140,6 @@
   <h2>Comments</h2>
   <p>Add any additional details or comments here if needed (e.g. information needed to see the full functionality of the
     site)... or you can remove this section.</p>
-</body>
+</div>
 
-</html>
+</div>
