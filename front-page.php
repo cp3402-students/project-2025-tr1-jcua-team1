@@ -124,11 +124,22 @@ get_header();
     <section class="home-category-posts">
         <div class="container">
             <?php
-            // Custom query to get posts from 'home' category
-            $home_posts = new WP_Query( array(
+            // Get ordering options from customizer
+            $orderby_option = get_theme_mod('home_posts_orderby', 'date');
+            $order_direction = get_theme_mod('home_posts_order', 'DESC');
+            $sticky_first = get_theme_mod('home_posts_sticky_first', true);
+            
+            // Set query arguments
+            $query_args = array(
                 'category_name' => 'home',
                 'posts_per_page' => 6, // Adjust number as needed
-            ) );
+                'orderby' => $orderby_option,
+                'order' => $order_direction,
+                'ignore_sticky_posts' => !$sticky_first,
+            );
+            
+            // Custom query to get posts from 'home' category with custom ordering
+            $home_posts = new WP_Query($query_args);
 
             // Get customizer settings
             $enable_links = get_theme_mod('home_posts_enable_links', true);

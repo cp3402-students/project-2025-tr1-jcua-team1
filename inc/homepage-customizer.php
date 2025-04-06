@@ -459,6 +459,63 @@ function team1_theme_homepage_customize_register($wp_customize) {
             'priority'    => 97,
         ));
 
+        // Post Ordering Options
+        $wp_customize->add_setting('home_posts_orderby', array(
+            'default'           => 'date',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_orderby', array(
+            'label'       => __('Order Posts By', 'team1theme'),
+            'description' => __('Select how to order the homepage posts', 'team1theme'),
+            'section'     => 'homepage_settings',
+            'type'        => 'select',
+            'choices'     => array(
+                'date'          => __('Publication Date', 'team1theme'),
+                'modified'      => __('Last Modified Date', 'team1theme'),
+                'title'         => __('Title', 'team1theme'),
+                'menu_order'    => __('Custom Order (Page Attributes)', 'team1theme'),
+                'comment_count' => __('Comment Count', 'team1theme'),
+                'rand'          => __('Random', 'team1theme'),
+            ),
+            'priority'    => 97, // After other home post settings
+        ));
+        
+        // Order Direction
+        $wp_customize->add_setting('home_posts_order', array(
+            'default'           => 'DESC',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_order', array(
+            'label'       => __('Order Direction', 'team1theme'),
+            'description' => __('Ascending (A-Z, oldest to newest) or Descending (Z-A, newest to oldest)', 'team1theme'),
+            'section'     => 'homepage_settings',
+            'type'        => 'select',
+            'choices'     => array(
+                'ASC'  => __('Ascending', 'team1theme'),
+                'DESC' => __('Descending', 'team1theme'),
+            ),
+            'priority'    => 98,
+        ));
+        
+        // Sticky Posts First
+        $wp_customize->add_setting('home_posts_sticky_first', array(
+            'default'           => true,
+            'sanitize_callback' => 'team1_theme_sanitize_checkbox',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('home_posts_sticky_first', array(
+            'label'       => __('Show Sticky Posts First', 'team1theme'),
+            'description' => __('Always display sticky posts at the top of the list', 'team1theme'),
+            'section'     => 'homepage_settings',
+            'type'        => 'checkbox',
+            'priority'    => 99,
+        ));
+
         // Image Carousel Settings
         // Add a separator/title for carousel settings
         $wp_customize->add_setting('carousel_title_separator', array(
