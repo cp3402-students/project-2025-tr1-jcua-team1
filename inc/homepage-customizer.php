@@ -370,6 +370,26 @@ function team1_theme_homepage_customize_register($wp_customize) {
             'priority'    => 145,
         ));
         
+        // Hero Button Font Size
+        $wp_customize->add_setting('hero_button_font_size', array(
+            'default'           => '16',
+            'sanitize_callback' => 'absint',
+            'transport'         => 'refresh',
+        ));
+        
+        $wp_customize->add_control('hero_button_font_size', array(
+            'label'       => __('Button Font Size (px)', 'team1theme'),
+            'description' => __('Adjust the size of the button text', 'team1theme'),
+            'section'     => 'hero_section',
+            'type'        => 'range',
+            'input_attrs' => array(
+                'min'  => 12,
+                'max'  => 36,
+                'step' => 1,
+            ),
+            'priority'    => 146,
+        ));
+        
         // Hero Button Hover Background Color
         $wp_customize->add_setting('hero_button_hover_bg_color', array(
             'default'           => '#2a4cba', // Darker blue
@@ -941,6 +961,7 @@ function team1theme_homepage_css() {
         $hero_button_padding_lr = get_theme_mod('hero_button_padding_lr', '20');
         $hero_button_border_radius = get_theme_mod('hero_button_border_radius', '4');
         $hero_button_hover_bg_color = get_theme_mod('hero_button_hover_bg_color', '#2a4cba');
+        $hero_button_font_size = get_theme_mod('hero_button_font_size', '16');
         
         // Handle both hex colors and CSS variables
         // By not processing CSS variables with esc_attr, we allow them to work as intended
@@ -968,6 +989,7 @@ function team1theme_homepage_css() {
                 color: <?php echo esc_attr($hero_button_text_color); ?>;
                 padding: <?php echo esc_attr($hero_button_padding_tb); ?>px <?php echo esc_attr($hero_button_padding_lr); ?>px;
                 border-radius: <?php echo esc_attr($hero_button_border_radius); ?>px;
+                font-size: <?php echo esc_attr($hero_button_font_size); ?>px;
                 text-decoration: none;
                 display: inline-block;
                 transition: background-color 0.3s ease;
