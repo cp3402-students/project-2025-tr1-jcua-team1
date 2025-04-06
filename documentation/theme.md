@@ -85,6 +85,10 @@ The front page (`front-page.php`) is designed for flexibility:
     -   **Post Title Alignment**: Align the post titles (left, centre, or right).
     -   **Post Text Alignment**: Align the post excerpts (left, centre, right, or justify).
     -   **Show Post Meta Information**: Toggle the visibility of post meta data (date, author, categories, etc.).
+    -   **Post Ordering Options**: Control how posts are ordered on the front page:
+        -   **Order Posts By**: Choose the ordering criteria (publication date, modified date, title, menu order, comment count, or random).
+        -   **Order Direction**: Select ascending or descending order.
+        -   **Show Sticky Posts First**: Option to prioritize sticky posts regardless of other sorting criteria.
 -   **Features Section**: Placeholder area for additional content.
 -   **Image Carousel**: Optional image carousel with customizable settings for width, captions, speed, and image dimensions.
 

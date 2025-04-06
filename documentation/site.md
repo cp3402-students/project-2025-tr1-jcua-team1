@@ -63,15 +63,20 @@ The middle section of the homepage displays posts from the **home** category. Th
    - **Show Post Meta Information**: Toggle the visibility of post meta data (date, author, categories, etc.).
    - **Post Content Display**: Choose to display excerpt only or full content for homepage posts.
    - **Content Headings Alignment**: Set alignment for headings inside post content.
+   - **Order Posts By**: Control how posts are ordered (publication date, last modified date, title, custom order, comment count, or random).
+   - **Order Direction**: Choose between ascending (A-Z, oldest to newest) or descending (Z-A, newest to oldest) order.
+   - **Show Sticky Posts First**: Option to always display sticky posts at the top of the list regardless of other sorting.
 4. **Adding content to this section**:
    - Create a new post by going to **Posts → Add New**
    - Write your content and add a featured image
    - Assign the post to the **home** category
    - Publish the post
+   - To make a post "sticky" (always appear at top when that option is enabled), check the "Stick this post to the front page" box in the Publish panel
 5. **Important notes**:
    - The homepage displays up to six most recent posts from the **home** category
    - Featured images are highly recommended for visual appeal
    - Use the excerpt field for a custom summary (otherwise WordPress will use the first part of your content)
+   - Using the "Custom Order" option in "Order Posts By" requires you to set the "Order" value in each post's "Page Attributes" box
 
 ### Header Customisation
 
