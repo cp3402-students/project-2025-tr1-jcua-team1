@@ -34,6 +34,7 @@ The homepage can optionally display an image carousel:
 2. Scroll down to the **Image Carousel Settings** section
 3. Here you can modify:
    - **Enable Image Carousel**: Toggle to show or hide the carousel on the homepage
+   - **Carousel Position**: Choose whether to display the carousel above or below the hero section
    - **Carousel Width (%)**: Set the width of the carousel container (50-100%)
    - **Show Image Captions**: Choose whether to display captions below carousel images
    - **Carousel Speed (ms)**: Control the timing between slide transitions (in milliseconds)

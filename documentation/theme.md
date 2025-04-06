@@ -78,6 +78,12 @@ The front page (`front-page.php`) is designed for flexibility:
 -   **Hero Foreground Image**: Allows you to upload an image to display as a content element within the hero section, separate from the background.
 -   **Hero Image Position**: Choose whether to display the foreground image above or below the text content.
 -   **Hero Image Max Width (%)**: Set the maximum width of the foreground image as a percentage of the hero section width.
+-   **Image Carousel**: Optional image carousel with customizable settings:
+    -   **Carousel Position**: Choose whether to display the carousel above or below the hero section.
+    -   **Carousel Width**: Adjust the width of the carousel container.
+    -   **Captions**: Toggle visibility of image captions.
+    -   **Speed**: Control timing between slide transitions.
+    -   **Image Dimensions**: Control image height normalization with various options.
 -   **Home Category Posts**: Displays up to six most recent posts from the **home** category in a grid layout.
 -   **Home Category Posts Customisation**:
     -   **Enable Links to Posts**: Choose whether the post titles and thumbnails link to the single post view.
@@ -90,7 +96,6 @@ The front page (`front-page.php`) is designed for flexibility:
         -   **Order Direction**: Select ascending or descending order.
         -   **Show Sticky Posts First**: Option to prioritize sticky posts regardless of other sorting criteria.
 -   **Features Section**: Placeholder area for additional content.
--   **Image Carousel**: Optional image carousel with customizable settings for width, captions, speed, and image dimensions.
 
 ### 5. Header & Navigation
 
