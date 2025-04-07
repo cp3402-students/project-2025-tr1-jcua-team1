@@ -4,7 +4,11 @@
 
 1.  [Development Workflow](#development-workflow)
     *   [Setting Up Local Development with Docker](#setting-up-local-development-with-docker)
+    *   [Before Development](#before-development)
     *   [Typical Local Development Workflow with Docker](#typical-local-development-workflow-with-docker)
+    *   [Typical Theme Local Development Example](#typical-theme-local-development-example)
+    *   [Typical Content Development Example](#typical-content-development-example)
+    *   [After Development](#after-development)
     *   [Automated PR Testing with GitHub Actions](#automated-pr-testing-with-github-actions)
 2.  [Deployment Workflow](#deployment-workflow)
     *   [Staging Environment](#staging-environment)
@@ -14,6 +18,8 @@
         *   [Initialising the Production Web Server (Microsoft Azure) with Docker](#initialising-the-production-web-server-microsoft-azure-with-docker)
         *   [Initialising GitHub Actions for Production](#initialising-github-actions-for-production)
         *   [Manual Workflow of Updating Theme Code](#manual-workflow-of-updating-theme-code)
+    *   [Local to Staging](#local-to-staging)
+    *   [Staging to Production](#staging-to-production)
 
 ## Development Workflow
 
@@ -82,7 +88,7 @@
         driver: bridge
     ```
 
-2.  Ensure that a `.env` file is defined in the root directory (for example):
+2.  Ensure that a `.env` file is defined in the root directory (for EXAMPLE):
 
     ```
     MYSQL_DATABASE = ninjawarriors
@@ -102,6 +108,16 @@
     ```
     git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
     ```
+
+### Before Development:
+
+1. Open Trello board:
+
+  ```
+  https://trello.com/b/dmD8yGCX
+  ```
+
+2. Move chosen card into 'In Progress' to notify team members.
 
 ### Typical Local Development Workflow with Docker:
 
@@ -130,22 +146,100 @@
     docker-compose down
     ```
 
+### Typical Theme Local Development Example:
+
+1.  Fetch all changes:
+
+    ```
+    git fetch --all
+    ```
+
+2.  Pull all changes:
+
+    ```
+    git pull
+    ```
+
+3.  Create a new branch prior to modification and switch into it (best practice):
+  
+    ```
+    git branch hompage-customisation
+    git checkout -b homepage-customisation
+    ```
+
+4.  Run Docker containers:
+
+    ```
+    docker-compose up -d
+    ```
+
+5. Modify functions.php and front-page.php.
+
+6. Publish branch:
+  ```
+  git push -u origin homepage-customisation
+  ```
+
+7. In Github, create a pull request.
+
+8. Destroy Docker containers when finished:
+
+    ```
+    docker-compose down
+    ```
+
+
+### Typical Content Development Example:
+
+**Direct into staging website.**
+
+1. Log into staging WordPress website as admin.
+
+2. Add page and curate content.
+
+3. Publish content.
+
+4. Notify team.
+
+**Local development export.**
+
+1. Log into local WordPress website as admin.
+
+2. Add page and curate content.
+
+3. Publish content.
+
+4. Export contents via WordPress built in export tool.
+
+5. Import contents into staging website vie WordPress built in import tool.
+
+6. Notify team.
+
+
+
+### After Development:
+
+1. Open Trello board:
+
+  ```
+  https://trello.com/b/dmD8yGCX
+  ```
+
+2. Mark chosen card as completed to notify team members.
+
+
 ### Automated PR Testing with GitHub Actions
 
 #### Initialising Automated PR Testing:
 
-Automated PR testing using GitHub Actions helps ensure code quality by running tests before changes are merged to the main branch.
+Automated PR testing using GitHub Actions currently helps ensure code quality by running PHP code tests before changes are merged to the main branch.
 
 1.  Create `.github/workflows` directory in the repository if it doesn't exist:
 
-    ```
-    mkdir -p .github/workflows
-    ```
-
-2.  Create a workflow file for PR testing:
+2.  Create a workflow file for PR testing (for example): 
 
     ```
-    nano .github/workflows/pr-testing.yml
+    .github/workflows/pr-testing.yml
     ```
 
 3.  Add the following configuration to the workflow file:
@@ -217,8 +311,12 @@ Automated PR testing using GitHub Actions helps ensure code quality by running t
 
 #### Initialising the Staging Web Server (Microsoft Azure) with Docker:
 
-1.  Create a virtual machine using your chosen service provider.
+1.  Create a virtual machine (cost efficient).
+    - Operating system: Linux (ubuntu 22.04)
+    - Size: Standard B1ms (1 vcpu, 2 GiB memory)
+
 2.  Download the key pair for SSH.
+
 3.  SSH into the VM (example):
 
     ```
@@ -287,7 +385,7 @@ Automated PR testing using GitHub Actions helps ensure code quality by running t
     sudo git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
     ```
 
-#### Initialising GitHub Actions for Staging:
+#### Initialising GitHub Actions for Staging Deployment:
 
 1.  Add SSH private key and VM IP address in GitHub repo's secrets.
 2.  Define `.yml` file in `.github/workflows/` directory:
@@ -327,8 +425,12 @@ Automated PR testing using GitHub Actions helps ensure code quality by running t
 
 #### Initialising the Production Web Server (Microsoft Azure) with Docker:
 
-1.  Create a new virtual machine using your chosen service provider for the production environment.
+1.  Create a virtual machine (cost efficient).
+    - Operating system: Linux (ubuntu 22.04)
+    - Size: Standard B1ms (1 vcpu, 2 GiB memory)
+
 2.  Download the key pair for SSH access to the production VM.
+
 3.  SSH into the production VM:
 
     ```
@@ -433,9 +535,10 @@ Automated PR testing using GitHub Actions helps ensure code quality by running t
               EOF
     ```
 
-#### Manual Workflow of Updating Theme Code:
+#### Manual Workflow of Updating Theme Code (Staging or Production):
 
-1.  Commit and push changes from local development to the `production` branch.
+1.  Commit and push changes from local development to the `main` for staging and `production` for production.
+
 2.  SSH into VM:
 
     ```
@@ -454,3 +557,27 @@ Automated PR testing using GitHub Actions helps ensure code quality by running t
     ```
     git pull
     ```
+
+
+### Local to Staging:
+
+Any pushes to main will automatically be deployed in the staging website vai Github Actions as defined above.
+
+### Staging to Production:
+
+1. Checkout the production branch in your chosed code editor:
+  ```
+  git checkout production
+  ```
+
+2. Merge main into the production branch:
+  ```
+  git merge main
+  ```
+
+3. Push changes to production:
+  ```
+  git push origin production
+  ```
+
+4. GitHub actions will trigger and pull the changes in the production virtual machine.
