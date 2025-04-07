@@ -327,19 +327,19 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 #### Initialising the Staging Web Server (Microsoft Azure) with Docker:
 
-1.  Create a virtual machine (cost efficient).
+1.  Create a virtual machine (cost efficient technology).
     - Operating system: Linux (ubuntu 22.04)
     - Size: Standard B1ms (1 vcpu, 2 GiB memory)
 
 2.  Download the key pair for SSH.
 
-3.  SSH into the VM (example):
+3.  SSH into the virtual machine (example):
 
     ```
     ssh -i wp-staging-key.pem azureuser@20.167.48.156
     ```
 
-4.  Update the VM:
+4.  Update the virtual machine:
 
     ```
     sudo apt update
@@ -373,10 +373,10 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 9.  Define passwords with variables (for example):
 
     ```
-    MYSQL_DATABASE = ninjawarriors
-    MYSQL_USER = ninjawarrior
-    MYSQL_PASSWORD = ninjawarrior_password
-    MYSQL_ROOT_PASSWORD = ninjawarrior_root_password
+    MYSQL_DATABASE = mysqldatabase
+    MYSQL_USER = mysqluser
+    MYSQL_PASSWORD = mysqlpassword
+    MYSQL_ROOT_PASSWORD = sqlrootpassword
     ```
 
 10. Create a docker-compose.yml file:
@@ -394,8 +394,8 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 **Adding a custom theme:**
 
-1.  Change directory into themes (create dir if needed).
-2.  Clone the repo (or a specific branch) in the directory:
+1.  Change directory into themes folder (create dir if needed).
+2.  Clone the repo (or a specific branch) into the directory:
 
     ```
     sudo git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
@@ -403,7 +403,7 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 #### Initialising GitHub Actions for Staging Deployment:
 
-1.  Add SSH private key and VM IP address in GitHub repo's secrets.
+1.  Add SSH private key and virtual machine IP address in GitHub repo's secrets.
 2.  Define `.yml` file in `.github/workflows/` directory:
 
     ```yaml
@@ -441,19 +441,19 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 #### Initialising the Production Web Server (Microsoft Azure) with Docker:
 
-1.  Create a virtual machine (cost efficient).
+1.  Create a virtual machine (cost efficient technology).
     - Operating system: Linux (ubuntu 22.04)
     - Size: Standard B1ms (1 vcpu, 2 GiB memory)
 
-2.  Download the key pair for SSH access to the production VM.
+2.  Download the key pair for SSH access to the production virtual machine.
 
-3.  SSH into the production VM:
+3.  SSH into the production virtual machine:
 
     ```
     ssh -i wp-production-key.pem azureuser@<PRODUCTION_VM_IP>
     ```
 
-4.  Update the production VM:
+4.  Update the production virtual machine:
 
     ```
     sudo apt update
@@ -487,10 +487,10 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 9.  Define passwords with variables (example):
 
     ```
-    MYSQL_DATABASE = ninjawarriors
-    MYSQL_USER = ninjawarrior
-    MYSQL_PASSWORD = ninjawarrior_password
-    MYSQL_ROOT_PASSWORD = ninjawarrior_root_password
+    MYSQL_DATABASE = mysqldatabase
+    MYSQL_USER = mysqluser
+    MYSQL_PASSWORD = mysqlpassword
+    MYSQL_ROOT_PASSWORD = mysqlrootpassword
     ```
 
 10. Create a docker-compose.yml file:
@@ -508,8 +508,8 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 **Adding a custom theme:**
 
-1.  Change directory into themes (create dir if needed).
-2.  Clone the repo (or a specific branch) in the directory:
+1.  Change directory into themes folder (create dir if needed).
+2.  Clone the repo (or a specific branch) into the directory:
 
     ```
     sudo git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
@@ -517,7 +517,7 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 #### Initialising GitHub Actions for Production:
 
-1.  Add SSH private key and VM IP address in GitHub repo's secrets (create new secrets for production).
+1.  Add SSH private key and virtual machine IP address in GitHub repo's secrets (create new secrets for production).
 2.  Define `.yml` file in `.github/workflows/` directory:
 
     ```yaml
@@ -555,7 +555,7 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 1.  Commit and push changes from local development to the `main` for staging and `production` for production.
 
-2.  SSH into VM:
+2.  SSH into virtual machine:
 
     ```
     ssh -i wp-production-key.pem azureuser@<PRODUCTION_VM_IP>
@@ -577,11 +577,11 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 ### Local to Staging:
 
-Any pushes to main will automatically be deployed in the staging website vai Github Actions as defined above.
+Any pushes to main will automatically be deployed in the staging website via Github Actions as defined above.
 
 ### Staging to Production:
 
-1. Checkout the production branch in your chosed code editor:
+1. Checkout the production branch in your chosen code editor:
   ```
   git checkout production
   ```
