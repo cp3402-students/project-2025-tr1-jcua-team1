@@ -230,7 +230,7 @@
     * Select 'Download and import file attachments'
     * Submit
 
-6. Notify team of changes made and upload Trello board
+6. Notify team of changes made.
 
 ### After Development:
 
@@ -241,6 +241,7 @@
   ```
 
 2. Mark chosen card as completed to notify team members.
+    * Update description as relevant.
 
 
 ### Automated PR Testing with GitHub Actions
