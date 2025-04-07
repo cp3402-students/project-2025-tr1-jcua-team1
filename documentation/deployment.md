@@ -218,12 +218,19 @@
 3. Publish content.
 
 4. Export contents via WordPress built in export tool.
+    * Select Pages
+    * Apply additional filters if necessary 
+    * .xml file will download
 
-5. Import contents into staging website vie WordPress built in import tool.
+5. Import contents into staging website via WordPress built in import tool.
+    * Run WordPress Importer from Import tab
+    * Select downloaded .xml file of relevant content
+    * Upload file and import
+    * Assign posts to user 'shrek'
+    * Select 'Download and import file attachments'
+    * Submit
 
-6. Notify team.
-
-
+6. Notify team of changes made and upload Trello board
 
 ### After Development:
 
