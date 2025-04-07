@@ -311,15 +311,15 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
     git push
     ```
 
-#### How PR Testing Works (Current):
+#### How Pull Request Testing Works (Current):
 
 1.  When a pull request is created against the `main` branch, GitHub Actions automatically runs the defined tests.
-2.  The workflow checks:
+2.  The workflow checks for:
 
     *   PHP syntax errors
 
-3.  Test results appear in the PR interface on GitHub, showing whether all checks have passed.
-4.  Failed tests should be addressed before merging the PR to maintain code quality.
+3.  Test results appear in the pull request interface on GitHub, showing whether all checks have passed.
+4.  Failed tests should be addressed before merging the pull request to maintain code quality.
 
 ## Deployment Workflow
 
