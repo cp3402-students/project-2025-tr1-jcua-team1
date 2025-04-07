@@ -2,7 +2,7 @@
 
 ## Front Page Management
 
-The front page of the website has been designed to be easily customisable without needing to edit code. Here's how to manage each section:
+The front page of the website has been designed to be easily customisable without needing to edit code. Here's some detail on how to manage each section:
 
 ### Hero Section
 
@@ -10,42 +10,42 @@ The top section of the homepage (hero section) can be fully customised through t
 
 1. Go to **Appearance → Customize → Homepage Settings**
 2. Here you can modify:
-   - **Hero Heading**: The main title displayed on the homepage
-   - **Hero Text**: The descriptive paragraph below the heading
-   - **Hero Background Image**: Upload an image to use as the background (takes priority over the background colour)
-   - **Background Image Overlay**: Adjust the darkness of the overlay on the background image
-   - **Hero Background Colour**: Change the background colour (used when no image is set)
-   - **Hero Text Colour**: Change the colour of all text in the hero section
-   - **Header Alignment**: Align the hero heading text (left, centre, or right)
-   - **Text Alignment**: Align text left, centre or right
-   - **Hero Section Width**: Adjust the width of the content area (50–100%)
-   - **Hero Button Text**: The text displayed on the call-to-action button
-   - **Hero Button URL**: Where the button links to (can be an internal page or external URL)
+   - **Hero Heading**: The main title displayed on the homepage.
+   - **Hero Text**: The descriptive paragraph below the heading.
+   - **Hero Background Image**: Upload an image to use as the background (takes priority over the background colour).
+   - **Background Image Overlay**: Adjust the darkness of the overlay on the background image.
+   - **Hero Background Colour**: Change the background colour (used when no image is set).
+   - **Hero Text Colour**: Change the colour of all text in the hero section.
+   - **Header Alignment**: Align the hero heading text (left, centre, or right).
+   - **Text Alignment**: Align text left, centre or right.
+   - **Hero Section Width**: Adjust the width of the content area (50–100%).
+   - **Hero Button Text**: The text displayed on the call-to-action button.
+   - **Hero Button URL**: Where the button links to (can be an internal page or external URL).
    - **Hero Foreground Image**: Upload an image to display as a content element within the hero section, separate from the background.
    - **Hero Image Position**: Choose whether to display the foreground image above or below the text content.
    - **Hero Image Max Width (%)**: Set the maximum width of the foreground image as a percentage of the hero section width.
-3. Changes will be visible in the preview and will go live when you click "Publish"
+3. Changes will be visible in the preview and will go live when you click "Publish".
 
 ### Image Carousel Section
 
-The homepage can optionally display an image carousel:
+The homepage has the option to display an image carousel:
 
 1. Go to **Appearance → Customize → Homepage Settings**
 2. Scroll down to the **Image Carousel Settings** section
 3. Here you can modify:
-   - **Enable Image Carousel**: Toggle to show or hide the carousel on the homepage
-   - **Carousel Position**: Choose whether to display the carousel above or below the hero section
-   - **Carousel Width (%)**: Set the width of the carousel container (50-100%)
-   - **Show Image Captions**: Choose whether to display captions below carousel images
-   - **Carousel Speed (ms)**: Control the timing between slide transitions (in milliseconds)
-   - **Carousel Image Height**: Choose how to normalize image heights (Auto, Fixed Height, Maintain Aspect Ratio, or Cover/Crop)
-   - **Carousel Container Height (%)**: Adjust the overall height of the carousel container
-   - **Fixed Image Height (px)**: Set an exact height for all carousel images (when Fixed Height is selected)
-   - **Image Aspect Ratio**: Choose the aspect ratio for images (when Maintain Aspect Ratio is selected)
+   - **Enable Image Carousel**: Toggle to show or hide the carousel on the homepage.
+   - **Carousel Position**: Choose whether to display the carousel above or below the hero section.
+   - **Carousel Width (%)**: Set the width of the carousel container (50-100%).
+   - **Show Image Captions**: Choose whether to display captions below carousel images.
+   - **Carousel Speed (ms)**: Control the timing between slide transitions (in milliseconds).
+   - **Carousel Image Height**: Choose how to normalize image heights (Auto, Fixed Height, Maintain Aspect Ratio, or Cover/Crop).
+   - **Carousel Container Height (%)**: Adjust the overall height of the carousel container.
+   - **Fixed Image Height (px)**: Set an exact height for all carousel images (when Fixed Height is selected).
+   - **Image Aspect Ratio**: Choose the aspect ratio for images (when Maintain Aspect Ratio is selected).
 4. You can add up to 5 images to the carousel, each with:
-   - An uploaded image
-   - An optional caption
-   - An optional link URL
+   - An uploaded image.
+   - An optional caption.
+   - An optional link URL.
 5. Changes will be visible in the preview and will go live when you click "Publish"
 
 ### Featured Home Posts
@@ -68,16 +68,16 @@ The middle section of the homepage displays posts from the **home** category. Th
    - **Order Direction**: Choose between ascending (A-Z, oldest to newest) or descending (Z-A, newest to oldest) order.
    - **Show Sticky Posts First**: Option to always display sticky posts at the top of the list regardless of other sorting.
 4. **Adding content to this section**:
-   - Create a new post by going to **Posts → Add New**
-   - Write your content and add a featured image
-   - Assign the post to the **home** category
-   - Publish the post
-   - To make a post "sticky" (always appear at top when that option is enabled), check the "Stick this post to the front page" box in the Publish panel
+   - Create a new post by going to **Posts → Add New**.
+   - Write your content and add a featured image.
+   - Assign the post to the **home** category.
+   - Publish the post.
+   - To make a post "sticky" (always appear at top when that option is enabled), check the "Stick this post to the front page" box in the Publish panel.
 5. **Important notes**:
-   - The homepage displays up to six most recent posts from the **home** category
-   - Featured images are highly recommended for visual appeal
-   - Use the excerpt field for a custom summary (otherwise WordPress will use the first part of your content)
-   - Using the "Custom Order" option in "Order Posts By" requires you to set the "Order" value in each post's "Page Attributes" box
+   - The homepage displays up to six most recent posts from the **home** category.
+   - Featured images are highly recommended for visual appeal.
+   - Use the excerpt field for a custom summary (otherwise WordPress will use the first section of your content).
+   - Using the "Custom Order" option in "Order Posts By" requires you to set the "Order" value in each post's "Page Attributes" box.
 
 ### Header Customisation
 
@@ -105,9 +105,9 @@ Throughout the Customizer, you'll find an enhanced color selection interface tha
 3. **Apply CSS Variables**: Use theme color variables like `--color-primary` or `--color-accent`
 
 This enhanced color selection is available in various sections including:
-- Homepage Settings (Hero Background, Text Colors)
-- Page Settings (Content Background, Text, Link Colors)
-- Header and Footer Settings
+- Homepage Settings (Hero Background, Text Colors).
+- Page Settings (Content Background, Text, Link Colors).
+- Header and Footer Settings.
 
 To use the enhanced color selection:
 1. Click on a color setting field
@@ -118,7 +118,7 @@ To use the enhanced color selection:
 
 ### Pages
 
-Pages are used for static content such as the About page, Contact page or any other information pages that do not change frequently.
+Pages are used for static content such as the About page, Contact page or any other information pages that will not change frequently.
 
 - To add a page, go to **Pages → Add New**
 - Enter your content and use the available meta boxes to Customize the layout if needed (for example, overriding default page settings via **Page Settings** in the right sidebar).
@@ -167,7 +167,7 @@ These settings apply to all pages by default:
    - **Default Page Layout**: Choose between with sidebar, full width, or narrow content.
    - **Show Page Title**: Toggle the visibility of page titles.
    - **Page Content Background**: Set the background colour for page content.
-   - **Content Padding**: Adjust the space around page content.
+   - **Content Padding**: Adjust the space around the page content.
    - **Page Text Color**: Choose the color for page text content.
    - **Page Heading Color**: Set the color for page headings.
    - **Page Link Color**: Set the color for links within page content.
@@ -240,7 +240,7 @@ The 404 error page can be customised through the WordPress Customiser:
    - **404 Page Title**: Change the main title displayed on the 404 page.
    - **404 Page Message**: Change the descriptive message displayed on the 404 page.
    - **Show Search Form**: Toggle the visibility of the search form.
-   - **Show Helpful Widgets**: Toggle the visibility of helpful widgets (Recent Posts, Categories, Tag Cloud).
+   - **Show Helpful Widgets**: Toggle the visibility of relevant widgets (Recent Posts, Categories, Tag Cloud).
    - **Text Alignment**: Choose whether the title and message text are aligned left, centre or right.
 3. Changes will be visible in the preview and will go live when you click "Publish".
 
