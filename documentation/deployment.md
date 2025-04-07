@@ -35,7 +35,7 @@
 
 **Steps:**
 
-1.  Make sure a `docker-compose.yml` file is defined in the root directory like this:
+1.  Make sure a `docker-compose.yml` file is defined in the root directory:
 
     ```yaml
     services:
@@ -109,7 +109,7 @@
     git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
     ```
 
-### Before Development:
+### Before Development - Project Management:
 
 1. Open Trello board:
 
@@ -117,7 +117,14 @@
   https://trello.com/b/dmD8yGCX
   ```
 
-2. Move chosen card into 'In Progress' to notify team members.
+2. Create New Card in 'Next Actions' to reflect upcoming tasks 
+    * Add a description of the task.
+    * Add a due date, if relevant.
+
+3. Move chosen card into 'In Progress' to notify team members.
+    * Either drag or change list from the card description page.
+
+4. Join the card you are working on
 
 ### Typical Local Development Workflow with Docker:
 
