@@ -167,7 +167,7 @@
     git pull
     ```
 
-3.  Create a new branch prior to modification and switch into it (best practice):
+3.  Create a new branch prior to modification and switch into it (best practice) to seperate working files from main files:
   
     ```
     git branch hompage-customisation
@@ -188,6 +188,7 @@
   ```
 
 7. In Github, create a pull request.
+    * Use a clear description of the changes for team members to review. 
 
 8. Destroy Docker containers when finished:
 
