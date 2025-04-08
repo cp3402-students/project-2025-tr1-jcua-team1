@@ -7,18 +7,16 @@
         <img alt="Contributor Badge" src="https://img.shields.io/badge/Contributors-blue"></a>
     <a href="https://github.com/cp3402-students/project-2025-tr1-jcua-team1/network/members" alt="Forks">
         <img alt="Fork Badge" src="https://img.shields.io/badge/Forks-green"></a>
-    <a href="https://github.com/cp3402-students/project-2025-tr1-jcua-team1/stargazers" alt="Stargazers">
-        <img alt="Stargazers Badge" src="https://img.shields.io/badge/Stargazers-blue"></a>
     <a href="https://github.com/cp3402-students/project-2025-tr1-jcua-team1/issues" alt="Issues">
-        <img alt="Issues Badge" src="https://img.shields.io/badge/Issues-green"></a>
+        <img alt="Issues Badge" src="https://img.shields.io/badge/Issues-blue"></a>
     <a href="https://www.linkedin.com/in/keziah-furnell-95b4521a0/" alt="Keziah LinkedIn">
-        <img alt="Keziah LinkedIn Badge" src="https://img.shields.io/badge/Keziah Furnell LinkedIn-blue"></a>
+        <img alt="Keziah LinkedIn Badge" src="https://img.shields.io/badge/Keziah Furnell LinkedIn-green"></a>
     <a href="https://www.linkedin.com/in/reece-kelly-82b56a331/" alt="Reece LinkedIn">
-        <img alt="Reece LinkedIn Badge" src="https://img.shields.io/badge/Reece Kelly LinkedIn-green"></a>
+        <img alt="Reece LinkedIn Badge" src="https://img.shields.io/badge/Reece Kelly LinkedIn-blue"></a>
     <a href="https://www.linkedin.com/in/joshua-delossantos/" alt="Josh LinkedIn">
-        <img alt="Josh LinkedIn Badge" src="https://img.shields.io/badge/Joshua Delos Santos LinkedIn-blue"></a>
+        <img alt="Josh LinkedIn Badge" src="https://img.shields.io/badge/Joshua Delos Santos LinkedIn-green"></a>
     <a href="https://www.linkedin.com/in/martin-armstrong-224291162/" alt="Martin LinkedIn">
-        <img alt="Martin LinkedIn Badge" src="https://img.shields.io/badge/Martin Armstrong LinkedIn-green"></a>
+        <img alt="Martin LinkedIn Badge" src="https://img.shields.io/badge/Martin Armstrong LinkedIn-blue"></a>
 
     
 
