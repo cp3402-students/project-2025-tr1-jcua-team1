@@ -12,6 +12,13 @@
 [![Joshua Delos Santos LinkedIn][linkedin-shield]]["https://www.linkedin.com/in/joshua-delossantos/"]
 [![Martin Armstrong LinkedIn][linkedin-shield]]["https://www.linkedin.com/in/martin-armstrong-224291162/"]
 
+<p align="centre">
+    <a href="https://github.com/cp3402-students/project-2025-tr1-jcua-team1/graphs/contributors" alt="Contributors">
+        <img alt="Static Badge" src="https://img.shields.io/badge/contributors"></a>
+
+    
+
+</p>
 
 ## About The Project
 
@@ -33,4 +40,5 @@
 
 ## Acknowledgements 
 
+Team1Theme is built upon the Underscores starter theme (https://underscores.me/) with significant customisations for enhanced flexibility and user experience. For any additional development queries or enhancements, please contact the theme developer.
 
