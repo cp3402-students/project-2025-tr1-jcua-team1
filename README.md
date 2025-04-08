@@ -14,7 +14,7 @@
 
 <p align="centre">
     <a href="https://github.com/cp3402-students/project-2025-tr1-jcua-team1/graphs/contributors" alt="Contributors">
-        <img alt="Static Badge" src="https://img.shields.io/badge/contributors"></a>
+        <img alt="Static Badge" src="https://img.shields.io/badge/contributors-blue"></a>
 
     
 
@@ -33,9 +33,6 @@
 * [site.md](documentation/site.md)
 
 * [Production Sercer](http://20.248.163.129:8080/wp-admin/)
-
-## Contact
-
 
 
 ## Acknowledgements 
