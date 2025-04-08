@@ -20,7 +20,7 @@
 </p>
 
 ## About The Project
-
+Team1Theme is a custom WordPress theme designed to provide a flexible foundation with extensive customisation options via the WordPress Customiser. Built on the Underscores (_s) starter theme, it incorporates enhancements for front page management, header, footer, content page customisation and more.
 
 
 ## Relevant Documentation
@@ -48,8 +48,6 @@
 * [Microsoft Azure](https://azure.microsoft.com/en-au/pricing/purchase-options/azure-account/search?ef_id=_k_EAIaIQobChMI6PPO2pzIjAMVy9QWBR3U4gspEAAYASAAEgJYavD_BwE_k_&OCID=AIDcmmxbrcqs76_SEM__k_EAIaIQobChMI6PPO2pzIjAMVy9QWBR3U4gspEAAYASAAEgJYavD_BwE_k_&gad_source=1&gclid=EAIaIQobChMI6PPO2pzIjAMVy9QWBR3U4gspEAAYASAAEgJYavD_BwE)
 
 * [WordPress](https://en-au.wordpress.org/)
-
-* [Production Site](http://4.147.171.20:8080/)
 
 * [Underscores Starter Theme](https://underscores.me/)
 
