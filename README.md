@@ -17,9 +17,6 @@
         <img alt="Josh LinkedIn Badge" src="https://img.shields.io/badge/Joshua Delos Santos LinkedIn-green"></a>
     <a href="https://www.linkedin.com/in/martin-armstrong-224291162/" alt="Martin LinkedIn">
         <img alt="Martin LinkedIn Badge" src="https://img.shields.io/badge/Martin Armstrong LinkedIn-blue"></a>
-
-    
-
 </p>
 
 ## About The Project
@@ -34,7 +31,27 @@
 
 * [site.md](documentation/site.md)
 
-* [Production Sercer](http://20.248.163.129:8080/wp-admin/)
+* [Production Server](http://20.248.163.129:8080/wp-admin/)
+
+## Project Development Resources
+
+* [Trello](https://trello.com/?campaign=19250238387&adgroup=150132186371&targetid=kwd-3609071522&matchtype=e&network=g&device=c&device_model=&creative=641422111652&keyword=trello&placement=&target=&ds_eid=700000001557344&ds_e1=GOOGLE&gad_source=1&gclid=EAIaIQobChMIh6SdrJzIjAMVuxxECB2tSBVSEAAYASAAEgJVWvD_BwE)
+
+* [Slack](https://slack.com/intl/en-au/)
+
+* [Discord](https://discord.com/)
+
+* [GitHub](https://github.com/)
+
+* [Docker](https://www.docker.com/)
+
+* [Microsoft Azure](https://azure.microsoft.com/en-au/pricing/purchase-options/azure-account/search?ef_id=_k_EAIaIQobChMI6PPO2pzIjAMVy9QWBR3U4gspEAAYASAAEgJYavD_BwE_k_&OCID=AIDcmmxbrcqs76_SEM__k_EAIaIQobChMI6PPO2pzIjAMVy9QWBR3U4gspEAAYASAAEgJYavD_BwE_k_&gad_source=1&gclid=EAIaIQobChMI6PPO2pzIjAMVy9QWBR3U4gspEAAYASAAEgJYavD_BwE)
+
+* [WordPress](https://en-au.wordpress.org/)
+
+* [Production Site](http://4.147.171.20:8080/)
+
+* [Underscores Starter Theme](https://underscores.me/)
 
 
 ## Acknowledgements 
