@@ -190,7 +190,7 @@
 7. In Github, create a pull request.
     * Use a clear description of the changes for team members to review. 
 
-8. Destroy Docker containers when finished:
+8. Stop Docker containers when finished:
 
     ```
     docker-compose down
@@ -229,10 +229,11 @@
     * Assign posts to user 'shrek'
     * Select 'Download and import file attachments'
     * Submit
+    * Verify that all content has been imported successfully, and identify any items that failed to import.
 
 6. Notify team of changes made.
 
-### After Development:
+### After Development
 
 1. Open Trello board:
 
