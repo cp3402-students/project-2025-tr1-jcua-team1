@@ -306,6 +306,19 @@ function team1_theme_footer_customize_register( $wp_customize ) {
         'type'     => 'textarea',
     ) );
 
+    // Bold Footer Text
+    $wp_customize->add_setting( 'footer_text_bold', array(
+        'default'           => false,
+        'sanitize_callback' => 'team1theme_sanitize_checkbox',
+        'transport'         => 'refresh',
+    ) );
+    
+    $wp_customize->add_control( 'footer_text_bold', array(
+        'label'    => __( 'Bold Footer Text', 'team1theme' ),
+        'section'  => 'footer_settings',
+        'type'     => 'checkbox',
+    ) );
+
     // Footer Background Color
     $wp_customize->add_setting( 'footer_bg_color', array(
         'default'           => '#f8f9fa',

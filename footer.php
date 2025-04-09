@@ -42,7 +42,7 @@
             </div>
         </div>
         
-        <div class="site-info">
+        <div class="site-info" style="<?php echo get_theme_mod('footer_text_bold', false) ? 'font-weight: bold;' : ''; ?>">
             <?php echo wp_kses_post(get_theme_mod('footer_text', 'Copyright © ' . date('Y') . ' ' . get_bloginfo('name'))); ?>
         </div><!-- .site-info -->
     </footer><!-- #colophon -->
