@@ -2,24 +2,24 @@
 
 ## Table of Contents
 
-1.  [Development Workflow](#development-workflow)
-    *   [Setting Up Local Development with Docker](#setting-up-local-development-with-docker)
-    *   [Before Development](#before-development---project-management)
-    *   [Typical Local Development Workflow with Docker](#typical-local-development-workflow-with-docker)
-    *   [Typical Theme Local Development Example](#typical-theme-local-development-example)
-    *   [Typical Content Development Example](#typical-content-development-example)
-    *   [After Development](#after-development)
-    *   [Automated PR Testing with GitHub Actions](#automated-pr-testing-with-github-actions)
-2.  [Deployment Workflow](#deployment-workflow)
-    *   [Staging Environment](#staging-environment)
-        *   [Initialising the Staging Web Server (Microsoft Azure) with Docker](#initialising-the-staging-web-server-microsoft-azure-with-docker)
-        *   [Initialising GitHub Actions for Staging](#initialising-github-actions-for-staging)
-    *   [Production Environment](#production-environment)
-        *   [Initialising the Production Web Server (Microsoft Azure) with Docker](#initialising-the-production-web-server-microsoft-azure-with-docker)
-        *   [Initialising GitHub Actions for Production](#initialising-github-actions-for-production)
-        *   [Manual Workflow of Updating Theme Code](#manual-workflow-of-updating-theme-code)
-    *   [Local to Staging](#local-to-staging)
-    *   [Staging to Production](#staging-to-production)
+1. [Development Workflow](#development-workflow)
+    * [Setting Up Local Development with Docker](#setting-up-local-development-with-docker)
+    * [Before Development - Project Management](#before-development---project-management)
+    * [Typical Local Development Workflow with Docker](#typical-local-development-workflow-with-docker)
+    * [Typical Theme Local Development Example](#typical-theme-local-development-example)
+    * [Typical Content Development Example](#typical-content-development-example)
+    * [After Development](#after-development)
+    * [Automated PR Testing with GitHub Actions](#automated-pr-testing-with-github-actions)
+2. [Deployment Workflow](#deployment-workflow)
+    * [Staging Environment](#staging-environment)
+        * [Initialising the Staging Web Server (Microsoft Azure) with Docker](#initialising-the-staging-web-server-microsoft-azure-with-docker)
+        * [Initialising GitHub Actions for Staging](#initialising-github-actions-for-staging)
+    * [Production Environment](#production-environment)
+        * [Initialising the Production Web Server (Microsoft Azure) with Docker](#initialising-the-production-web-server-microsoft-azure-with-docker)
+        * [Initialising GitHub Actions for Production](#initialising-github-actions-for-production)
+        * [Manual Workflow of Updating Theme Code](#manual-workflow-of-updating-theme-code)
+    * [Local to Staging](#local-to-staging)
+    * [Staging to Production](#staging-to-production)
 
 ## Development Workflow
 
@@ -438,6 +438,17 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
               EOF
     ```
 
+#### Deploying site content:
+1. Login to WordPress admin in local website.
+
+2. Navigate to 'Tools'.
+
+3. Select export and download file.
+
+4. In the staging website, login to WordPress admin.
+
+5. Import downloaded file.
+
 ### Production Environment
 
 #### Initialising the Production Web Server (Microsoft Azure) with Docker:
@@ -574,6 +585,17 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
     ```
     git pull
     ```
+
+#### Deploying site content:
+1. Login to WordPress admin in stagin website.
+
+2. Navigate to 'Tools'.
+
+3. Select export and download file.
+
+4. In the production website, login to WordPress admin.
+
+5. Import downloaded file.
 
 
 ### Local to Staging:
