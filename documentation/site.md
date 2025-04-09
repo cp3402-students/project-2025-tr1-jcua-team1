@@ -287,6 +287,16 @@ Your website's color scheme can be customised through the WordPress Customiser:
 3. Changes will be visible in the preview and will go live when you click "Publish".
 4. These colors are available throughout the theme as CSS variables, making color selection consistent across the site.
 
+
+## WPForms Registration Form
+
+Your website uses the WPForms plugin for the creation of the registration form and this can be customised through the form editor:
+
+1. Go to **WPforms → All Forms → Registration Form**
+2. Here you can modify:
+   - **Form Fields**: Add and remove form fields.
+   - **Form Field Options**: Adjust how each form field behaves (e.g. accepted input, label).
+
 ---
 
 This guide is intended to help you maintain the site without having to edit code. For any additional changes beyond the provided customiser settings, please contact your theme developer.
