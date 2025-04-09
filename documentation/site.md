@@ -1,5 +1,32 @@
 # Site Documentation
 
+## Table of Contents
+
+1. [Front Page Management](#front-page-management)
+    * [Hero Section](#hero-section)
+    * [Image Carousel Section](#image-carousel-section)
+    * [Featured Home Posts](#featured-home-posts)
+    * [Header Customisation](#header-customisation)
+2. [Enhanced Color Selection Tools](#enhanced-color-selection-tools)
+3. [Adding New Content](#adding-new-content)
+    * [Pages](#pages)
+    * [Posts](#posts)
+    * [Calendar of Events (if applicable)](#calendar-of-events-if-applicable)
+4. [Footer Customisation](#footer-customisation)
+5. [Page Customisation](#page-customisation)
+    * [Global Page Settings](#global-page-settings)
+    * [Individual Page Settings](#individual-page-settings)
+6. [Blog Post Customisation](#blog-post-customisation)
+    * [Global Blog Post Settings](#global-blog-post-settings)
+    * [Individual Post Settings](#individual-post-settings)
+7. [Archive Customisation (Categories, Tags, Dates)](#archive-customisation-categories-tags-dates)
+8. [404 Error Page Customisation](#404-error-page-customisation)
+9. [Sidebar Customisation](#sidebar-customisation)
+10. [Widget Areas](#widget-areas)
+11. [Color Scheme Customisation](#color-scheme-customisation)
+12. [WPForms Registration Form](#wpforms-registration-form)
+13. [The Events Calendar Plugin](#the-events-calendar-plugin)
+
 ## Front Page Management
 
 The front page of the website has been designed to be easily customisable without needing to edit code. Here's some detail on how to manage each section:

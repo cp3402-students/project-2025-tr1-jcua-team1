@@ -1,5 +1,27 @@
 # Team1Theme Documentation
 
+## Table of Contents
+
+1. [Theme Overview](#theme-overview)
+2. [Theme Structure](#theme-structure)
+3. [Key Features](#key-features)
+    * [1. Customiser Options](#1-customiser-options)
+    * [2. Custom Color Scheme Control](#2-custom-color-scheme-control)
+    * [3. Archive Customisation](#3-archive-customisation)
+    * [4. Front Page Template](#4-front-page-template)
+    * [5. Header & Navigation](#5-header--navigation)
+    * [6. Footer](#6-footer)
+    * [7. Page and Post Customisation System](#7-page-and-post-customisation-system)
+    * [8. 404 Error Page](#8-404-error-page)
+    * [9. Dynamic Sidebars](#9-dynamic-sidebars)
+4. [Design System](#design-system)
+    * [Colour Scheme](#colour-scheme)
+    * [Typography](#typography)
+    * [Layout Variables](#layout-variables)
+5. [Development Guidelines](#development-guidelines)
+6. [Additional Resources](#additional-resources)
+7. [Credits](#credits)
+
 ## Theme Overview
 
 Team1Theme is a custom WordPress theme designed to provide a flexible foundation with extensive customisation options via the WordPress Customiser. Built on the Underscores (_s) starter theme, it incorporates enhancements for front page management, header, footer, content page customisation and more.
@@ -142,7 +164,6 @@ The theme utilises CSS variables (defined in `style.css`) to provide a consisten
     --color-border: #ccc;          /* Light Gray */
     --color-highlight: #fff9c0;    /* Light Yellow */
     --color-header: pink;          /* Header background colour */
-    // ...existing code...
 }
 ```
 
