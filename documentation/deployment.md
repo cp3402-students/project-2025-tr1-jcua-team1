@@ -4,7 +4,7 @@
 
 1.  [Development Workflow](#development-workflow)
     *   [Setting Up Local Development with Docker](#setting-up-local-development-with-docker)
-    *   [Before Development](#before-development)
+    *   [Before Development](#before-development---project-management)
     *   [Typical Local Development Workflow with Docker](#typical-local-development-workflow-with-docker)
     *   [Typical Theme Local Development Example](#typical-theme-local-development-example)
     *   [Typical Content Development Example](#typical-content-development-example)
@@ -25,7 +25,7 @@
 
 ### Setting Up Local Development with Docker:
 
-**Pre-requisites:**
+**Prerequisites:**
 
 *   Git
 *   Docker
@@ -109,7 +109,7 @@
     git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
     ```
 
-### Before Development - Project Management:
+### Before Development - Project Management
 
 1. Open Trello board:
 
@@ -124,7 +124,7 @@
 3. Move chosen card into 'In Progress' to notify team members.
     * Either drag or change list from the card description page.
 
-4. Join the card you are working on
+4. Join the card you're working on, or assign team members to their respective cards.
 
 ### Typical Local Development Workflow with Docker:
 
@@ -147,7 +147,7 @@
     docker-compose up -d
     ```
 
-5.  Destroy Docker containers when finished:
+5.  Stop Docker containers when finished:
 
     ```
     docker-compose down
@@ -167,7 +167,7 @@
     git pull
     ```
 
-3.  Create a new branch prior to modification and switch into it (best practice) to seperate working files from main files:
+3.  Create a new branch prior to modification and switch into it (best practice) to separate working files from main files:
   
     ```
     git branch hompage-customisation
@@ -190,7 +190,7 @@
 7. In Github, create a pull request.
     * Use a clear description of the changes for team members to review. 
 
-8. Destroy Docker containers when finished:
+8. Stop Docker containers when finished:
 
     ```
     docker-compose down
@@ -229,10 +229,11 @@
     * Assign posts to user 'shrek'
     * Select 'Download and import file attachments'
     * Submit
+    * Verify that all content has been imported successfully, and identify any items that failed to import.
 
 6. Notify team of changes made.
 
-### After Development:
+### After Development
 
 1. Open Trello board:
 
