@@ -38,3 +38,5 @@ jobs:
         if [ -f composer.json ] && grep -q "test" composer.json; then
           composer run test
         fi
+
+        
