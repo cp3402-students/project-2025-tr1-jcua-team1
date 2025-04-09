@@ -2,11 +2,11 @@
 
 ## Theme Overview
 
-Team1Theme is a custom WordPress theme designed to provide a flexible foundation with extensive customisation options via the WordPress Customiser. Built on the Underscores (_s) starter theme, it incorporates enhancements for front page management, header, footer, page customisation and more.
+Team1Theme is a custom WordPress theme designed to provide a flexible foundation with extensive customisation options via the WordPress Customiser. Built on the Underscores (_s) starter theme, it incorporates enhancements for front page management, header, footer, content page customisation and more.
 
 ## Theme Structure
 
-The theme follows a standard WordPress organisation with these key components:
+The theme follows a standard WordPress organisation with the following key components:
 
 ```
 project-2025-tr1-jcua-team1/
@@ -54,10 +54,10 @@ The theme integrates extensively with the WordPress Customiser. Key settings inc
 
 The theme includes a custom color scheme control (`Team1Theme_Color_Scheme_Control`) that enhances the WordPress customizer with more flexible color selection:
 
-- **Enhanced Color Selection**: Allows users to choose colors from predefined theme color variables or select custom colors
-- **Theme Color Integration**: Seamlessly connects with the theme's CSS variables system
+- **Enhanced Color Selection**: Allows users to choose colors from predefined theme color variables or select custom colors.
+- **Theme Color Integration**: Seamlessly connects with the theme's CSS variables system.
 - **Usage in Multiple Sections**: Implemented across various customizer sections like homepage settings, page settings, etc.
-- **Conditional Loading**: Only loaded during customizer sessions to optimize performance
+- **Conditional Loading**: Only loaded during customizer sessions to optimize performance.
 
 ### 3. Archive Customisation
 
@@ -101,7 +101,7 @@ The front page (`front-page.php`) is designed for flexibility:
 
 -   **Custom Header**: Supports custom background, text colours, padding, and text alignment.
 -   **Header Link Settings**: The header includes customiser settings to adjust the navigation link font size and colour.
--   **Navigation Background and Link Colours**: The navigation menu's background and link colours can be customised via the Customiser.
+-   **Navigation Background and Link Colours**: The navigation menus background and link colours can be customised via the Customiser.
 -   **Navigation Link Spacing**: Adjust the spacing between navigation links using the Customiser.
 -   **Responsive Navigation**: Mobile-friendly menu system with a clear fallback (site title) if no logo is set.
 

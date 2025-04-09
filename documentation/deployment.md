@@ -35,7 +35,7 @@
 
 **Steps:**
 
-1.  Make sure a `docker-compose.yml` file is defined in the root directory like this:
+1.  Make sure a `docker-compose.yml` file is defined in the root directory:
 
     ```yaml
     services:
@@ -109,7 +109,7 @@
     git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
     ```
 
-### Before Development:
+### Before Development - Project Management:
 
 1. Open Trello board:
 
@@ -117,7 +117,14 @@
   https://trello.com/b/dmD8yGCX
   ```
 
-2. Move chosen card into 'In Progress' to notify team members.
+2. Create New Card in 'Next Actions' to reflect upcoming tasks 
+    * Add a description of the task.
+    * Add a due date, if relevant.
+
+3. Move chosen card into 'In Progress' to notify team members.
+    * Either drag or change list from the card description page.
+
+4. Join the card you are working on
 
 ### Typical Local Development Workflow with Docker:
 
@@ -160,7 +167,7 @@
     git pull
     ```
 
-3.  Create a new branch prior to modification and switch into it (best practice):
+3.  Create a new branch prior to modification and switch into it (best practice) to seperate working files from main files:
   
     ```
     git branch hompage-customisation
@@ -181,6 +188,7 @@
   ```
 
 7. In Github, create a pull request.
+    * Use a clear description of the changes for team members to review. 
 
 8. Destroy Docker containers when finished:
 
@@ -210,12 +218,19 @@
 3. Publish content.
 
 4. Export contents via WordPress built in export tool.
+    * Select Pages
+    * Apply additional filters if necessary 
+    * .xml file will download
 
-5. Import contents into staging website vie WordPress built in import tool.
+5. Import contents into staging website via WordPress built in import tool.
+    * Run WordPress Importer from Import tab
+    * Select downloaded .xml file of relevant content
+    * Upload file and import
+    * Assign posts to user 'shrek'
+    * Select 'Download and import file attachments'
+    * Submit
 
-6. Notify team.
-
-
+6. Notify team of changes made.
 
 ### After Development:
 
@@ -226,6 +241,7 @@
   ```
 
 2. Mark chosen card as completed to notify team members.
+    * Update description as relevant.
 
 
 ### Automated PR Testing with GitHub Actions
@@ -295,15 +311,15 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
     git push
     ```
 
-#### How PR Testing Works (Current):
+#### How Pull Request Testing Works (Current):
 
 1.  When a pull request is created against the `main` branch, GitHub Actions automatically runs the defined tests.
-2.  The workflow checks:
+2.  The workflow checks for:
 
     *   PHP syntax errors
 
-3.  Test results appear in the PR interface on GitHub, showing whether all checks have passed.
-4.  Failed tests should be addressed before merging the PR to maintain code quality.
+3.  Test results appear in the pull request interface on GitHub, showing whether all checks have passed.
+4.  Failed tests should be addressed before merging the pull request to maintain code quality.
 
 ## Deployment Workflow
 
@@ -311,19 +327,19 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 #### Initialising the Staging Web Server (Microsoft Azure) with Docker:
 
-1.  Create a virtual machine (cost efficient).
+1.  Create a virtual machine (cost efficient technology).
     - Operating system: Linux (ubuntu 22.04)
     - Size: Standard B1ms (1 vcpu, 2 GiB memory)
 
 2.  Download the key pair for SSH.
 
-3.  SSH into the VM (example):
+3.  SSH into the virtual machine (example):
 
     ```
     ssh -i wp-staging-key.pem azureuser@20.167.48.156
     ```
 
-4.  Update the VM:
+4.  Update the virtual machine:
 
     ```
     sudo apt update
@@ -357,10 +373,10 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 9.  Define passwords with variables (for example):
 
     ```
-    MYSQL_DATABASE = ninjawarriors
-    MYSQL_USER = ninjawarrior
-    MYSQL_PASSWORD = ninjawarrior_password
-    MYSQL_ROOT_PASSWORD = ninjawarrior_root_password
+    MYSQL_DATABASE = mysqldatabase
+    MYSQL_USER = mysqluser
+    MYSQL_PASSWORD = mysqlpassword
+    MYSQL_ROOT_PASSWORD = sqlrootpassword
     ```
 
 10. Create a docker-compose.yml file:
@@ -378,8 +394,8 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 **Adding a custom theme:**
 
-1.  Change directory into themes (create dir if needed).
-2.  Clone the repo (or a specific branch) in the directory:
+1.  Change directory into themes folder (create dir if needed).
+2.  Clone the repo (or a specific branch) into the directory:
 
     ```
     sudo git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
@@ -387,7 +403,7 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 #### Initialising GitHub Actions for Staging Deployment:
 
-1.  Add SSH private key and VM IP address in GitHub repo's secrets.
+1.  Add SSH private key and virtual machine IP address in GitHub repo's secrets.
 2.  Define `.yml` file in `.github/workflows/` directory:
 
     ```yaml
@@ -425,19 +441,19 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 #### Initialising the Production Web Server (Microsoft Azure) with Docker:
 
-1.  Create a virtual machine (cost efficient).
+1.  Create a virtual machine (cost efficient technology).
     - Operating system: Linux (ubuntu 22.04)
     - Size: Standard B1ms (1 vcpu, 2 GiB memory)
 
-2.  Download the key pair for SSH access to the production VM.
+2.  Download the key pair for SSH access to the production virtual machine.
 
-3.  SSH into the production VM:
+3.  SSH into the production virtual machine:
 
     ```
     ssh -i wp-production-key.pem azureuser@<PRODUCTION_VM_IP>
     ```
 
-4.  Update the production VM:
+4.  Update the production virtual machine:
 
     ```
     sudo apt update
@@ -471,10 +487,10 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 9.  Define passwords with variables (example):
 
     ```
-    MYSQL_DATABASE = ninjawarriors
-    MYSQL_USER = ninjawarrior
-    MYSQL_PASSWORD = ninjawarrior_password
-    MYSQL_ROOT_PASSWORD = ninjawarrior_root_password
+    MYSQL_DATABASE = mysqldatabase
+    MYSQL_USER = mysqluser
+    MYSQL_PASSWORD = mysqlpassword
+    MYSQL_ROOT_PASSWORD = mysqlrootpassword
     ```
 
 10. Create a docker-compose.yml file:
@@ -492,8 +508,8 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 **Adding a custom theme:**
 
-1.  Change directory into themes (create dir if needed).
-2.  Clone the repo (or a specific branch) in the directory:
+1.  Change directory into themes folder (create dir if needed).
+2.  Clone the repo (or a specific branch) into the directory:
 
     ```
     sudo git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
@@ -501,7 +517,7 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 #### Initialising GitHub Actions for Production:
 
-1.  Add SSH private key and VM IP address in GitHub repo's secrets (create new secrets for production).
+1.  Add SSH private key and virtual machine IP address in GitHub repo's secrets (create new secrets for production).
 2.  Define `.yml` file in `.github/workflows/` directory:
 
     ```yaml
@@ -539,7 +555,7 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 1.  Commit and push changes from local development to the `main` for staging and `production` for production.
 
-2.  SSH into VM:
+2.  SSH into virtual machine:
 
     ```
     ssh -i wp-production-key.pem azureuser@<PRODUCTION_VM_IP>
@@ -561,11 +577,11 @@ Automated PR testing using GitHub Actions currently helps ensure code quality by
 
 ### Local to Staging:
 
-Any pushes to main will automatically be deployed in the staging website vai Github Actions as defined above.
+Any pushes to main will automatically be deployed in the staging website via Github Actions as defined above.
 
 ### Staging to Production:
 
-1. Checkout the production branch in your chosed code editor:
+1. Checkout the production branch in your chosen code editor:
   ```
   git checkout production
   ```
