@@ -109,7 +109,7 @@
     git clone https://github.com/cp3402-students/project-2025-tr1-jcua-team1.git
     ```
 
-### Before Development - Project Management:
+### Before Development - Project Management
 
 1. Open Trello board:
 
@@ -124,7 +124,7 @@
 3. Move chosen card into 'In Progress' to notify team members.
     * Either drag or change list from the card description page.
 
-4. Join the card you are working on
+4. Join the card you're working on, or assign team members to their respective cards.
 
 ### Typical Local Development Workflow with Docker:
 
