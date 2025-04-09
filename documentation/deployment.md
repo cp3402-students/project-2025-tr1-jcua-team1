@@ -4,7 +4,7 @@
 
 1.  [Development Workflow](#development-workflow)
     *   [Setting Up Local Development with Docker](#setting-up-local-development-with-docker)
-    *   [Before Development](#before-development)
+    *   [Before Development](#before-development---project-management)
     *   [Typical Local Development Workflow with Docker](#typical-local-development-workflow-with-docker)
     *   [Typical Theme Local Development Example](#typical-theme-local-development-example)
     *   [Typical Content Development Example](#typical-content-development-example)
@@ -25,7 +25,7 @@
 
 ### Setting Up Local Development with Docker:
 
-**Pre-requisites:**
+**Prerequisites:**
 
 *   Git
 *   Docker
@@ -147,7 +147,7 @@
     docker-compose up -d
     ```
 
-5.  Destroy Docker containers when finished:
+5.  Stop Docker containers when finished:
 
     ```
     docker-compose down
@@ -167,7 +167,7 @@
     git pull
     ```
 
-3.  Create a new branch prior to modification and switch into it (best practice) to seperate working files from main files:
+3.  Create a new branch prior to modification and switch into it (best practice) to separate working files from main files:
   
     ```
     git branch hompage-customisation
