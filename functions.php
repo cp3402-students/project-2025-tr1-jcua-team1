@@ -319,18 +319,7 @@ function team1_theme_footer_customize_register( $wp_customize ) {
         'type'     => 'checkbox',
     ) );
 
-    // // Italic Footer Text
-    $wp_customize->add_setting( 'footer_text_italic', array(
-        'default'           => false,
-        'sanitize_callback' => 'team1theme_sanitize_checkbox',
-        'transport'         => 'refresh',
-    ) );
-
-    $wp_customize->add_control( 'footer_text_italic', array(
-        'label'    => __( 'Italic Footer Text', 'team1theme' ),
-        'section'  => 'footer_settings',
-        'type'     => 'checkbox',
-    ) );
+    
 
     // Footer Background Color
     $wp_customize->add_setting( 'footer_bg_color', array(
